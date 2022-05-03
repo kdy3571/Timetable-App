@@ -7,7 +7,7 @@
     tools:context=".TimetableGeneration">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -18,16 +18,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edittext"
+        android:id="@+id/credit_input"
         android:layout_width="62dp"
         android:layout_height="72dp"
         android:layout_marginEnd="60dp"
         android:text="입력"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/edittext2"
+        android:id="@+id/ge_input"
         android:layout_width="62dp"
         android:layout_height="72dp"
         android:layout_marginStart="15dp"
@@ -39,14 +39,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="20dp"
         android:text="제외과목"
-        app:layout_constraintBottom_toTopOf="@+id/button10"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,9 +58,9 @@
         android:layout_marginTop="40dp"
         android:layout_marginBottom="20dp"
         android:text="선택 과목"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button10" />
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
 
     <TextView
         android:id="@+id/textView3"
@@ -68,22 +68,22 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:text="공강선택"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox3"
+        app:layout_constraintBottom_toTopOf="@+id/check3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -100,57 +100,67 @@
         android:layout_marginTop="100dp"
         android:text="교양 수 "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/check1" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/check1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="월"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox2"
+        app:layout_constraintEnd_toStartOf="@+id/check2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/check2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="화"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox3"
-        app:layout_constraintStart_toEndOf="@+id/checkBox"
+        app:layout_constraintEnd_toStartOf="@+id/check3"
+        app:layout_constraintStart_toEndOf="@+id/check1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/check3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="수"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox4"
-        app:layout_constraintStart_toEndOf="@+id/checkBox2"
+        app:layout_constraintEnd_toStartOf="@+id/check4"
+        app:layout_constraintStart_toEndOf="@+id/check2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/check4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="목"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox5"
-        app:layout_constraintStart_toEndOf="@+id/checkBox3"
+        app:layout_constraintEnd_toStartOf="@+id/check5"
+        app:layout_constraintStart_toEndOf="@+id/check3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/check5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="금"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/checkBox4"
+        app:layout_constraintStart_toEndOf="@+id/check4"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="14dp"
+        android:text="생성"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
