@@ -19,20 +19,20 @@
         tools:layout_editor_absoluteX="0dp">
         <Spinner
             android:id="@+id/yearSpinner"
-            android:layout_width="100dp"
+            android:layout_width="128dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp">
         </Spinner>
         <Spinner
             android:id="@+id/termSpinner"
-            android:layout_width="80dp"
+            android:layout_width="124dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp">
         </Spinner>
         <Spinner
-            android:id="@+id/ereaSpinner"
+            android:id="@+id/areaSpinner"
             android:layout_width="120dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
@@ -56,20 +56,19 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp">
         </Spinner>
-        <Button
+        <android.widget.Button
             android:id="@+id/search_button"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:background="@drawable/button_design2"
-            android:text="강의 검색"
-            android:textColor="#ffffff"
+            android:text="검색"
+            android:textColor="#000000"
             android:textSize="15dp"
             android:textStyle="bold">
-        </Button>
+        </android.widget.Button>
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/listlinear"
         android:layout_width="match_parent"
@@ -77,21 +76,27 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listview"
+            android:dividerHeight="10dp"
+            android:background="#ffffff">
+        </ListView>
     </LinearLayout>
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="177dp"
-        android:layout_height="58dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:textAlignment="center"
         android:text="강의추가"
+        android:textAlignment="center"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
     </TextView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
