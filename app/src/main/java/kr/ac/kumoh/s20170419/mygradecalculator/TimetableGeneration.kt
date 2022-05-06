@@ -16,8 +16,8 @@ class TimetableGeneration : AppCompatActivity() {
         setContentView(gbinding.root)
 
         var credit: Int = gbinding.creditInput.text.toString().toInt()
-        var s_subject: ArrayList<String>
-        val e_subject: ArrayList<String>
+        var s_subject =  ArrayList<String>()
+        val e_subject = ArrayList<String>()
         var rest = ArrayList<Int>()
         var ge: Int = 0
 
@@ -51,15 +51,14 @@ class TimetableGeneration : AppCompatActivity() {
             }
         }
 
-            gbinding.check1.setOnCheckedChangeListener(listener)
-            gbinding.check2.setOnCheckedChangeListener(listener)
-            gbinding.check3.setOnCheckedChangeListener(listener)
-            gbinding.check4.setOnCheckedChangeListener(listener)
-            gbinding.check5.setOnCheckedChangeListener(listener)
+        gbinding.check1.setOnCheckedChangeListener(listener)
+        gbinding.check2.setOnCheckedChangeListener(listener)
+        gbinding.check3.setOnCheckedChangeListener(listener)
+        gbinding.check4.setOnCheckedChangeListener(listener)
+        gbinding.check5.setOnCheckedChangeListener(listener)
 
-            gbinding.create.setOnClickListener {
-                auto_schedule(credit, s_subject, e_subject, rest, ge)
-            }
+        gbinding.create.setOnClickListener {
+            auto_schedule(credit, s_subject, e_subject, rest, ge)
         }
     }
 }

@@ -1,8 +1,8 @@
 import java.util.*
 import kotlin.collections.ArrayList
 
-class auto_schedule(var credit: Int, val s_subject: String,
-           val e_subject: String, var rest: ArrayList<Int>, var ge: Int) {
+class auto_schedule(var credit: Int, val s_subject: ArrayList<String>,
+           val e_subject: ArrayList<String>, var rest: ArrayList<Int>, var ge: Int) {
     fun main(args: Array<String>) {
         val slist = Array(5, { arrayOfNulls<String>(12) })
 
