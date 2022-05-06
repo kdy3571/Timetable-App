@@ -98,6 +98,3 @@
         tools:ignore="MissingConstraints">
     </TextView>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
