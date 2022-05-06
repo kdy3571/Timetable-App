@@ -76,13 +76,13 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-        <ListView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/listview"
             android:dividerHeight="10dp"
             android:background="#ffffff">
-        </ListView>
+        </TextView>
     </LinearLayout>
     <TextView
         android:id="@+id/textView6"
