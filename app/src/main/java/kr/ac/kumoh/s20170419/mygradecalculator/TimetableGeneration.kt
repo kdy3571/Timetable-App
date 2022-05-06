@@ -2,10 +2,13 @@ package kr.ac.kumoh.s20170419.mygradecalculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.INFO
 import android.view.View
 import android.widget.*
 import auto_schedule
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableGenerationBinding
+import kotlin.properties.Delegates
 
 class TimetableGeneration : AppCompatActivity() {
     lateinit var gbinding: ActivityTimetableGenerationBinding
@@ -15,11 +18,16 @@ class TimetableGeneration : AppCompatActivity() {
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
 
-        var credit: Int = gbinding.creditInput.text.toString().toInt()
+        var credit by Delegates.notNull<Int>()
         var s_subject =  ArrayList<String>()
         val e_subject = ArrayList<String>()
         var rest = ArrayList<Int>()
         var ge: Int = 0
+
+        gbinding.creditInput.setOnClickListener {
+            credit = gbinding.creditInput.text.toString().toInt()
+            Log.INFO("credit", "credit: ")
+        }
 
         gbinding.button1.setOnClickListener {
             //과목 리스트 불러오기
