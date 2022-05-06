@@ -31,31 +31,31 @@ class TimetableGeneration : AppCompatActivity() {
             //불러온 과목들 e_subject에 추가
         }
 
-//        var listener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-//            if (isChecked) {
-//                when (buttonView.id) {
-//                    R.id.check1 -> rest.add(0)
-//                    R.id.check2 -> rest.add(1)
-//                    R.id.check3 -> rest.add(2)
-//                    R.id.check4 -> rest.add(3)
-//                    R.id.check5 -> rest.add(4)
-//                }
-//            }
-//            else {
-//                when (buttonView.id) {
-//                    R.id.check1 -> rest.removeAt(0)
-//                    R.id.check2 -> rest.removeAt(1)
-//                    R.id.check3 -> rest.removeAt(2)
-//                    R.id.check4 -> rest.removeAt(3)
-//                    R.id.check5 -> rest.removeAt(4)
-//                }
-//            }
-//
-//            gbinding.check1.setOnCheckedChangeListener(listener)
-//            gbinding.check2.setOnCheckedChangeListener(listener)
-//            gbinding.check3.setOnCheckedChangeListener(listener)
-//            gbinding.check4.setOnCheckedChangeListener(listener)
-//            gbinding.check5.setOnCheckedChangeListener(listener)
+        var listener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                when (buttonView.id) {
+                    R.id.check1 -> rest.add(0)
+                    R.id.check2 -> rest.add(1)
+                    R.id.check3 -> rest.add(2)
+                    R.id.check4 -> rest.add(3)
+                    R.id.check5 -> rest.add(4)
+                }
+            } else {
+                when (buttonView.id) {
+                    R.id.check1 -> rest.removeAt(0)
+                    R.id.check2 -> rest.removeAt(1)
+                    R.id.check3 -> rest.removeAt(2)
+                    R.id.check4 -> rest.removeAt(3)
+                    R.id.check5 -> rest.removeAt(4)
+                }
+            }
+        }
+
+            gbinding.check1.setOnCheckedChangeListener(listener)
+            gbinding.check2.setOnCheckedChangeListener(listener)
+            gbinding.check3.setOnCheckedChangeListener(listener)
+            gbinding.check4.setOnCheckedChangeListener(listener)
+            gbinding.check5.setOnCheckedChangeListener(listener)
 
             gbinding.create.setOnClickListener {
                 auto_schedule(credit, s_subject, e_subject, rest, ge)
