@@ -24,20 +24,20 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp">
         </Spinner>
+
         <Spinner
             android:id="@+id/termSpinner"
-            android:layout_width="124dp"
+            android:layout_width="103dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp">
-        </Spinner>
+            android:layout_marginLeft="10dp"></Spinner>
+
         <Spinner
             android:id="@+id/areaSpinner"
-            android:layout_width="120dp"
+            android:layout_width="141dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp">
-        </Spinner>
+            android:layout_marginLeft="10dp"></Spinner>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/linearLayout"
