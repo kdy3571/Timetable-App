@@ -24,7 +24,7 @@ class TimetableGeneration : AppCompatActivity() {
 
         gbinding.creditInput.setOnClickListener {
             credit = gbinding.creditInput.text.toString().toInt()
-            Log.d("credit", "credit: ")
+            Log.d("credit", "credit: "+ credit)
         }
 
         gbinding.button1.setOnClickListener {
@@ -40,7 +40,10 @@ class TimetableGeneration : AppCompatActivity() {
         var listener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 when (buttonView.id) {
-                    R.id.check1 -> rest.add(0)
+                    R.id.check1 -> {
+                        rest.add(0)
+                        Log.d("rest", "rest: "+ rest)
+                    }
                     R.id.check2 -> rest.add(1)
                     R.id.check3 -> rest.add(2)
                     R.id.check4 -> rest.add(3)
