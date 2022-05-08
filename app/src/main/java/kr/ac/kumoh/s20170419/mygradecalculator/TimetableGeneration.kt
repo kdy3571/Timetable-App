@@ -3,8 +3,6 @@ package kr.ac.kumoh.s20170419.mygradecalculator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.INFO
-import android.view.View
 import android.widget.*
 import auto_schedule
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableGenerationBinding
@@ -26,7 +24,7 @@ class TimetableGeneration : AppCompatActivity() {
 
         gbinding.creditInput.setOnClickListener {
             credit = gbinding.creditInput.text.toString().toInt()
-            Log.INFO("credit", "credit: ")
+            Log.d("credit", "credit: ")
         }
 
         gbinding.button1.setOnClickListener {
