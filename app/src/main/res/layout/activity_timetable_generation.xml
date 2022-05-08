@@ -30,13 +30,14 @@
         android:id="@+id/ge_input"
         android:layout_width="62dp"
         android:layout_height="72dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="150dp"
-        android:text="입력"
+        android:hint="입력"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView1"
