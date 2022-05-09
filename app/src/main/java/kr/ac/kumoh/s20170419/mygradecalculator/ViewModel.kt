@@ -35,7 +35,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         list.value = R_subject
         mQueue = VolleyRequest.getInstance(application).requestQueue
     }
-    fun requestList() {
+    fun requestList(grade: String, semester: String, division: String) {
         val url = "https://expresssongdb-ocmes.run.goorm.io/?t=1651835082540"
 
         val request = JsonArrayRequest(
@@ -44,7 +44,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             null,
             {
                 R_subject.clear()
-                parseSubjectJSON(it)
+                parseSubjectJSON(it, grade, semester, division)
                 list.value = R_subject
             },
             {
@@ -60,7 +60,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     }
     fun getR_subject(i : Int) = R_subject[i]
     fun getSize() = R_subject.size
-    private fun parseSubjectJSON(items: JSONArray){
+    private fun parseSubjectJSON(items: JSONArray, Grade: String, Semester: String, Division: String){
         for (i in 0 until items.length()){
             val item: JSONObject = items.getJSONObject(i)
             val requiredsubject_id = item.getString("requiredsubject_id")
@@ -76,8 +76,32 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             val grade = item.getString("grade")
             val semester = item.getString("semester")
 
-            R_subject.add(Subject(requiredsubject_id, majorselection_id, geselection_id, name,
-                professor, code, room, time, division, credit, grade, semester))
+            if(Grade == grade && Semester == semester) {
+                if(Division == "필수" && requiredsubject_id != "null") {
+                    R_subject.add(
+                        Subject(
+                            requiredsubject_id, majorselection_id, geselection_id, name,
+                            professor, code, room, time, division, credit, grade, semester
+                        )
+                    )
+                }
+                else if(Division == "전공선택" && majorselection_id != "null") {
+                    R_subject.add(
+                        Subject(
+                            requiredsubject_id, majorselection_id, geselection_id, name,
+                            professor, code, room, time, division, credit, grade, semester
+                        )
+                    )
+                }
+                else if(Division == "교양선택" && geselection_id != "null"){
+                    R_subject.add(
+                        Subject(
+                            requiredsubject_id, majorselection_id, geselection_id, name,
+                            professor, code, room, time, division, credit, grade, semester
+                        )
+                    )
+                }
+            }
         }
     }
 }
