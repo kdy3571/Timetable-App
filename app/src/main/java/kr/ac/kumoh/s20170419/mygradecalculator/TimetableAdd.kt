@@ -61,7 +61,7 @@ class TimetableAdd : AppCompatActivity() {
             val major:String = majorSpinner.selectedItem.toString()
             if(major == "컴퓨터공학과")
                 model.requestList(year, term, area)
-            else {
+            else { // 나머지학과
                 model.requestList("", "", area)
             }
         }
