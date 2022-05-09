@@ -1,18 +1,25 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.Toast
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.Volley
+import androidx.activity.viewModels
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_timetable_add.*
+import kotlinx.android.synthetic.main.activity_timetable_add.view.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableAddBinding
+import kotlin.properties.ReadWriteProperty
 
 class TimetableAdd : AppCompatActivity() {
     lateinit var binding : ActivityTimetableAddBinding
+    private val model: ViewModel by viewModels()
+    private lateinit var dbadapter: DatabaseAdapter
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTimetableAddBinding.inflate(layoutInflater)
@@ -35,8 +42,27 @@ class TimetableAdd : AppCompatActivity() {
         binding.majorSpinner.adapter = majoradapter
 
         val search_button : Button = findViewById(R.id.search_button)
-        search_button.setOnClickListener{
 
+        dbadapter = DatabaseAdapter(model) {subject -> adapterOnClick(subject) }
+        binding.listdata.apply {
+            layoutManager = LinearLayoutManager(applicationContext)
+            setHasFixedSize(true)
+            itemAnimator = DefaultItemAnimator()
+            dbadapter = this@TimetableAdd.dbadapter
         }
+        model.list.observe(this) {
+            dbadapter.notifyDataSetChanged()
+        }
+        search_button.setOnClickListener{
+            val year:String = yearSpinner.selectedItem.toString()
+            val term:String = termSpinner.selectedItem.toString()
+            val area:String = areaSpinner.selectedItem.toString()
+            val major:String = majorSpinner.selectedItem.toString()
+            if (year == "4학년" && term == "1학기" && area == "필수" && major == "컴퓨터공학과"){
+                model.requestList()
+            }
+        }
+    }
+    private fun adapterOnClick(mechanic: ViewModel.Subject):Unit {
     }
 }

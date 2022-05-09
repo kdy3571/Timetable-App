@@ -16,9 +16,9 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     }
     private lateinit var mQueue: RequestQueue
     data class Subject(
-        val requiredsubject_id: Int,
-        val majorselection_id: Int,
-        val geselection_id: Int,
+        val requiredsubject_id: String?,
+        val majorselection_id: String?,
+        val geselection_id: String?,
         val name: String,
         val professor: String,
         val code: String,
@@ -35,7 +35,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         list.value = R_subject
         mQueue = VolleyRequest.getInstance(application).requestQueue
     }
-    private fun requestList() {
+    fun requestList() {
         val url = "https://expresssongdb-ocmes.run.goorm.io/?t=1651835082540"
 
         val request = JsonArrayRequest(
@@ -46,7 +46,6 @@ class ViewModel(application: Application): AndroidViewModel(application) {
                 R_subject.clear()
                 parseSubjectJSON(it)
                 list.value = R_subject
-
             },
             {
                 Toast.makeText(getApplication(), it.toString(), Toast.LENGTH_LONG).show()
@@ -64,9 +63,9 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     private fun parseSubjectJSON(items: JSONArray){
         for (i in 0 until items.length()){
             val item: JSONObject = items.getJSONObject(i)
-            val requiredsubject_id = item.getInt("requiredsubject_id")
-            val majorselection_id = item.getInt("majorselection_id")
-            val geselection_id = item.getInt("geselection_id")
+            val requiredsubject_id = item.getString("requiredsubject_id")
+            val majorselection_id = item.getString("majorselection_id")
+            val geselection_id = item.getString("geselection_id")
             val name = item.getString("name")
             val professor = item.getString("professor")
             val code = item.getString("code")
