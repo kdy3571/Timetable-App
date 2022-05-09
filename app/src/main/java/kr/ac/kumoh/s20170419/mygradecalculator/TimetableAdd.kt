@@ -59,14 +59,10 @@ class TimetableAdd : AppCompatActivity() {
             val term:String = termSpinner.selectedItem.toString()
             val area:String = areaSpinner.selectedItem.toString()
             val major:String = majorSpinner.selectedItem.toString()
-            if (year == "4학년" && term == "1학기" && area == "필수" && major == "컴퓨터공학과"){
-                model.requestList("4", "1", "필수")
-            }
-            else if (year == "4학년" && term == "1학기" && area == "전공선택" && major == "컴퓨터공학과"){
-                model.requestList("4", "1", "전공선택")
-            }
-            else if ((year == "4학년" && term == "1학기" && area == "교양선택" && major == "컴퓨터공학과")){
-                model.requestList("4", "1", "교양선택")
+            if(major == "컴퓨터공학과")
+                model.requestList(year, term, area)
+            else {
+                model.requestList("", "", area)
             }
         }
     }
