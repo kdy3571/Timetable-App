@@ -32,9 +32,9 @@ class DatabaseAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = model.getR_subject(position)
-        var str: String? = null
+        var str:String? = null
         if(item.requiredsubject_id != null && item.grade == "4" && item.semester == "1"){
-            str = item.name
+            str = "${item.name}"
         }
         holder.text.text = str
     }

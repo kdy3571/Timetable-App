@@ -48,7 +48,7 @@ class TimetableAdd : AppCompatActivity() {
             layoutManager = LinearLayoutManager(applicationContext)
             setHasFixedSize(true)
             itemAnimator = DefaultItemAnimator()
-            dbadapter = this@TimetableAdd.dbadapter
+            adapter = this@TimetableAdd.dbadapter
         }
         model.list.observe(this) {
             dbadapter.notifyDataSetChanged()
