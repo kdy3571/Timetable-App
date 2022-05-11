@@ -13,21 +13,21 @@ import org.json.JSONObject
 class ViewModel(application: Application): AndroidViewModel(application) {
     companion object{
         const val QUEUE_TAG = "VolleyRequest"
-    } // 서버를 사용하기 위해 requestQueue 사용
+    }
     private lateinit var mQueue: RequestQueue
-    data class Subject( //데이터베이스를 위한 data class
+    data class Subject(
         val requiredsubject_id: String?,
         val majorselection_id: String?,
         val geselection_id: String?,
-        val name: String, //강의 이름
-        val professor: String, //교수님 이름
-        val code: String,// 학과코드
-        val room: String,// 강의실
-        val time: String,// 강의시간
-        val division: String, //필수, 선택
-        val credit: String, //학점
-        val grade: String, //학년
-        val semester: String //학기
+        val name: String,
+        val professor: String,
+        val code: String,
+        val room: String,
+        val time: String,
+        val division: String,
+        val credit: String,
+        val grade: String,
+        val semester: String
     )
     val list = MutableLiveData<ArrayList<Subject>>()
     private val R_subject = ArrayList<Subject>()
@@ -37,7 +37,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     }
     fun requestList(grade: String, semester: String, division: String) {
         val url = "https://expresssongdb-ocmes.run.goorm.io/?t=1651835082540"
-        //DB 서버주소
+
         val request = JsonArrayRequest(
             Request.Method.GET,
             url,
@@ -52,17 +52,16 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             }
         )
         request.tag = QUEUE_TAG
-        mQueue.add(request) //request 전송
+        mQueue.add(request)
     }
     override fun onCleared() {
         super.onCleared()
         mQueue.cancelAll(QUEUE_TAG)
     }
     fun getR_subject(i : Int) = R_subject[i]
-    fun get_gid(i : Int) = R_subject[i].geselection_id
     fun getSize() = R_subject.size
     private fun parseSubjectJSON(items: JSONArray, Grade: String, Semester: String, Division: String){
-        for (i in 0 until items.length()){ //JSONArray를 받아와 해당되는 변수에 넣음
+        for (i in 0 until items.length()){
             val item: JSONObject = items.getJSONObject(i)
             val requiredsubject_id = item.getString("requiredsubject_id")
             val majorselection_id = item.getString("majorselection_id")
@@ -76,7 +75,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             val credit = item.getString("credit")
             val grade = item.getString("grade")
             val semester = item.getString("semester")
-            //spinner를 위한 if 구문
+
             if(Grade == grade && Semester == semester) {
                 if(Division == "필수" && requiredsubject_id != "null") {
                     R_subject.add(
