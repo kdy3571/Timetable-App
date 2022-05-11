@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:text="시간표"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -51,5 +41,300 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button3" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:stretchColumns="1,2,3,4,5"
+        android:shrinkColumns="1,2,3,4,5"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="구분"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="월dsadaaaaaaaaaa"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="화dsadsadsadadsadsada"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="수dsdadsdasdsads"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="목dsdasdsadsdadsa"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="금dsaddsdasdsadsa"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="1교시"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="2교시"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="dsaddsadasdsda"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="3교시"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="4교시"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="5교시"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="6교시"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="7교시"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="8교시"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="9교시"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="A교시"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="B교시"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="C교시"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </TableRow>
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
