@@ -35,7 +35,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         list.value = R_subject
         mQueue = VolleyRequest.getInstance(application).requestQueue
     }
-    fun requestList(grade: String, semester: String, division: String) {
+    fun requestList(grade: String, semester: String, division: String): ArrayList<Subject> {
         val url = "https://expresssongdb-ocmes.run.goorm.io/?t=1651835082540"
 
         val request = JsonArrayRequest(
@@ -53,6 +53,8 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         )
         request.tag = QUEUE_TAG
         mQueue.add(request)
+
+        return R_subject
     }
     override fun onCleared() {
         super.onCleared()
