@@ -43,7 +43,7 @@ class TimetableAdd : AppCompatActivity() {
 
         val search_button : Button = findViewById(R.id.search_button)
 
-        dbadapter = DatabaseAdapter(model) {subject -> adapterOnClick(subject) }
+        dbadapter = DatabaseAdapter(model) { subject -> adapterOnClick(subject) }
         binding.listdata.apply {
             layoutManager = LinearLayoutManager(applicationContext)
             setHasFixedSize(true)

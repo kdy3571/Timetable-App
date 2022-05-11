@@ -32,7 +32,8 @@ class DatabaseAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = model.getR_subject(position)
-        val str = item.name
+        var token = item.code.split('-')
+        val str = "${item.name} \n${item.professor}교수님 ${token[1]}분반"
         holder.text.text = str
     }
 
