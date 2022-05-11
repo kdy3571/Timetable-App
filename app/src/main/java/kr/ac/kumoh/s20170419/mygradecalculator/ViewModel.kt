@@ -59,6 +59,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         mQueue.cancelAll(QUEUE_TAG)
     }
     fun getR_subject(i : Int) = R_subject[i]
+    fun get_gid(i : Int) = R_subject[i].geselection_id
     fun getSize() = R_subject.size
     private fun parseSubjectJSON(items: JSONArray, Grade: String, Semester: String, Division: String){
         for (i in 0 until items.length()){ //JSONArray를 받아와 해당되는 변수에 넣음

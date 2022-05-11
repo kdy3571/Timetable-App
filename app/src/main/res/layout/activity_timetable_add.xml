@@ -69,25 +69,6 @@
             android:textStyle="bold">
         </android.widget.Button>
     </LinearLayout>
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/listlinear"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="center"-->
-<!--        android:orientation="horizontal"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="parent">-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:id="@+id/listview"-->
-<!--                    android:dividerHeight="10dp"-->
-<!--                    android:background="#ffffff">-->
-<!--                </TextView>-->
-<!--    </LinearLayout>-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listdata"
         android:layout_width="0dp"

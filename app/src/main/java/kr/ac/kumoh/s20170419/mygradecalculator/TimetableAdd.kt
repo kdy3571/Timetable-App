@@ -1,19 +1,16 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_timetable_add.*
-import kotlinx.android.synthetic.main.activity_timetable_add.view.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableAddBinding
-import kotlin.properties.ReadWriteProperty
 
 class TimetableAdd : AppCompatActivity() {
     lateinit var binding : ActivityTimetableAddBinding
@@ -67,5 +64,9 @@ class TimetableAdd : AppCompatActivity() {
         }
     }
     private fun adapterOnClick(mechanic: ViewModel.Subject):Unit {
+
+    }
+    fun plussubject(id:String?){
+        Toast.makeText(getApplication(), id, Toast.LENGTH_LONG).show()
     }
 }
