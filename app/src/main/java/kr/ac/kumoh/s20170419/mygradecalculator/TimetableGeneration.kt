@@ -1,14 +1,16 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import androidx.activity.viewModels
 import auto_schedule
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableGenerationBinding
-import kotlin.properties.Delegates
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TimetableGeneration : AppCompatActivity() {
+    private val model: ViewModel by viewModels()
     lateinit var gbinding: ActivityTimetableGenerationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,19 +18,24 @@ class TimetableGeneration : AppCompatActivity() {
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
 
-        var credit = 0
+        var credit = arrayListOf(0)
         var s_subject =  ArrayList<String>()
-        val e_subject = ArrayList<String>()
+        var e_subject = ArrayList<String>()
         var rest = ArrayList<Int>()
-        var ge: Int = 0
+        var ge = arrayListOf(0)
+        var timetable = Array(5) { arrayOfNulls<String?>(12) }
 
         gbinding.creditInput.setOnClickListener {
-            credit = gbinding.creditInput.text.toString().toInt()
-            Log.d("credit", "credit: "+ credit)
+            credit[0] = gbinding.creditInput.text.toString().toInt()
+            Log.d("credit", "credit: "+ credit[0])
+        }
+
+        gbinding.geInput.setOnClickListener {
+            ge[0] = gbinding.geInput.text.toString().toInt()
+            Log.d("ge", "ge: "+ ge[0])
         }
 
         gbinding.button1.setOnClickListener {
-            //과목 리스트 불러오기
             //불러온 과목들 s_subject에 추가
         }
 
@@ -64,7 +71,9 @@ class TimetableGeneration : AppCompatActivity() {
         gbinding.check5.setOnCheckedChangeListener(listener)
 
         gbinding.create.setOnClickListener {
-            auto_schedule(credit, s_subject, e_subject, rest, ge)
+            auto_schedule(timetable, credit, s_subject, e_subject, rest, ge, model)
+            timetable[0][1] = "1"
+            Log.d("timetable", Arrays.deepToString(timetable))
         }
     }
 }

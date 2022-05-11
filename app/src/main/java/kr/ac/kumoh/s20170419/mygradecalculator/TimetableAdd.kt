@@ -1,5 +1,4 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
-
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
@@ -61,7 +60,7 @@ class TimetableAdd : AppCompatActivity() {
             val major:String = majorSpinner.selectedItem.toString()
             if(major == "컴퓨터공학과")
                 model.requestList(year, term, area)
-            else { // 나머지학과
+            else { // 나머지   학과
                 model.requestList("", "", area)
             }
         }
