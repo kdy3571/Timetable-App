@@ -58,16 +58,21 @@ fun subject_add(
             Log.d("code", list[num].code)
         for (t in time) {
             val n = log10(t.toDouble()).toInt().toDouble()
-            Log.d("slist", slist[(t.toInt() / 10.0.pow(n)).toInt()][(t.toInt() % 10.0.pow(n)).toInt()].isNullOrEmpty().toString())
-            when (slist[(t.toInt() / 10.0.pow(n)).toInt()][(t.toInt() % 10.0.pow(n)).toInt()].isNullOrEmpty()) {
-                true -> slist[((t.toInt() / 10.0.pow(n)).toInt())][(t.toInt() % 10.0.pow(n)).toInt()] = list[num].code
-                false -> {
+            val temp = slist[(t.toInt() / 10.0.pow(n)).toInt()][(t.toInt() % 10.0.pow(n)).toInt()]
+            Log.d("slist", temp.toString())
+            when (temp) {
+                null -> slist[((t.toInt() / 10.0.pow(n)).toInt())][(t.toInt() % 10.0.pow(n)).toInt()] = list[num].code
+                else -> {
                     list.removeAt(num)
                     return 0
                 }
             }
             Log.d("slist", slist[((t.toInt() / 10.0.pow(n)).toInt())][(t.toInt() % 10.0.pow(n)).toInt()].toString())
         }
+    }
+    else {
+        list.removeAt(num)
+        return 0
     }
     return 1
 }
