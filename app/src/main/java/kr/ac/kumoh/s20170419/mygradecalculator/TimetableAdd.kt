@@ -1,7 +1,9 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 import android.annotation.SuppressLint
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
@@ -63,9 +65,7 @@ class TimetableAdd : AppCompatActivity() {
         }
     }
     private fun adapterOnClick(mechanic: ViewModel.Subject):Unit {
-
-    }
-    fun plussubject(id:String?){
-        Toast.makeText(getApplication(), id, Toast.LENGTH_LONG).show()
+        val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
+        dlg.dialog()
     }
 }
