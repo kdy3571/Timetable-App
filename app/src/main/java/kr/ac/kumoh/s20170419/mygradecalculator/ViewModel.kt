@@ -56,10 +56,12 @@ class ViewModel(application: Application): AndroidViewModel(application) {
 
         return R_subject
     }
+
     override fun onCleared() {
         super.onCleared()
         mQueue.cancelAll(QUEUE_TAG)
     }
+
     fun getR_subject(i : Int) = R_subject[i]
     fun getSize() = R_subject.size
     private fun parseSubjectJSON(items: JSONArray, Grade: String, Semester: String, Division: String){
@@ -103,6 +105,13 @@ class ViewModel(application: Application): AndroidViewModel(application) {
                         )
                     )
                 }
+                else
+                    R_subject.add(
+                        Subject(
+                            requiredsubject_id, majorselection_id, geselection_id, name,
+                            professor, code, room, time, division, credit, grade, semester
+                        )
+                    )
             }
         }
     }
