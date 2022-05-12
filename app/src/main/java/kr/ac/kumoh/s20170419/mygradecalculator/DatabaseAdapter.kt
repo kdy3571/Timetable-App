@@ -17,7 +17,8 @@ class DatabaseAdapter(
 ): RecyclerView.Adapter<DatabaseAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View):
         RecyclerView.ViewHolder(itemView) {
-        val text: TextView = itemView.findViewById(R.id.listtext)
+        val text: TextView = itemView.findViewById(R.id.name)
+        val text2: TextView = itemView.findViewById(R.id.profe)
         init {
             itemView.setOnClickListener {
                 onClick(model.getR_subject(adapterPosition))
@@ -36,9 +37,10 @@ class DatabaseAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = model.getR_subject(position)
         var token = item.code.split('-')
-        val str = "${item.name} \n${item.professor}교수님 ${token[1]}분반"
+        val str = "${item.name}"
+        val str2 = "${item.professor} ${token[1]}"
         holder.text.text = str
-
+        holder.text2.text = str2
     }
 
     override fun getItemCount(): Int {
