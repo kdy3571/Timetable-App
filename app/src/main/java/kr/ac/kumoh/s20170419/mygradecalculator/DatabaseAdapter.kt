@@ -18,13 +18,9 @@ class DatabaseAdapter(
     inner class ViewHolder(itemView: View):
         RecyclerView.ViewHolder(itemView) {
         val text: TextView = itemView.findViewById(R.id.listtext)
-        val btn: Button = itemView.findViewById(R.id.btn1)
         init {
             itemView.setOnClickListener {
                 onClick(model.getR_subject(adapterPosition))
-            }
-            btn.setOnClickListener {
-                Toast.makeText(itemView.context, text.text, Toast.LENGTH_LONG).show()
             }
         }
     }
