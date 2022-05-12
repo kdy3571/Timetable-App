@@ -31,6 +31,5 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, GradeManagement::class.java)
             startActivity(intent)
         }
-
     }
 }
