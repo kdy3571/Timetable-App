@@ -18,11 +18,22 @@ class Dialog(context: Context) {
         btnOK = dlg.findViewById(R.id.ok)
         btnCancel = dlg.findViewById(R.id.cancel)
         btnOK.setOnClickListener{
+            onClickedListener.onClicked(1)
             dlg.dismiss()
         }
         btnCancel.setOnClickListener {
+            onClickedListener.onClicked(0)
             dlg.dismiss()
         }
         dlg.show()
+    }
+    interface ButtonClickListener {
+        fun onClicked(data : Int)
+    }
+
+    private lateinit var onClickedListener: ButtonClickListener
+
+    fun setOnClickedListener(listener: ButtonClickListener) {
+        onClickedListener = listener
     }
 }
