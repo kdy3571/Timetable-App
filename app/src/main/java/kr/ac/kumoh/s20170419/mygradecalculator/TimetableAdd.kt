@@ -64,14 +64,16 @@ class TimetableAdd : AppCompatActivity() {
             }
         }
     }
-    private fun adapterOnClick(mechanic: ViewModel.Subject):Unit {
+    private fun adapterOnClick(subjectdata: ViewModel.Subject):Unit {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
         dlg.dialog()
-        var i_data :Int = 0
-//        dlg.setOnClickedListener(object : kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener{
-//            #override fun Onclicked(data : Int){
-//             #   i_data = data
-//            }
-//        })
+        dlg.setOnClickedListener(object : kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener{
+            override fun onClicked(data: Int) {
+                if(data == 1)
+                    Toast.makeText(getApplication(), subjectdata.code, Toast.LENGTH_LONG).show()
+                else if(data == 0)
+                    Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }

@@ -51,7 +51,7 @@ fun subject_add(
     credit: ArrayList<Int>): Int {
     val random = Random()
     val num = random.nextInt(list.size)
-
+    print('a')
     if (credit[0] - list[num].credit.toInt() > 0) {// list로 불러온 과목의 학점 체크
         val time = list[num].time.split(", ")
             Log.d("time", time.toString())
