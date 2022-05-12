@@ -72,7 +72,6 @@ class TimetableGeneration : AppCompatActivity() {
 
         gbinding.create.setOnClickListener {
             auto_schedule(timetable, credit, s_subject, e_subject, rest, ge, model)
-            timetable[0][1] = "1"
             Log.d("timetable", Arrays.deepToString(timetable))
         }
     }
