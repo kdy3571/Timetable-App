@@ -58,7 +58,7 @@ fun subject_add(
 
     if (division == "교양") {
         if (credit[0] - list[num].credit.toInt() > 0) {// list로 불러온 과목의 학점 체크
-            time = list[num].time.split(",")
+            time = list[num].time.split(", ")
             Log.d("time", time.toString())
             Log.d("code", list[num].code)
             Log.d("log", log10(time[0].toDouble()).toString())
@@ -68,19 +68,17 @@ fun subject_add(
                     if (slist[t.toInt() / 10][t.toInt() % 10] == null) {
                         slist[t.toInt() / 10][t.toInt() % 10] = list[num].code
                         slist[t.toInt() / 10][t.toInt() % 10]?.let { Log.d("slist", it) }
-                    }
-                    else {
-                        list.removeAt(num)
-                        return 0
+                    } else {
+//                        list.removeAt(num)
+//                        return 0
                     }
                 } else {
-                    if (slist[t.toInt() / 10][t.toInt() % 10] == null) {
+                    if (slist[t.toInt() / 100][t.toInt() % 100] == null) {
                         slist[t.toInt() / 100][t.toInt() % 100] = list[num].code
                         slist[t.toInt() / 100][t.toInt() % 100]?.let { Log.i("slist", it) }
-                    }
-                    else {
-                        list.removeAt(num)
-                        return 0
+                    } else {
+//                        list.removeAt(num)
+//                        return 0
                     }
                 }
             }
@@ -88,19 +86,15 @@ fun subject_add(
             // slist에 추가;
             // credit -= list[num].credit
             // list[num] 삭제
+        }
+    } else if (division == "전공") {
+        if (credit[0] - list[num].credit.toInt() > 0) {// list로 불러온 과목의 학점 체크
+//             slist에 추가;
+//             credit -= list[num].credit
+//             list[num] 삭제
         } else {
-            //list[num] 삭제
-            return 0
+//            list[num] 삭제
         }
     }
-//    } else if (division == "전공") {
-//        if (credit[0] - list[num].credit.toInt() > 0) {// list로 불러온 과목의 학점 체크
-//            // slist에 추가;
-//            // credit -= list[num].credit
-//            // list[num] 삭제
-//        } else {
-//            //list[num] 삭제
-//        }
-//    }
     return 1
 }

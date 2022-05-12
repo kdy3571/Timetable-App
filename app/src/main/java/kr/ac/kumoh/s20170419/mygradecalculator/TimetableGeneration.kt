@@ -18,11 +18,11 @@ class TimetableGeneration : AppCompatActivity() {
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
 
-        var credit = arrayListOf(0)
+        var credit = arrayListOf(21)
         var s_subject =  ArrayList<String>()
         var e_subject = ArrayList<String>()
         var rest = ArrayList<Int>()
-        var ge = arrayListOf(0)
+        var ge = arrayListOf(3)
         var timetable = Array(5) { arrayOfNulls<String?>(12) }
 
         gbinding.creditInput.setOnClickListener {
