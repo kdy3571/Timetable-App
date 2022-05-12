@@ -67,5 +67,11 @@ class TimetableAdd : AppCompatActivity() {
     private fun adapterOnClick(mechanic: ViewModel.Subject):Unit {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
         dlg.dialog()
+        var i_data :Int = 0
+//        dlg.setOnClickedListener(object : kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener{
+//            #override fun Onclicked(data : Int){
+//             #   i_data = data
+//            }
+//        })
     }
 }
