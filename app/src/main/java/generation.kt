@@ -28,11 +28,13 @@ fun auto_schedule(
 //        }
 //    }
 
+    Log.d("ge_list 전: ", Arrays.deepToString(arrayOf(ge_list)))
     while (ge[0] != 0) { // 교양을 넣기를 희망한다면
         if (subject_add(ge_list, slist, credit) == 1)
             ge[0] = ge[0] - 1
     }
     Log.d("ge", ge[0].toString())
+    Log.d("ge_list 후: ", Arrays.deepToString(arrayOf(ge_list)))
 
 //    while (credit[0] != 0) { // 학점이 0이 될때까지 채워주기
 //        if (em_list.isNotEmpty())
@@ -59,12 +61,12 @@ fun subject_add(
         for (t in time) {
             val n = log10(t.toDouble()).toInt().toDouble()
             val temp = slist[(t.toInt() / 10.0.pow(n)).toInt()][(t.toInt() % 10.0.pow(n)).toInt()]
-            Log.d("slist", temp.toString())
+            Log.d("slist1", temp.toString())
             when (temp) {
                 null -> slist[((t.toInt() / 10.0.pow(n)).toInt())][(t.toInt() % 10.0.pow(n)).toInt()] = list[num].code
                 else -> {
                     list.removeAt(num)
-                    return 0
+//                    return 0
                 }
             }
             Log.d("slist", slist[((t.toInt() / 10.0.pow(n)).toInt())][(t.toInt() % 10.0.pow(n)).toInt()].toString())
@@ -74,5 +76,6 @@ fun subject_add(
         list.removeAt(num)
         return 0
     }
+    list.removeAt(num)
     return 1
 }
