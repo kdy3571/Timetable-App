@@ -105,7 +105,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
                         )
                     )
                 }
-                else
+                else if (Division == "")
                     R_subject.add(
                         Subject(
                             requiredsubject_id, majorselection_id, geselection_id, name,
