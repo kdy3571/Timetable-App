@@ -11,12 +11,10 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class ViewModel(application: Application): AndroidViewModel(application) {
-    companion object {
+    companion object{
         const val QUEUE_TAG = "VolleyRequest"
     }
-
     private lateinit var mQueue: RequestQueue
-
     data class Subject(
         val college: String,
         val subject: String,
@@ -30,16 +28,13 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         val grade: String,
         val semester: String
     )
-
     val list = MutableLiveData<ArrayList<Subject>>()
     private val R_subject = ArrayList<Subject>()
-
     init {
         list.value = R_subject
         mQueue = VolleyRequest.getInstance(application).requestQueue
     }
-
-    fun requestList(grade: String, semester: String, Area: String?) {
+    fun requestList(grade: String, semester: String, Area: String): ArrayList<Subject> {
         val url = "https://expresssongdb-ocmes.run.goorm.io/?t=1651835082540"
 
         val request = JsonArrayRequest(
@@ -57,6 +52,8 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         )
         request.tag = QUEUE_TAG
         mQueue.add(request)
+
+        return R_subject
     }
 
     override fun onCleared() {
@@ -64,11 +61,10 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         mQueue.cancelAll(QUEUE_TAG)
     }
 
-    fun getR_subject() = R_subject
-    fun getR_subject(i: Int) = R_subject[i]
+    fun getR_subject(i : Int) = R_subject[i]
     fun getSize() = R_subject.size
-    private fun parseSubjectJSON(items: JSONArray, Grade: String, Semester: String, Area: String?) {
-        for (i in 0 until items.length()) {
+    private fun parseSubjectJSON(items: JSONArray, Grade: String, Semester: String, Area: String){
+        for (i in 0 until items.length()){
             val item: JSONObject = items.getJSONObject(i)
             val college = item.getString("college")
             val subject = item.getString("subject")
@@ -82,16 +78,14 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             val grade = item.getString("grade")
             val semester = item.getString("semester")
 
-            if (Grade == grade && Semester == semester) {
-                if (Area == null)
+            var token = Area.chunked(2)
+            if(Grade == grade && Semester == semester) {
+                if(token[0] == division)
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                else if (Area == division)
+                else if(subject == token[0] && division == token[1])
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                else if (Area.length > 2){
-                    var token = Area.chunked(2)
-                    if(token[0] == subject && token[1] == division)
+                else if (Area == "")
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                }
             }
         }
     }

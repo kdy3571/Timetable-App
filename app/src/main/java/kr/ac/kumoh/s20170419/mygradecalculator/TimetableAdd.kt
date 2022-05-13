@@ -16,14 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_timetable_add.*
 import kotlinx.android.synthetic.main.listdesign.*
-import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableAddBinding
 import kotlin.math.log10
 import kotlin.math.pow
 
 class TimetableAdd : MainActivity() {
     lateinit var binding : ActivityTimetableAddBinding
-    lateinit var mbinding: ActivityMainBinding
     private val model: ViewModel by viewModels()
     private lateinit var dbadapter: DatabaseAdapter
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
@@ -31,7 +29,6 @@ class TimetableAdd : MainActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTimetableAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setContentView(mbinding.root)
 
         val yeardata:Array<String> = resources.getStringArray(R.array.grade)
         val yearadapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, yeardata)
@@ -74,7 +71,25 @@ class TimetableAdd : MainActivity() {
             }
         }
     }
-
+    fun timesplit(subjectdata: ViewModel.Subject){
+        setContentView(R.layout.activity_main)
+        val time = subjectdata.time.split(", ")
+        for (t in time) {
+            val n = log10(t.toDouble()).toInt().toDouble()
+            var day: String? = null
+            when ((t.toInt() / 10.0.pow(n)).toInt()) {
+                0 -> day = "monday"
+                1 -> day = "tuesday"
+                2 -> day = "wednesday"
+                3 -> day = "thursday"
+                4 -> day = "friday"
+            }
+            val resID = resources.getIdentifier(day + (((t.toInt() % 10.0.pow(n)).toInt())+8), "id", packageName)
+            val week_id = findViewById<TextView>(resID)
+            week_id.text = subjectdata.name
+            week_id.setBackgroundColor(Color.GREEN)
+        }
+    }
     private fun adapterOnClick(subjectdata: ViewModel.Subject):Unit {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
         val intent = Intent(this, MainActivity::class.java)
@@ -88,27 +103,5 @@ class TimetableAdd : MainActivity() {
                     Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()
             }
         })
-    }
-
-    fun timesplit(subjectdata: ViewModel.Subject){
-        val time = subjectdata.time.split(", ")
-        for (t in time) {
-            val n = log10(t.toDouble()).toInt().toDouble()
-            var day: String? = null
-            when ((t.toInt() / 10.0.pow(n)).toInt()) {
-                0 -> day = "monday"
-                1 -> day = "tuesday"
-                2 -> day = "wednesday"
-                3 -> day = "thursday"
-                4 -> day = "friday"
-            }
-
-            var resID = resources.getIdentifier(day + (((t.toInt() % 10.0.pow(n)).toInt()) + 8), "id", packageName)
-            if (t == "09")
-                resID = resources.getIdentifier(day + t.toInt(), "id", packageName)
-            val week_id = findViewById<TextView>(resID)
-            week_id.text = subjectdata.name
-            week_id.setBackgroundColor(Color.GREEN)
-        }
     }
 }

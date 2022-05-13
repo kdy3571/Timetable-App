@@ -37,4 +37,23 @@ open class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+//    fun timesplit(subjectdata: ViewModel.Subject){
+//        setContentView(view.root)
+//        val time = subjectdata.time.split(", ")
+//        for (t in time) {
+//            val n = log10(t.toDouble()).toInt().toDouble()
+//            var day: String? = "monday"
+//            when ((t.toInt() / 10.0.pow(n)).toInt()) {
+//                0 -> day = "monday"
+//                1 -> day = "tuesday"
+//                2 -> day = "wednesday"
+//                3 -> day = "thursday"
+//                4 -> day = "friday"
+//            }
+//            val resID = resources.getIdentifier(day + (((t.toInt() % 10.0.pow(n)).toInt())+8), "id", packageName)
+//            val week_id = findViewById<TextView>(resID)
+//            week_id.text = subjectdata.name
+//            week_id.setBackgroundColor(Color.GREEN)
+//        }
+//    }
 }
