@@ -5,7 +5,6 @@ import android.util.Log
 import android.widget.*
 import androidx.activity.viewModels
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableGenerationBinding
-import java.lang.Thread.sleep
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.log10
@@ -31,9 +30,8 @@ class TimetableGeneration : AppCompatActivity() {
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
 
-        model.requestList("4", "1", "")
         list = model.requestList("4", "1", "")
-        Log.d("list", list.toString())
+        ge_list = model.requestList("4", "1", "교양선택")
 //
 //        for(l in list){
 //            if(l.geselection_id != null) {
@@ -120,7 +118,7 @@ class TimetableGeneration : AppCompatActivity() {
 //    }
         Log.d("ge_list 전", ge_list.toString())
         while (ge != 0) { // 교양을 넣기를 희망한다면
-//                if (subject_add(ge_list) == 1)
+                if (subject_add(ge_list) == 1)
                     ge -= 1
         }
         Log.d("ge", ge.toString())

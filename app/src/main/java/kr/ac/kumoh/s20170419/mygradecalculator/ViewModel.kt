@@ -79,15 +79,12 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             val semester = item.getString("semester")
 
             if(Grade == grade && Semester == semester) {
-                if(Division == "필수" && subject == "전공") {
+                if(Division == "필수" || division == "필수" && subject == "전공")
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                }
-                else if(Division == "전공선택" && subject == "전공") {
+                else if(Division == "전공선택" || division == "선택" && subject == "전공")
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                }
-                else if(Division == "교양선택" && subject == "교양"){
+                else if(Division == "교양선택" || division == "선택" && subject == "교양")
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                }
                 else if (Division == "")
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
             }
