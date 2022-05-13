@@ -84,8 +84,6 @@ class ViewModel(application: Application): AndroidViewModel(application) {
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
                 else if(subject == token[0] && division == token[1])
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                else if(subject == token[0] && division == token[1])
-                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
                 else if (Area == "")
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
             }
