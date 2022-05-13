@@ -20,36 +20,15 @@ class TimetableGeneration : AppCompatActivity() {
     var rest = ArrayList<Int>()
     var ge = 3
     var timetable = Array(5) { arrayOfNulls<ViewModel.Subject?>(12) }
-    lateinit var em_list: ArrayList<ViewModel.Subject>
-    lateinit var cs_list: ArrayList<ViewModel.Subject>
-    lateinit var ge_list: ArrayList<ViewModel.Subject>
-    lateinit var list: ArrayList<ViewModel.Subject>
+    lateinit var slist: ArrayList<ViewModel.Subject>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
 
-        list = model.requestList("4", "1", "")
-        ge_list = model.requestList("4", "1", "교양선택")
-//
-//        for(l in list){
-//            if(l.geselection_id != null) {
-//                ge_list.add(l)
-//            }
-//            else if(l.majorselection_id != null) {
-//                em_list.add(l)
-//            }
-//            else if(l.requiredsubject_id != null) {
-//                cs_list.add(l)
-//            }
-//        }
-//        list.clear()
-//
-//        Log.d("ge_list", ge_list.toString())
-//        Log.d("cs_list", em_list.toString())
-//        Log.d("em_list", cs_list.toString())
-
+        slist = model.requestList("4", "1", "")
+        Log.d("list", slist.toString())
 
         gbinding.creditInput.setOnClickListener {
             credit = gbinding.creditInput.text.toString().toInt()
@@ -116,13 +95,13 @@ class TimetableGeneration : AppCompatActivity() {
 //            slist[i] = arrayOf("Rest")
 //        }
 //    }
-        Log.d("ge_list 전", ge_list.toString())
+        Log.d("list 전", slist.toString())
         while (ge != 0) { // 교양을 넣기를 희망한다면
-                if (subject_add(ge_list) == 1)
+                if (subject_add(slist) == 1)
                     ge -= 1
         }
         Log.d("ge", ge.toString())
-        Log.d("ge_list 후", ge_list.toString())
+        Log.d("list 후", slist.toString())
 
 //    while (credit[0] != 0) { // 학점이 0이 될때까지 채워주기
 //        if (em_list.isNotEmpty())
