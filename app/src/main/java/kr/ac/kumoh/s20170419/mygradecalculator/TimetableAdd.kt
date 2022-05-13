@@ -66,25 +66,25 @@ class TimetableAdd : MainActivity() {
             val major:String = majorSpinner.selectedItem.toString()
             if(major == "컴퓨터공학과")
                 model.requestList(year, term, area)
-            else { // 나머지   학과
+            else { // 나머지학과
                 model.requestList("", "", area)
             }
         }
     }
-    fun timesplit(subjectdata: ViewModel.Subject){
+    fun timesplit(subjectdata: ViewModel.Subject){ //김동현 지분
         setContentView(R.layout.activity_main)
         val time = subjectdata.time.split(", ")
         for (t in time) {
-            val n = log10(t.toDouble()).toInt().toDouble()
+            val temp = t.split(":")
             var day: String? = null
-            when ((t.toInt() / 10.0.pow(n)).toInt()) {
+            when (temp[0].toInt()) {
                 0 -> day = "monday"
                 1 -> day = "tuesday"
                 2 -> day = "wednesday"
                 3 -> day = "thursday"
                 4 -> day = "friday"
             }
-            val resID = resources.getIdentifier(day + (((t.toInt() % 10.0.pow(n)).toInt())+8), "id", packageName)
+            val resID = resources.getIdentifier(day + (temp[1].toInt()+9), "id", packageName)
             val week_id = findViewById<TextView>(resID)
             week_id.text = subjectdata.name
             week_id.setBackgroundColor(Color.GREEN)

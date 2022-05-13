@@ -78,7 +78,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             val grade = item.getString("grade")
             val semester = item.getString("semester")
 
-            var token = Area.chunked(2)
+            var token = Area.chunked(2) //김동현 지분
             if(Grade == grade && Semester == semester) {
                 if(token[0] == division)
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
