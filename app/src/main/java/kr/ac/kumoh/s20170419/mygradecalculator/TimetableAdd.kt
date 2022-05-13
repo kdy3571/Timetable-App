@@ -1,6 +1,7 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
@@ -66,11 +67,16 @@ class TimetableAdd : AppCompatActivity() {
     }
     private fun adapterOnClick(subjectdata: ViewModel.Subject):Unit {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
+        val intent = Intent(this, MainActivity::class.java)
         dlg.dialog()
         dlg.setOnClickedListener(object : kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener{
             override fun onClicked(data: Int) {
-                if(data == 1)
-                    Toast.makeText(getApplication(), subjectdata.code, Toast.LENGTH_LONG).show()
+                if(data == 1) {
+                    intent.putExtra("name", subjectdata.name)
+                    intent.putExtra("room", subjectdata.room)
+                    intent.putExtra("code", subjectdata.code)
+                    intent.putExtra("time", subjectdata.time)
+                }
                 else if(data == 0)
                     Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()
             }

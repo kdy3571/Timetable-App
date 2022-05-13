@@ -7,9 +7,7 @@ import android.os.Bundle
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var view: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,5 +29,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, GradeManagement::class.java)
             startActivity(intent)
         }
+
+
     }
 }
