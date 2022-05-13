@@ -97,39 +97,39 @@
             android:background="@drawable/cell"
             android:gravity="center"/>
         <TextView
-            android:id="@+id/monday09"
+            android:id="@+id/monday9"
             android:layout_gravity="fill"
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="monday09"/>
+            android:tag="monday9"/>
         <TextView
-            android:id="@+id/tuesday09"
+            android:id="@+id/tuesday9"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="tuesday09"/>
+            android:tag="tuesday9"/>
         <TextView
-            android:id="@+id/wednesday09"
+            android:id="@+id/wednesday9"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="wednesday09"/>
+            android:tag="wednesday9"/>
         <TextView
-            android:id="@+id/thursday09"
+            android:id="@+id/thursday9"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="thursday09"/>
+            android:tag="thursday9"/>
         <TextView
-            android:id="@+id/friday09"
+            android:id="@+id/friday9"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="friday09"/>
+            android:tag="friday9"/>
         <TextView
             android:layout_rowWeight="1"
             android:layout_gravity="fill"
