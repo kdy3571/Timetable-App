@@ -105,7 +105,6 @@ class TimetableAdd : MainActivity() {
             var resID = resources.getIdentifier(day + (((t.toInt() % 10.0.pow(n)).toInt()) + 8), "id", packageName)
             if (t == "09")
                 resID = resources.getIdentifier(day + t.toInt(), "id", packageName)
-
             val week_id = findViewById<TextView>(resID)
             week_id.text = subjectdata.name
             week_id.setBackgroundColor(Color.GREEN)
