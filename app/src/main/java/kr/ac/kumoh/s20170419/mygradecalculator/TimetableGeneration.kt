@@ -26,9 +26,9 @@ class TimetableGeneration : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
-
-        slist = model.requestList("4", "1", "")
-        Log.d("list", slist.toString())
+        model.requestList("4", "1", null)
+        slist = model.getR_subject()
+        Log.d("slist", slist.toString())
 
         gbinding.creditInput.setOnClickListener {
             credit = gbinding.creditInput.text.toString().toInt()
@@ -83,21 +83,21 @@ class TimetableGeneration : AppCompatActivity() {
 
 
     private fun auto_schedule() {
+//    while (1) // 배열에서 필수과목(division) 불러오기 4-1학기가 없을때까지
+//        subject_add(slist)
 
-//    while (cs_list.isNotEmpty()) // 배열에서 필수과목(division) 불러오기 4-1학기가 없을때까지
-//        subject_add(cs_list, slist, credit)
-//
 //    if (rest.isNotEmpty()) { // 공강일 존재
 //        for(i in rest) {
 //            for (j in 0..11)
-//                if (slist[i][j] == null)
-//                //종료, 공강일 불가능 반환
-//            slist[i] = arrayOf("Rest")
+//                if (timetable[i][j] != null){ }
+//                    //종료, 공강일 불가능 반환
+//            for (j in 0..11)
+//                timetable[i][j] =
 //        }
 //    }
         Log.d("list 전", slist.toString())
         while (ge != 0) { // 교양을 넣기를 희망한다면
-                if (subject_add(slist) == 1)
+                if (subject_add() == 1)
                     ge -= 1
         }
         Log.d("ge", ge.toString())
@@ -115,31 +115,31 @@ class TimetableGeneration : AppCompatActivity() {
     }
 
 
-    private fun subject_add(list: ArrayList<ViewModel.Subject>): Int {
+    private fun subject_add(): Int {
         val random = Random()
-        val num = random.nextInt(list.size)
+        val num = random.nextInt(slist.size)
 
-        if (credit - list[num].credit.toInt() > 0) {// list로 불러온 과목의 학점 체크
-            val time = list[num].time.split(", ")
+        if (credit - slist[num].credit.toInt() > 0) {// list로 불러온 과목의 학점 체크
+            val time = slist[num].time.split(", ")
             Log.d("time", time.toString())
-            Log.d("code", list[num].code)
+            Log.d("code", slist[num].code)
             for (t in time) {
                 val n = log10(t.toDouble()).toInt().toDouble()
                 val temp = timetable[(t.toInt() / 10.0.pow(n)).toInt()][(t.toInt() % 10.0.pow(n)).toInt()]
                 when (temp) {
-                    null -> timetable[((t.toInt() / 10.0.pow(n)).toInt())][(t.toInt() % 10.0.pow(n)).toInt()] = list[num]
+                    null -> timetable[((t.toInt() / 10.0.pow(n)).toInt())][(t.toInt() % 10.0.pow(n)).toInt()] = slist[num]
                     else -> {
-                        list.removeAt(num)
+                        slist.removeAt(num)
                         return 0
                     }
                 }
             }
         }
         else {
-            list.removeAt(num)
+            slist.removeAt(num)
             return 0
         }
-        list.removeAt(num)
+        slist.removeAt(num)
         return 1
     }
 }
