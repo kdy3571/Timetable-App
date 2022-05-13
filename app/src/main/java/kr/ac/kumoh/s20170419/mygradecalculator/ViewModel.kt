@@ -16,9 +16,8 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     }
     private lateinit var mQueue: RequestQueue
     data class Subject(
-        val requiredsubject_id: String?,
-        val majorselection_id: String?,
-        val geselection_id: String?,
+        val college: String,
+        val subject: String,
         val name: String,
         val professor: String,
         val code: String,
@@ -67,9 +66,8 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     private fun parseSubjectJSON(items: JSONArray, Grade: String, Semester: String, Division: String){
         for (i in 0 until items.length()){
             val item: JSONObject = items.getJSONObject(i)
-            val requiredsubject_id = item.getString("requiredsubject_id")
-            val majorselection_id = item.getString("majorselection_id")
-            val geselection_id = item.getString("geselection_id")
+            val college = item.getString("college")
+            val subject = item.getString("subject")
             val name = item.getString("name")
             val professor = item.getString("professor")
             val code = item.getString("code")
@@ -81,37 +79,17 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             val semester = item.getString("semester")
 
             if(Grade == grade && Semester == semester) {
-                if(Division == "필수" && requiredsubject_id != "null") {
-                    R_subject.add(
-                        Subject(
-                            requiredsubject_id, majorselection_id, geselection_id, name,
-                            professor, code, room, time, division, credit, grade, semester
-                        )
-                    )
+                if(Division == "필수" && subject == "전공") {
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
                 }
-                else if(Division == "전공선택" && majorselection_id != "null") {
-                    R_subject.add(
-                        Subject(
-                            requiredsubject_id, majorselection_id, geselection_id, name,
-                            professor, code, room, time, division, credit, grade, semester
-                        )
-                    )
+                else if(Division == "전공선택" && subject == "전공") {
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
                 }
-                else if(Division == "교양선택" && geselection_id != "null"){
-                    R_subject.add(
-                        Subject(
-                            requiredsubject_id, majorselection_id, geselection_id, name,
-                            professor, code, room, time, division, credit, grade, semester
-                        )
-                    )
+                else if(Division == "교양선택" && subject == "교양"){
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
                 }
                 else if (Division == "")
-                    R_subject.add(
-                        Subject(
-                            requiredsubject_id, majorselection_id, geselection_id, name,
-                            professor, code, room, time, division, credit, grade, semester
-                        )
-                    )
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
             }
         }
     }
