@@ -1,10 +1,8 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Window
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
@@ -14,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_timetable_add.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableAddBinding
 
-class TimetableAdd : AppCompatActivity() {
+class TimetableAdd : MainActivity() {
     lateinit var binding : ActivityTimetableAddBinding
     private val model: ViewModel by viewModels()
     private lateinit var dbadapter: DatabaseAdapter
@@ -72,10 +70,8 @@ class TimetableAdd : AppCompatActivity() {
         dlg.setOnClickedListener(object : kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener{
             override fun onClicked(data: Int) {
                 if(data == 1) {
+                    setting(subjectdata.name, subjectdata.room, subjectdata.code, subjectdata.time)
                     intent.putExtra("name", subjectdata.name)
-                    intent.putExtra("room", subjectdata.room)
-                    intent.putExtra("code", subjectdata.code)
-                    intent.putExtra("time", subjectdata.time)
                 }
                 else if(data == 0)
                     Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()

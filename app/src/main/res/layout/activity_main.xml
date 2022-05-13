@@ -99,7 +99,6 @@
         <TextView
             android:id="@+id/monday09"
             android:layout_gravity="fill"
-            android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
             android:tag="monday09"/>
