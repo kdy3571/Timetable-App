@@ -6,11 +6,14 @@ import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.GridLayout
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.listdesign.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
+import kotlin.math.log10
+import kotlin.math.pow
 
 open class MainActivity : AppCompatActivity() {
     private lateinit var view: ActivityMainBinding
@@ -33,19 +36,5 @@ open class MainActivity : AppCompatActivity() {
             val intent = Intent(this, GradeManagement::class.java)
             startActivity(intent)
         }
-        view.monday09.text = intent.getStringExtra("name")
-    }
-    private val monday = ArrayList<String>(14)
-    val tuesday = ArrayList<TextView>()
-    val wednesday = ArrayList<TextView>()
-    val thursday = ArrayList<TextView>()
-    val friday = ArrayList<TextView>()
-    fun cleararray(){
-        monday[0] = findViewById(R.id.monday09)
-    }
-    fun setting(name: String, room: String, code: String, time: String) {
-        //cleararray()
-        view.monday09.text = name
-        view.monday09.setBackgroundColor(Color.GREEN)
     }
 }

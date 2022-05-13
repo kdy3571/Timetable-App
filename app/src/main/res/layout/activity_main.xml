@@ -260,40 +260,40 @@
             android:background="@drawable/cell"
             android:gravity="center"/>
         <TextView
-            android:id="@+id/monday01"
+            android:id="@+id/monday13"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="monday01"/>
+            android:tag="monday13"/>
         <TextView
-            android:id="@+id/tuesday01"
+            android:id="@+id/tuesday13"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="tuesday01"/>
+            android:tag="tuesday13"/>
         <TextView
-            android:id="@+id/wednesday01"
+            android:id="@+id/wednesday13"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="wednesday01"/>
+            android:tag="wednesday13"/>
         <TextView
-            android:id="@+id/thursday01"
+            android:id="@+id/thursday13"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="thursday01"/>
+            android:tag="thursday13"/>
         <TextView
-            android:id="@+id/friday01"
+            android:id="@+id/friday13"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="friday01"/>
+            android:tag="friday13"/>
         <TextView
             android:layout_rowWeight="1"
             android:layout_gravity="fill"
@@ -301,40 +301,40 @@
             android:background="@drawable/cell"
             android:gravity="center"/>
         <TextView
-            android:id="@+id/monday02"
+            android:id="@+id/monday14"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="monday02"/>
+            android:tag="monday14"/>
         <TextView
-            android:id="@+id/tuesday02"
+            android:id="@+id/tuesday14"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="tuesday02"/>
+            android:tag="tuesday14"/>
         <TextView
-            android:id="@+id/wednesday02"
+            android:id="@+id/wednesday14"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="wednesday02"/>
+            android:tag="wednesday14"/>
         <TextView
-            android:id="@+id/thursday02"
+            android:id="@+id/thursday14"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="thursday02"/>
+            android:tag="thursday14"/>
         <TextView
-            android:id="@+id/friday02"
+            android:id="@+id/friday14"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="friday02"/>
+            android:tag="friday14"/>
         <TextView
             android:layout_rowWeight="1"
             android:layout_gravity="fill"
@@ -342,40 +342,40 @@
             android:background="@drawable/cell"
             android:gravity="center"/>
         <TextView
-            android:id="@+id/monday03"
+            android:id="@+id/monday15"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="monday03"/>
+            android:tag="monday15"/>
         <TextView
-            android:id="@+id/tuesday03"
+            android:id="@+id/tuesday15"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="tuesday03"/>
+            android:tag="tuesday15"/>
         <TextView
-            android:id="@+id/wednesday03"
+            android:id="@+id/wednesday15"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="wednesday03"/>
+            android:tag="wednesday15"/>
         <TextView
-            android:id="@+id/thursday03"
+            android:id="@+id/thursday15"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="thursday03"/>
+            android:tag="thursday15"/>
         <TextView
-            android:id="@+id/friday03"
+            android:id="@+id/friday15"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="friday03"/>
+            android:tag="friday15"/>
         <TextView
             android:layout_rowWeight="1"
             android:layout_gravity="fill"
@@ -383,40 +383,40 @@
             android:background="@drawable/cell"
             android:gravity="center"/>
         <TextView
-            android:id="@+id/monday04"
+            android:id="@+id/monday16"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="monday04"/>
+            android:tag="monday16"/>
         <TextView
-            android:id="@+id/tuesday04"
+            android:id="@+id/tuesday16"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="tuesday04"/>
+            android:tag="tuesday16"/>
         <TextView
-            android:id="@+id/wednesday04"
+            android:id="@+id/wednesday16"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="wednesday04"/>
+            android:tag="wednesday16"/>
         <TextView
-            android:id="@+id/thursday04"
+            android:id="@+id/thursday16"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="thursday04"/>
+            android:tag="thursday16"/>
         <TextView
-            android:id="@+id/friday04"
+            android:id="@+id/friday16"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="friday04"/>
+            android:tag="friday16"/>
         <TextView
             android:layout_rowWeight="1"
             android:layout_gravity="fill"
@@ -424,40 +424,40 @@
             android:background="@drawable/cell"
             android:gravity="center"/>
         <TextView
-            android:id="@+id/monday05"
+            android:id="@+id/monday17"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="monday05"/>
+            android:tag="monday17"/>
         <TextView
-            android:id="@+id/tuesday05"
+            android:id="@+id/tuesday17"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="tuesday05"/>
+            android:tag="tuesday17"/>
         <TextView
-            android:id="@+id/wednesday05"
+            android:id="@+id/wednesday17"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="wednesday05"/>
+            android:tag="wednesday17"/>
         <TextView
-            android:id="@+id/thursday05"
+            android:id="@+id/thursday17"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="thursday05"/>
+            android:tag="thursday17"/>
         <TextView
-            android:id="@+id/friday05"
+            android:id="@+id/friday17"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="friday05"/>
+            android:tag="friday17"/>
         <TextView
             android:layout_rowWeight="1"
             android:layout_gravity="fill"
@@ -465,40 +465,40 @@
             android:background="@drawable/cell"
             android:gravity="center"/>
         <TextView
-            android:id="@+id/monday06"
+            android:id="@+id/monday18"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="monday06"/>
+            android:tag="monday18"/>
         <TextView
-            android:id="@+id/tuesday06"
+            android:id="@+id/tuesday18"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="tuesday06"/>
+            android:tag="tuesday18"/>
         <TextView
-            android:id="@+id/wednesday06"
+            android:id="@+id/wednesday18"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="wednesday06"/>
+            android:tag="wednesday18"/>
         <TextView
-            android:id="@+id/thursday06"
+            android:id="@+id/thursday18"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="thursday06"/>
+            android:tag="thursday18"/>
         <TextView
-            android:id="@+id/friday06"
+            android:id="@+id/friday18"
             android:layout_gravity="fill"
             android:text=""
             android:background="@drawable/cell"
             android:gravity="center"
-            android:tag="friday06"/>
+            android:tag="friday18"/>
 
 
     </GridLayout>
