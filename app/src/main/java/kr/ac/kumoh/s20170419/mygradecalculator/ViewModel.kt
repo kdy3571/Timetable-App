@@ -34,7 +34,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         list.value = R_subject
         mQueue = VolleyRequest.getInstance(application).requestQueue
     }
-    fun requestList(grade: String, semester: String, division: String): ArrayList<Subject> {
+    fun requestList(grade: String, semester: String, Area: String): ArrayList<Subject> {
         val url = "https://expresssongdb-ocmes.run.goorm.io/?t=1651835082540"
 
         val request = JsonArrayRequest(
@@ -43,7 +43,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             null,
             {
                 R_subject.clear()
-                parseSubjectJSON(it, grade, semester, division)
+                parseSubjectJSON(it, grade, semester, Area)
                 list.value = R_subject
             },
             {
@@ -63,7 +63,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
 
     fun getR_subject(i : Int) = R_subject[i]
     fun getSize() = R_subject.size
-    private fun parseSubjectJSON(items: JSONArray, Grade: String, Semester: String, Division: String){
+    private fun parseSubjectJSON(items: JSONArray, Grade: String, Semester: String, Area: String){
         for (i in 0 until items.length()){
             val item: JSONObject = items.getJSONObject(i)
             val college = item.getString("college")
@@ -78,14 +78,15 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             val grade = item.getString("grade")
             val semester = item.getString("semester")
 
+            var token = Area.chunked(2)
             if(Grade == grade && Semester == semester) {
-                if(Division == "필수" || division == "필수" && subject == "전공")
+                if(token[0] == division)
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                else if(Division == "전공선택" || division == "선택" && subject == "전공")
+                else if(subject == token[0] && division == token[1])
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                else if(Division == "교양선택" || division == "선택" && subject == "교양")
+                else if(subject == token[0] && division == token[1])
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                else if (Division == "")
+                else if (Area == "")
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
             }
         }
