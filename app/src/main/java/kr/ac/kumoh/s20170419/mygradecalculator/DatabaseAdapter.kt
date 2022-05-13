@@ -38,7 +38,7 @@ class DatabaseAdapter(
         val item = model.getR_subject(position)
         var token = item.code.split('-')
         val str = "${item.name}"
-        val str2 = "${item.professor} ${token[1]}"
+        val str2 = "${item.professor} ${token[1]}분반"
         holder.text.text = str
         holder.text2.text = str2
     }

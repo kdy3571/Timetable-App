@@ -17,6 +17,6 @@
         android:id="@+id/profe"
         tools:ignore="MissingConstraints"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/name"/>
+        app:layout_constraintTop_toBottomOf="@+id/name"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
