@@ -32,12 +32,12 @@ class TimetableGeneration : AppCompatActivity() {
 
         gbinding.creditInput.setOnClickListener {
             credit = gbinding.creditInput.text.toString().toInt()
-            Log.d("credit", "credit: "+ credit)
+            Log.d("credit", "credit: $credit")
         }
 
         gbinding.geInput.setOnClickListener {
             ge = gbinding.geInput.text.toString().toInt()
-            Log.d("ge", "ge: "+ ge)
+            Log.d("ge", "ge: $ge")
         }
 
         gbinding.button1.setOnClickListener {
@@ -124,10 +124,9 @@ class TimetableGeneration : AppCompatActivity() {
             Log.d("time", time.toString())
             Log.d("code", slist[num].code)
             for (t in time) {
-                val n = log10(t.toDouble()).toInt().toDouble()
-                val temp = timetable[(t.toInt() / 10.0.pow(n)).toInt()][(t.toInt() % 10.0.pow(n)).toInt()]
-                when (temp) {
-                    null -> timetable[((t.toInt() / 10.0.pow(n)).toInt())][(t.toInt() % 10.0.pow(n)).toInt()] = slist[num]
+                val temp = t.split(":")
+                when (timetable[temp[0].toInt()][temp[1].toInt()]) {
+                    null -> timetable[temp[0].toInt()][temp[1].toInt()] = slist[num]
                     else -> {
                         slist.removeAt(num)
                         return 0
