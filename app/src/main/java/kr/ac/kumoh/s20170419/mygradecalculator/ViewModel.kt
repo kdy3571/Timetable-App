@@ -85,16 +85,14 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             val semester = item.getString("semester")
 
             if (Grade == grade && Semester == semester) {
-                when (Area) {
-                null -> R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                "필수" -> R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                else -> {
+                if (Area == null) {
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
+                } else {
                     var token = Area.chunked(2)
                     if(token[0] == division)
                         R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
                     else if(subject == token[0] && division == token[1])
                         R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                    }
                 }
             }
         }
