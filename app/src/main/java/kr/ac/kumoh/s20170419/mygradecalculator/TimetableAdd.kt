@@ -102,6 +102,7 @@ class TimetableAdd : MainActivity() {
                 3 -> day = "thursday"
                 4 -> day = "friday"
             }
+
             var resID = resources.getIdentifier(day + (((t.toInt() % 10.0.pow(n)).toInt()) + 8), "id", packageName)
             if (t == "09")
                 resID = resources.getIdentifier(day + t.toInt(), "id", packageName)
