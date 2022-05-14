@@ -2,23 +2,22 @@ package kr.ac.kumoh.s20170419.mygradecalculator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.view.get
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_timetable_add.*
 import kotlinx.android.synthetic.main.listdesign.*
+import kotlinx.android.synthetic.main.timetable_layout.*
+import kotlinx.android.synthetic.main.timetable_layout.view.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableAddBinding
-import kotlin.math.log10
-import kotlin.math.pow
 
 class TimetableAdd : MainActivity() {
     lateinit var binding : ActivityTimetableAddBinding
@@ -72,7 +71,6 @@ class TimetableAdd : MainActivity() {
         }
     }
     fun timesplit(subjectdata: ViewModel.Subject){
-        setContentView(R.layout.activity_main)
         val time = subjectdata.time.split(", ")
         for (t in time) {
             val temp = t.split(":")
@@ -84,10 +82,11 @@ class TimetableAdd : MainActivity() {
                 3 -> day = "thursday"
                 4 -> day = "friday"
             }
-            val resID = resources.getIdentifier(day + (temp[1].toInt()+9), "id", packageName)
-            val week_id = findViewById<TextView>(resID)
-            week_id.text = subjectdata.name
-            week_id.setBackgroundColor(Color.GREEN)
+            val header = View.inflate(this, R.layout.timetable_layout, null)
+            val resID = resources.getIdentifier("${day}${temp[1].toInt()+9}", "id", packageName)
+            val weekID = header.findViewById<TextView>(resID)
+            weekID.text = subjectdata.name
+            weekID.setBackgroundColor(Color.GREEN)
         }
     }
     private fun adapterOnClick(subjectdata: ViewModel.Subject):Unit {
@@ -98,6 +97,8 @@ class TimetableAdd : MainActivity() {
             override fun onClicked(data: Int) {
                 if(data == 1) {
                     timesplit(subjectdata)
+                    finish()
+                    startActivity(intent)
                 }
                 else if(data == 0)
                     Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()
