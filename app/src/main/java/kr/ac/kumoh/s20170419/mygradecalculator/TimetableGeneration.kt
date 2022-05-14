@@ -1,34 +1,48 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
+import androidx.core.view.get
+import kotlinx.android.synthetic.main.timetable_layout.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableGenerationBinding
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.log10
-import kotlin.math.pow
 
 class TimetableGeneration : AppCompatActivity() {
     private val model: ViewModel by viewModels()
     lateinit var gbinding: ActivityTimetableGenerationBinding
 
     var credit = 21
-    var s_subject =  ArrayList<String>()
-    var e_subject = ArrayList<String>()
+    var selectSubject =  ArrayList<String>()
+    var exceptSubject = ArrayList<String>()
     var rest = ArrayList<Int>()
     var ge = 3
-    var timetable = Array(5) { arrayOfNulls<ViewModel.Subject?>(12) }
-    lateinit var slist: ArrayList<ViewModel.Subject>
+    var timeTable = Array(5) { arrayOfNulls<ViewModel.Subject?>(12) }
+    var slist = Array(3) { ArrayList<ViewModel.Subject>() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
+
         model.requestList("4", "1", null)
-        slist = model.getR_subject()
-        Log.d("slist", slist.toString())
+        slist[0] = model.getR_subject()  // slist[0]: 필수, slist[1]: 전공선택, slist[2]: 교양선택
+        for(i in slist[0]) {
+            if(i.division == "선택") {
+                if(i.subject == "전공") {
+                    slist[1].add(i)
+                    slist[0].remove(i)
+                }
+                else {
+                    slist[1].add(i)
+                    slist[0].remove(i)
+                }
+            }
+        }
 
         gbinding.creditInput.setOnClickListener {
             credit = gbinding.creditInput.text.toString().toInt()
@@ -76,69 +90,70 @@ class TimetableGeneration : AppCompatActivity() {
         gbinding.check5.setOnCheckedChangeListener(listener)
 
         gbinding.create.setOnClickListener {
-            auto_schedule()
-            Log.d("timetable", Arrays.deepToString(timetable))
+            autoSchedule()
+            Log.d("timetable", Arrays.deepToString(timeTable))
         }
     }
 
 
-    private fun auto_schedule() {
-//    while (1) // 배열에서 필수과목(division) 불러오기 4-1학기가 없을때까지
-//        subject_add(slist)
+    private fun autoSchedule() {
+        while (slist[0].isEmpty()) // 배열에서 필수과목(division) 불러오기
+            subject_add(slist[0])
 
-//    if (rest.isNotEmpty()) { // 공강일 존재
-//        for(i in rest) {
-//            for (j in 0..11)
-//                if (timetable[i][j] != null){ }
-//                    //종료, 공강일 불가능 반환
-//            for (j in 0..11)
-//                timetable[i][j] =
+//        if (rest.isNotEmpty()) { // 공강일 존재
+//            for (i in rest) {
+//                for (j in 0..11)
+//                    if (timeTable[i][j] != null) {
+//                    }
+//                //종료, 공강일 불가능 반환
+//                for (j in 0..11)
+//                    timetable[i][j] =
+//            }
 //        }
-//    }
+
         Log.d("list 전", slist.toString())
         while (ge != 0) { // 교양을 넣기를 희망한다면
-                if (subject_add() == 1)
-                    ge -= 1
+            if (subject_add(slist[2]) == 1)
+                ge -= 1
         }
         Log.d("ge", ge.toString())
         Log.d("list 후", slist.toString())
 
-//    while (credit[0] != 0) { // 학점이 0이 될때까지 채워주기
-//        if (em_list.isNotEmpty())
-//            subject_add(em_list, slist, credit)
-//        else
-//            if (ge_list.isNotEmpty())
-//                subject_add(ge_list, slist, credit)
-//            else
-//                break
-//    }
+        while (credit != 0) { // 학점이 0이 될때까지 채워주기
+            if (slist[1].isNotEmpty())
+                subject_add(slist[1])
+            else
+                if (slist[2].isNotEmpty())
+                    subject_add(slist[2])
+                else {
+                    // 불가능
+                    break
+                }
+        }
     }
 
-
-    private fun subject_add(): Int {
+    @RequiresApi(Build.VERSION_CODES.N) // 24버전
+    fun subject_add(subjectList: ArrayList<ViewModel.Subject>): Int {
         val random = Random()
-        val num = random.nextInt(slist.size)
-
-        if (credit - slist[num].credit.toInt() > 0) {// list로 불러온 과목의 학점 체크
-            val time = slist[num].time.split(", ")
-            Log.d("time", time.toString())
-            Log.d("code", slist[num].code)
+        val num = random.nextInt(subjectList.size)
+        if (credit - subjectList[num].credit.toInt() > 0) {// list로 불러온 학점이 남은 학점을 초과하는지 확인
+            val time = subjectList[num].time.split(", ")
             for (t in time) {
                 val temp = t.split(":")
-                when (timetable[temp[0].toInt()][temp[1].toInt()]) {
-                    null -> timetable[temp[0].toInt()][temp[1].toInt()] = slist[num]
+                when (timeTable[temp[0].toInt()][temp[1].toInt()]) { // timeTable의 공간 확인
+                    null -> timeTable[temp[0].toInt()][temp[1].toInt()] = subjectList[num]
                     else -> {
-                        slist.removeAt(num)
+                        subjectList.removeAt(num)
                         return 0
                     }
                 }
             }
         }
         else {
-            slist.removeAt(num)
+            subjectList.removeAt(num)
             return 0
         }
-        slist.removeAt(num)
+        subjectList.removeIf { it.name == subjectList[num].name } // 과목 추가에 성공했을 경우 과목명이 같으면 모두 삭제(분반 제거)
         return 1
     }
 }
