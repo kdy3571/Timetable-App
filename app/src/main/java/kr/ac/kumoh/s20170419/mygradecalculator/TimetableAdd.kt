@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,7 +18,10 @@ import kotlinx.android.synthetic.main.activity_timetable_add.*
 import kotlinx.android.synthetic.main.listdesign.*
 import kotlinx.android.synthetic.main.timetable_layout.*
 import kotlinx.android.synthetic.main.timetable_layout.view.*
+import kotlinx.coroutines.Delay
+import kotlinx.coroutines.delay
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableAddBinding
+import java.lang.Thread.sleep
 
 class TimetableAdd : MainActivity() {
     lateinit var binding : ActivityTimetableAddBinding
@@ -70,35 +74,37 @@ class TimetableAdd : MainActivity() {
             }
         }
     }
-    fun timesplit(subjectdata: ViewModel.Subject){
-        val time = subjectdata.time.split(", ")
-        for (t in time) {
-            val temp = t.split(":")
-            var day: String? = null
-            when (temp[0].toInt()) {
-                0 -> day = "monday"
-                1 -> day = "tuesday"
-                2 -> day = "wednesday"
-                3 -> day = "thursday"
-                4 -> day = "friday"
-            }
-            val header = View.inflate(this, R.layout.timetable_layout, null)
-            val resID = resources.getIdentifier("${day}${temp[1].toInt()+9}", "id", packageName)
-            val weekID = header.findViewById<TextView>(resID)
-            weekID.text = subjectdata.name
-            weekID.setBackgroundColor(Color.GREEN)
-        }
-    }
+//    fun timesplit(subjectdata: ViewModel.Subject){
+//        val time = subjectdata.time.split(", ")
+//        for (t in time) {
+//            val temp = t.split(":")
+//            var day: String? = null
+//            when (temp[0].toInt()) {
+//                0 -> day = "monday"
+//                1 -> day = "tuesday"
+//                2 -> day = "wednesday"
+//                3 -> day = "thursday"
+//                4 -> day = "friday"
+//            }
+//            val header = View.inflate(this, R.layout.activity_main, null)
+//            val resID = resources.getIdentifier("${day}${temp[1].toInt()+9}", "id", packageName)
+//            val weekID = header.findViewById<TextView>(resID)
+//            weekID.text = subjectdata.name
+//            weekID.setBackgroundColor(Color.GREEN)
+//        }
+//    }
     private fun adapterOnClick(subjectdata: ViewModel.Subject):Unit {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
-        val intent = Intent(this, MainActivity::class.java)
+        val iintent = Intent(this, MainActivity::class.java)
         dlg.dialog()
         dlg.setOnClickedListener(object : kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener{
             override fun onClicked(data: Int) {
                 if(data == 1) {
-                    timesplit(subjectdata)
+                    iintent.putExtra("name", subjectdata.name)
+                    iintent.putExtra("time", subjectdata.time)
+                    //timesplit(subjectdata)
                     finish()
-                    startActivity(intent)
+                    startActivity(iintent)
                 }
                 else if(data == 0)
                     Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()
