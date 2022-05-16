@@ -21,28 +21,15 @@ class TimetableGeneration : AppCompatActivity() {
     var exceptSubject = ArrayList<String>()
     var rest = ArrayList<Int>()
     var ge = 3
-    var timeTable = Array(5) { arrayOfNulls<ViewModel.Subject?>(12) }
+    var timeTable = Array(5) { arrayOfNulls<String?>(12) }
+    var subjectInfo = ArrayList<ViewModel.Subject>()
     var slist = Array(3) { ArrayList<ViewModel.Subject>() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
-
         model.requestList("4", "1", null)
-        slist[0] = model.getR_subject()  // slist[0]: 필수, slist[1]: 전공선택, slist[2]: 교양선택
-        for(i in slist[0]) {
-            if(i.division == "선택") {
-                if(i.subject == "전공") {
-                    slist[1].add(i)
-                    slist[0].remove(i)
-                }
-                else {
-                    slist[1].add(i)
-                    slist[0].remove(i)
-                }
-            }
-        }
 
         gbinding.creditInput.setOnClickListener {
             credit = gbinding.creditInput.text.toString().toInt()
@@ -90,64 +77,95 @@ class TimetableGeneration : AppCompatActivity() {
         gbinding.check5.setOnCheckedChangeListener(listener)
 
         gbinding.create.setOnClickListener {
+            Log.d("timetable전", timeTable.contentDeepToString())
             autoSchedule()
-            Log.d("timetable", Arrays.deepToString(timeTable))
+            Log.d("timetable후", timeTable.contentDeepToString())
+            Log.d("과목정보", subjectInfo.toString())
         }
     }
 
 
-    private fun autoSchedule() {
-        while (slist[0].isEmpty()) // 배열에서 필수과목(division) 불러오기
-            subject_add(slist[0])
+    private fun autoSchedule(): Int {
+        slist[0] = model.getR_subject()  // slist[0]: 필수, slist[1]: 전공선택, slist[2]: 교양선택
 
-//        if (rest.isNotEmpty()) { // 공강일 존재
-//            for (i in rest) {
-//                for (j in 0..11)
-//                    if (timeTable[i][j] != null) {
-//                    }
-//                //종료, 공강일 불가능 반환
-//                for (j in 0..11)
-//                    timetable[i][j] =
-//            }
-//        }
+        for(i in slist[0]) {
+            if(i.division == "선택") {
+                if(i.subject == "전공") {
+                    slist[1].add(i)
+                }
+                else if (i.subject == "교양") {
+                    slist[2].add(i)
+                }
+            }
+        }
+        slist[0].removeIf { it.division == "선택" }
 
-        Log.d("list 전", slist.toString())
+        while (slist[0].isNotEmpty()) // 배열에서 필수과목(division) 불러오기
+            subjectAdd(slist[0])
+
+        if (rest.isNotEmpty()) { // 공강일 존재
+            for (i in rest) {
+                for (j in 0..11)
+                    if (timeTable[i][j] != null) {
+                        //종료, 공강일 불가능 반환
+                        Toast.makeText(this@TimetableGeneration, "다른 공강일을 선택해주세요.", Toast.LENGTH_SHORT)
+                            .show()
+                        return -1
+                    }
+                for (j in 0..11)
+                    timeTable[i][j] = "Rest"
+            }
+        }
+
+        Log.d("list 전", slist[2].toString())
         while (ge != 0) { // 교양을 넣기를 희망한다면
-            if (subject_add(slist[2]) == 1)
+            if (subjectAdd(slist[2]) == 1)
                 ge -= 1
         }
-        Log.d("ge", ge.toString())
-        Log.d("list 후", slist.toString())
 
         while (credit != 0) { // 학점이 0이 될때까지 채워주기
             if (slist[1].isNotEmpty())
-                subject_add(slist[1])
-            else
+                subjectAdd(slist[1])
+            else {
                 if (slist[2].isNotEmpty())
-                    subject_add(slist[2])
+                    subjectAdd(slist[2])
                 else {
                     // 불가능
                     break
                 }
+            }
         }
+        return 1
     }
 
     @RequiresApi(Build.VERSION_CODES.N) // 24버전
-    fun subject_add(subjectList: ArrayList<ViewModel.Subject>): Int {
+    fun subjectAdd(subjectList: ArrayList<ViewModel.Subject>): Int {
         val random = Random()
         val num = random.nextInt(subjectList.size)
         if (credit - subjectList[num].credit.toInt() > 0) {// list로 불러온 학점이 남은 학점을 초과하는지 확인
             val time = subjectList[num].time.split(", ")
+
+            for (t in time) {
+                val temp = t.split(":")
+                if(timeTable[temp[0].toInt()][temp[1].toInt()] == "Rest") {
+                    subjectList.removeAt(num)
+                    return 0
+                }
+            }
+
             for (t in time) {
                 val temp = t.split(":")
                 when (timeTable[temp[0].toInt()][temp[1].toInt()]) { // timeTable의 공간 확인
-                    null -> timeTable[temp[0].toInt()][temp[1].toInt()] = subjectList[num]
+                    null -> {
+                        timeTable[temp[0].toInt()][temp[1].toInt()] = subjectList[num].name
+                    }
                     else -> {
                         subjectList.removeAt(num)
                         return 0
                     }
                 }
             }
+            subjectInfo.add(subjectList[num])
         }
         else {
             subjectList.removeAt(num)
