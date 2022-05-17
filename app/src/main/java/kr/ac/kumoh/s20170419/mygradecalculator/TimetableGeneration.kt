@@ -1,4 +1,5 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,19 +7,18 @@ import android.util.Log
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.core.view.get
-import kotlinx.android.synthetic.main.timetable_layout.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableGenerationBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
-class TimetableGeneration : AppCompatActivity() {
+
+open class TimetableGeneration : AppCompatActivity() {
     private val model: ViewModel by viewModels()
     lateinit var gbinding: ActivityTimetableGenerationBinding
 
     var credit = 21
-    var selectSubject =  ArrayList<String>()
-    var exceptSubject = ArrayList<String>()
+    var selectSubject =  ArrayList<String?>()
+    var exceptSubject = ArrayList<String?>()
     var rest = ArrayList<Int>()
     var ge = 3
     var timeTable = Array(5) { arrayOfNulls<String?>(12) }
@@ -42,12 +42,16 @@ class TimetableGeneration : AppCompatActivity() {
         }
 
         gbinding.button1.setOnClickListener {
+            val intent = Intent(this, SubjectList::class.java)
+            startActivity(intent)
+            selectSubject.add(intent.getStringExtra("code"))
             //불러온 과목들 s_subject에 추가
         }
 
         gbinding.button2.setOnClickListener {
-            //과목 리스트 불러오기
-            //불러온 과목들 e_subject에 추가
+            val intent = Intent(this, SubjectList::class.java)
+            startActivity(intent)
+            exceptSubject.add(intent.getStringExtra("code"))
         }
 
         var listener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
@@ -77,6 +81,8 @@ class TimetableGeneration : AppCompatActivity() {
         gbinding.check5.setOnCheckedChangeListener(listener)
 
         gbinding.create.setOnClickListener {
+            Log.d("제외과목", exceptSubject.toString())
+            Log.d("선택과목", selectSubject.toString())
             Log.d("timetable전", timeTable.contentDeepToString())
             autoSchedule()
             Log.d("timetable후", timeTable.contentDeepToString())
@@ -86,7 +92,27 @@ class TimetableGeneration : AppCompatActivity() {
 
 
     private fun autoSchedule(): Int {
-        slist[0] = model.getR_subject()  // slist[0]: 필수, slist[1]: 전공선택, slist[2]: 교양선택
+        slist[0] = model.getR_subject() // slist[0]: 필수, slist[1]: 전공선택, slist[2]: 교양선택
+
+        for(i in exceptSubject){
+            slist[0].removeIf {
+                it.code == i
+                val name = it.code
+                slist[0].removeIf {
+                    it.name == name
+                }
+            }
+        }
+
+        for(i in selectSubject){
+            slist[0].removeIf {
+                it.code == i
+                val name = it.code
+                slist[0].removeIf {
+                    it.name == name
+                }
+            }
+        }
 
         for(i in slist[0]) {
             if(i.division == "선택") {
