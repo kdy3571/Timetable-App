@@ -3,9 +3,8 @@ package kr.ac.kumoh.s20170419.mygradecalculator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.listdesign.view.*
 
@@ -14,7 +13,7 @@ val id: String? = null
 class DatabaseAdapter(
     private val model: ViewModel,
     private val onClick: (ViewModel.Subject) -> Unit
-): RecyclerView.Adapter<DatabaseAdapter.ViewHolder>() {
+): RecyclerView.Adapter<DatabaseAdapter.ViewHolder>(), Filterable {
     inner class ViewHolder(itemView: View):
         RecyclerView.ViewHolder(itemView) {
         val text: TextView = itemView.findViewById(R.id.name)
@@ -45,5 +44,13 @@ class DatabaseAdapter(
 
     override fun getItemCount(): Int {
         return model.getSize()
+    }
+
+    override fun getFilter(): Filter {
+        TODO("Not yet implemented")
+    }
+
+    fun getFilter(name: String): MutableLiveData<ArrayList<ViewModel.Subject>> {
+        return model.filteredList
     }
 }
