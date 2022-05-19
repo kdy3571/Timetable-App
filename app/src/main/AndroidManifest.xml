@@ -14,6 +14,14 @@
         android:theme="@style/Theme.MyGradeCalculator"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SubjectList"
+            android:exported="false" />
+        <activity
+            android:name=".ScrollingActivity"
+            android:exported="false"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/Theme.MyGradeCalculator.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity

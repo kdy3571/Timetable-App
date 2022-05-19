@@ -1,6 +1,8 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.app.Application
+import android.text.Editable
+import android.widget.Filter
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +11,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.Serializable
 
 class ViewModel(application: Application): AndroidViewModel(application) {
     companion object {
@@ -29,9 +32,10 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         val credit: String,
         val grade: String,
         val semester: String
-    )
+    ): Serializable
 
     val list = MutableLiveData<ArrayList<Subject>>()
+    val filteredList = MutableLiveData<ArrayList<Subject>>()
     private val R_subject = ArrayList<Subject>()
 
     init {
@@ -39,7 +43,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         mQueue = VolleyRequest.getInstance(application).requestQueue
     }
 
-    fun requestList(grade: String, semester: String, Area: String?): ArrayList<Subject> {
+    fun requestList(grade: String, semester: String, Area: String?) {
         val url = "https://expresssongdb-ocmes.run.goorm.io/?t=1651835082540"
 
         val request = JsonArrayRequest(
@@ -57,13 +61,22 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         )
         request.tag = QUEUE_TAG
         mQueue.add(request)
-
-        return R_subject
     }
 
     override fun onCleared() {
         super.onCleared()
         mQueue.cancelAll(QUEUE_TAG)
+    }
+
+    fun getFilter(name: String): MutableLiveData<ArrayList<Subject>> {
+        if (name == "")
+            filteredList.value = list.value
+        else {
+            filteredList.value = list.value?.filter {
+                it.name.isNotEmpty() && it.name == name
+            } as ArrayList<Subject>?
+        }
+        return filteredList
     }
 
     fun getR_subject() = R_subject
