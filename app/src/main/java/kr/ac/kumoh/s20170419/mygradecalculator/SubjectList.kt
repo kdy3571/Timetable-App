@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivitySubjectListBinding
@@ -19,7 +18,6 @@ class SubjectList : TimetableGeneration() {
         super.onCreate(savedInstanceState)
         binding = ActivitySubjectListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        model.requestList("4", "1", "선택")
 
         dbadapter = DatabaseAdapter(model) { subject -> adapterOnClick(subject) }
         binding.list.apply {
@@ -40,12 +38,25 @@ class SubjectList : TimetableGeneration() {
 
     private fun adapterOnClick(subjectData: ViewModel.Subject):Unit {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
-        val intent = Intent(this, TimetableGeneration::class.java)
+        val intent = intent
+        val resultIntent = Intent(this, TimetableGeneration::class.java)
         dlg.dialog()
         dlg.setOnClickedListener(object : kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener{
             override fun onClicked(data: Int) {
                 if(data == 1) {
-                    intent.putExtra("code", subjectData.code)
+                    if(intent.hasExtra("type")) {
+                        when (intent.getStringExtra("type")) {
+                            "선택" -> {
+                                resultIntent.putExtra("button", "선택")
+                            }
+                            "제외" -> {
+                                resultIntent.putExtra("button", "제외")
+                            }
+                        }
+                    }
+                    resultIntent.putExtra("data", subjectData)
+                    finish()
+                    startActivity(resultIntent)
                 }
                 else if(data == 0)
                     Toast.makeText(application, "취소당", Toast.LENGTH_LONG).show()
