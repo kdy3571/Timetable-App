@@ -11,6 +11,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.Serializable
 
 class ViewModel(application: Application): AndroidViewModel(application) {
     companion object {
@@ -31,7 +32,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         val credit: String,
         val grade: String,
         val semester: String
-    )
+    ): Serializable
 
     val list = MutableLiveData<ArrayList<Subject>>()
     val filteredList = MutableLiveData<ArrayList<Subject>>()
