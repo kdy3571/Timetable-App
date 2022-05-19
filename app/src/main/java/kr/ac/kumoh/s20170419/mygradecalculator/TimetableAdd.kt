@@ -74,25 +74,6 @@ class TimetableAdd : MainActivity() {
             }
         }
     }
-//    fun timesplit(subjectdata: ViewModel.Subject){
-//        val time = subjectdata.time.split(", ")
-//        for (t in time) {
-//            val temp = t.split(":")
-//            var day: String? = null
-//            when (temp[0].toInt()) {
-//                0 -> day = "monday"
-//                1 -> day = "tuesday"
-//                2 -> day = "wednesday"
-//                3 -> day = "thursday"
-//                4 -> day = "friday"
-//            }
-//            val header = View.inflate(this, R.layout.activity_main, null)
-//            val resID = resources.getIdentifier("${day}${temp[1].toInt()+9}", "id", packageName)
-//            val weekID = header.findViewById<TextView>(resID)
-//            weekID.text = subjectdata.name
-//            weekID.setBackgroundColor(Color.GREEN)
-//        }
-//    }
     private fun adapterOnClick(subjectdata: ViewModel.Subject):Unit {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
         val iintent = Intent(this, MainActivity::class.java)
@@ -102,7 +83,6 @@ class TimetableAdd : MainActivity() {
                 if(data == 1) {
                     iintent.putExtra("name", subjectdata.name)
                     iintent.putExtra("time", subjectdata.time)
-                    //timesplit(subjectdata)
                     finish()
                     startActivity(iintent)
                 }
