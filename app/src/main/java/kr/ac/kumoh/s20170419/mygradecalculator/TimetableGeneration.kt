@@ -31,7 +31,7 @@ open class TimetableGeneration : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
-        model.requestList("4", "1", null)
+        model.requestList("3", "1", null)
 
         gbinding.creditInput.setOnClickListener {
             credit = gbinding.creditInput.text.toString().toInt()
@@ -100,6 +100,10 @@ open class TimetableGeneration : AppCompatActivity() {
             autoSchedule()
             Log.d("timetable", timeTable.contentDeepToString())
             Log.d("과목정보", subjectInfo.toString())
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("auto", subjectInfo)
+            finish()
+            startActivity(intent)
         }
     }
 
@@ -170,10 +174,10 @@ open class TimetableGeneration : AppCompatActivity() {
     fun subjectAdd(subjectList: ArrayList<ViewModel.Subject>): Int {
         val random = Random()
         val num = random.nextInt(subjectList.size)
-        if (credit - subjectList[num].credit.toInt() > 0) {// list로 불러온 학점이 남은 학점을 초과하는지 확인
+        if (credit - subjectList[num].credit.toInt() >= 0) {// list로 불러온 학점이 남은 학점을 초과하는지 확인
             val time = subjectList[num].time.split(", ")
 
-            for (t in time) {
+            for (t in time) { // 공강일 확인
                 val temp = t.split(":")
                 if(timeTable[temp[0].toInt()][temp[1].toInt()] == "Rest") {
                     subjectList.removeAt(num)
@@ -194,6 +198,7 @@ open class TimetableGeneration : AppCompatActivity() {
                 }
             }
             subjectInfo.add(subjectList[num])
+            credit -= subjectList[num].credit.toInt()
         }
         else {
             subjectList.removeAt(num)

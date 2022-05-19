@@ -12,13 +12,17 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
 private var weekdata = Array(5) { kotlin.arrayOfNulls<String?>(14) }
+private var autoData = ArrayList<ViewModel.Subject>()
 
 open class MainActivity : AppCompatActivity() {
     private lateinit var view: ActivityMainBinding
     private val model: ViewModel by viewModels()
-    var db: ScheduleDatabase? = null
+
+    //    var db: ScheduleDatabase? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         view = ActivityMainBinding.inflate(layoutInflater)
@@ -55,6 +59,15 @@ open class MainActivity : AppCompatActivity() {
         timesplit()
         setting()
     }
+
+    override fun onResume() {
+        super.onResume()
+        if (intent.hasExtra("auto")) {
+            autoData = intent.getSerializableExtra("auto") as ArrayList<ViewModel.Subject>
+            autoTable(autoData)
+        }
+    }
+
 
     fun timesplit() {
         val time = intent.getStringExtra("time")?.split(", ")
@@ -120,17 +133,57 @@ open class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun insertdatabase() {
+    fun autoTable(subjectList: ArrayList<ViewModel.Subject>) {
+        for (i in 0 until subjectList.size) {
+            val time = subjectList[i].time.split(", ")
+            for (t in time) {
+                val temp = t.split(":")
+                weekdata[temp[0].toInt()][temp[1].toInt()] = subjectList[i].name
+            }
+        }
+
         for (i in 0 until weekdata.size) {
             for (j in 0 until weekdata[0].size) {
-                db?.weekDao()?.insertall(
-                    j,
-                    weekdata[0][j],
-                    weekdata[1][j],
-                    weekdata[2][j],
-                    weekdata[3][j],
-                    weekdata[4][j]
-                )
+                if (weekdata[i][j] != null) {
+                    when (i) {
+                        0 -> {
+                            val resID =
+                                resources.getIdentifier("monday" + (j + 9), "id", packageName)
+                            val weekID = findViewById<TextView>(resID)
+                            weekID.text = weekdata[i][j]
+                            weekID.setBackgroundColor(Color.GREEN)
+
+                        }
+                        1 -> {
+                            val resID =
+                                resources.getIdentifier("tuesday" + (j + 9), "id", packageName)
+                            val weekID = findViewById<TextView>(resID)
+                            weekID.text = weekdata[i][j]
+                            weekID.setBackgroundColor(Color.GREEN)
+                        }
+                        2 -> {
+                            val resID =
+                                resources.getIdentifier("wednesday" + (j + 9), "id", packageName)
+                            val weekID = findViewById<TextView>(resID)
+                            weekID.text = weekdata[i][j]
+                            weekID.setBackgroundColor(Color.GREEN)
+                        }
+                        3 -> {
+                            val resID =
+                                resources.getIdentifier("thursday" + (j + 9), "id", packageName)
+                            val weekID = findViewById<TextView>(resID)
+                            weekID.text = weekdata[i][j]
+                            weekID.setBackgroundColor(Color.GREEN)
+                        }
+                        4 -> {
+                            val resID =
+                                resources.getIdentifier("friday" + (j + 9), "id", packageName)
+                            val weekID = findViewById<TextView>(resID)
+                            weekID.text = weekdata[i][j]
+                            weekID.setBackgroundColor(Color.GREEN)
+                        }
+                    }
+                }
             }
         }
     }
