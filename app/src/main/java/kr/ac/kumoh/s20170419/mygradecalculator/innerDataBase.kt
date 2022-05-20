@@ -1,4 +1,4 @@
-package kr.ac.kumoh.s20170419.mygradecalculator
+/*package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.content.Context
 import androidx.core.graphics.scaleMatrix
@@ -59,3 +59,4 @@ abstract class ScheduleDatabase : RoomDatabase() {
         }
     }
 }
+*/

@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat.startActivity
@@ -58,6 +59,12 @@ open class MainActivity : AppCompatActivity() {
 
         timesplit()
         setting()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        var mInflater = menuInflater
+        mInflater.inflate(R.menu.menu_option, menu)
+        return true
     }
 
     override fun onResume() {

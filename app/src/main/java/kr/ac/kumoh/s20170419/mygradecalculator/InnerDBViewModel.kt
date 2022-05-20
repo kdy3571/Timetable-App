@@ -4,5 +4,5 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 
 class InnerDBViewModel(context: Application): AndroidViewModel(context) {
-    private val dao = ScheduleDatabase.getDatabase(context)!!.weekDao()
+    //private val dao = ScheduleDatabase.getDatabase(context)!!.weekDao()
 }
