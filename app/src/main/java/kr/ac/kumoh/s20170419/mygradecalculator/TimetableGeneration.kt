@@ -60,11 +60,15 @@ open class TimetableGeneration : AppCompatActivity() {
         if (intent.hasExtra("data") && intent.hasExtra("button")) {
             when(intent.getStringExtra("button")) {
                 "선택" -> {
-                    selectSubject.add(intent.getSerializableExtra("data") as ViewModel.Subject)
+                    selectSubject = intent.getSerializableExtra("data") as ArrayList<ViewModel.Subject>
+                    for (i in selectSubject)
+                        gbinding.selectSubject.append(i.name)
                     Log.d("선택과목", selectSubject.toString())
                 }
                 "제외" -> {
-                    exceptSubject.add(intent.getSerializableExtra("data") as ViewModel.Subject)
+                    exceptSubject = intent.getSerializableExtra("data") as ArrayList<ViewModel.Subject>
+                    for (i in selectSubject)
+                        gbinding.selectSubject.append(i.name)
                     Log.d("제외과목", exceptSubject.toString())
                 }
             }

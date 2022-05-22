@@ -40,25 +40,30 @@ class SubjectList : TimetableGeneration() {
     private fun adapterOnClick(subjectData: ViewModel.Subject):Unit {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
         val intent = intent
+        val subject = intent.getSerializableExtra("list") as ArrayList<ViewModel.Subject>
+        var removeSubject: String? = null
         val resultIntent = Intent(this, TimetableGeneration::class.java)
 
         if(intent.hasExtra("list")) {
-            val subject = intent.getSerializableExtra("list") as ArrayList<ViewModel.Subject>
             val stime = subjectData.time.split(", ")
 
             if (subject.isEmpty())
                 dlg.dialog(subjectData.name, "추가")
             else {
-                for (i in subject) {
+                loop@ for (i in subject) {
                     val time = i.time.split(", ")
                     for (j in time) {
                         for (k in stime) {
                             if (k == j) {
                                 dlg.dialog(i.name, "변경")
+                                removeSubject = i.name
+                                break@loop
                             }
                         }
                     }
                 }
+                if (removeSubject == null)
+                    dlg.dialog(subjectData.name, "추가")
             }
         }
 
@@ -75,7 +80,10 @@ class SubjectList : TimetableGeneration() {
                             }
                         }
                     }
-                    resultIntent.putExtra("data", subjectData)
+                    if (removeSubject != null)
+                        subject.removeIf { it.name == removeSubject }
+                    subject.add(subjectData)
+                    resultIntent.putExtra("data", subject)
                     finish()
                     startActivity(resultIntent)
                 }
