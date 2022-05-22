@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="300dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_rectangle">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,25 +15,30 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:text="변경?"/>
+            android:text="변경하시겠습니까?"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/ok2"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:text="확인"/>
+                android:backgroundTint="#00FFFFFF"
+                android:text="확인"
+                android:textColor="#000000"/>
 
             <Button
                 android:id="@+id/cancel2"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:text="취소"/>
+                android:backgroundTint="#00FFFFFF"
+                android:text="취소"
+                android:textColor="#000000"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
