@@ -79,11 +79,11 @@ open class TimetableGeneration : AppCompatActivity() {
                 }
             } else {
                 when (buttonView.id) {
-                    R.id.check1 -> rest.removeAt(0)
-                    R.id.check2 -> rest.removeAt(1)
-                    R.id.check3 -> rest.removeAt(2)
-                    R.id.check4 -> rest.removeAt(3)
-                    R.id.check5 -> rest.removeAt(4)
+                    R.id.check1 -> rest.remove(0)
+                    R.id.check2 -> rest.remove(1)
+                    R.id.check3 -> rest.remove(2)
+                    R.id.check4 -> rest.remove(3)
+                    R.id.check5 -> rest.remove(4)
                 }
             }
         }
@@ -139,10 +139,10 @@ open class TimetableGeneration : AppCompatActivity() {
                     if (timeTable[i][j] != null) { //종료, 공강일 불가능 반환
                         Toast.makeText(this@TimetableGeneration, "다른 공강일을 선택해주세요.", Toast.LENGTH_SHORT)
                             .show()
-                        timeTable = Array(5) { arrayOfNulls<String?>(12) }  // 초기화
+                        timeTable = Array(5) { arrayOfNulls<String?>(12) }
                         credit = 0
                         ge = 0
-                        rest = ArrayList<Int>()
+                        rest.clear()
                         return -1
                     }
                 for (j in 0..11)
