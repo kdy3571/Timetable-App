@@ -62,18 +62,16 @@ class TimetableAdd : MainActivity() {
             dbadapter.notifyDataSetChanged()
         }
 
-        search_button.setOnClickListener{
-            val year:String = yearSpinner.selectedItem.toString()
-            val term:String = termSpinner.selectedItem.toString()
-            val area:String = areaSpinner.selectedItem.toString()
-            val major:String = majorSpinner.selectedItem.toString()
+        search_button.setOnClickListener {
+            val year: String = yearSpinner.selectedItem.toString()
+            val term: String = termSpinner.selectedItem.toString()
+            val area: String = areaSpinner.selectedItem.toString()
+            val major: String = majorSpinner.selectedItem.toString()
             if(major == "컴퓨터공학과")
-                model.requestList(year, term, area)
-            else { // 나머지   학과
-                model.requestList("", "", area)
-            }
+                model.requestList("금오공과대학교", year, term, area)
         }
     }
+
     private fun adapterOnClick(subjectdata: ViewModel.Subject):Unit {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
         val iintent = Intent(this, MainActivity::class.java)
