@@ -31,7 +31,7 @@ open class TimetableGeneration : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
-        model.requestList("금오공과대학교","4", "1", null)
+        model.requestList("금오공과대학교","4", "1", "전체")
 
         gbinding.creditInput.setOnClickListener {
             credit = gbinding.creditInput.text.toString().toInt()
@@ -46,12 +46,14 @@ open class TimetableGeneration : AppCompatActivity() {
         gbinding.selectButton.setOnClickListener {
             val intent = Intent(this, SubjectList::class.java)
             intent.putExtra("type", "선택")
+            intent.putExtra("list", selectSubject)
             startActivity(intent)
         }
 
         gbinding.exceptButton.setOnClickListener {
             val intent = Intent(this, SubjectList::class.java)
             intent.putExtra("type", "제외")
+            intent.putExtra("list", exceptSubject)
             startActivity(intent)
         }
 
@@ -65,6 +67,16 @@ open class TimetableGeneration : AppCompatActivity() {
                     exceptSubject.add(intent.getSerializableExtra("data") as ViewModel.Subject)
                     Log.d("제외과목", exceptSubject.toString())
                 }
+            }
+        }
+
+        for (i in rest) {
+            when (i) {
+                0 -> gbinding.check1.isChecked = true
+                1 -> gbinding.check2.isChecked = true
+                2 -> gbinding.check3.isChecked = true
+                3 -> gbinding.check4.isChecked = true
+                4 -> gbinding.check5.isChecked = true
             }
         }
 
@@ -97,7 +109,8 @@ open class TimetableGeneration : AppCompatActivity() {
         gbinding.create.setOnClickListener {
             Log.d("선택과목", selectSubject.toString())
             Log.d("제외과목", exceptSubject.toString())
-            autoSchedule()
+            if(credit != 0)
+                autoSchedule()
             Log.d("timetable", timeTable.contentDeepToString())
             Log.d("과목정보", subjectInfo.toString())
             val intent = Intent(this, MainActivity::class.java)
@@ -162,7 +175,13 @@ open class TimetableGeneration : AppCompatActivity() {
                 if (slist[2].isNotEmpty())
                     subjectAdd(slist[2])
                 else {
-                    // 불가능
+                    Toast.makeText(this@TimetableGeneration, "다른 공강일을 선택해주세요.", Toast.LENGTH_SHORT)
+                        .show()
+                    timeTable = Array(5) { arrayOfNulls<String?>(12) }
+                    credit = 0
+                    ge = 0
+                    rest.clear()
+                    return -1
                     break
                 }
             }

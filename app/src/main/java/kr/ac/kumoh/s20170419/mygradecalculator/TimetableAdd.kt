@@ -67,7 +67,7 @@ class TimetableAdd : MainActivity() {
             val term: String = termSpinner.selectedItem.toString()
             val area: String = areaSpinner.selectedItem.toString()
             val major: String = majorSpinner.selectedItem.toString()
-            if(major == "금오공과대학교")
+            if(major == "컴퓨터공학과")
                 model.requestList("금오공과대학교", year, term, area)
         }
     }
@@ -75,7 +75,7 @@ class TimetableAdd : MainActivity() {
     private fun adapterOnClick(subjectdata: ViewModel.Subject):Unit {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
         val iintent = Intent(this, MainActivity::class.java)
-        dlg.dialog()
+        dlg.dialog(subjectdata.name, "추가")
         dlg.setOnClickedListener(object : kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener{
             override fun onClicked(data: Int) {
                 if(data == 1) {

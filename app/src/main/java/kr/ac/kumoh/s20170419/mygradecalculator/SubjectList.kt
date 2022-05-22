@@ -3,6 +3,7 @@ package kr.ac.kumoh.s20170419.mygradecalculator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -40,7 +41,27 @@ class SubjectList : TimetableGeneration() {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
         val intent = intent
         val resultIntent = Intent(this, TimetableGeneration::class.java)
-        dlg.dialog()
+
+        if(intent.hasExtra("list")) {
+            val subject = intent.getSerializableExtra("list") as ArrayList<ViewModel.Subject>
+            val stime = subjectData.time.split(", ")
+
+            if (subject.isEmpty())
+                dlg.dialog(subjectData.name, "추가")
+            else {
+                for (i in subject) {
+                    val time = i.time.split(", ")
+                    for (j in time) {
+                        for (k in stime) {
+                            if (k == j) {
+                                dlg.dialog(i.name, "변경")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         dlg.setOnClickedListener(object : kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener{
             override fun onClicked(data: Int) {
                 if(data == 1) {
