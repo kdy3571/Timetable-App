@@ -34,7 +34,7 @@
 
         <Spinner
             android:id="@+id/areaSpinner"
-            android:layout_width="141dp"
+            android:layout_width="156dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"></Spinner>

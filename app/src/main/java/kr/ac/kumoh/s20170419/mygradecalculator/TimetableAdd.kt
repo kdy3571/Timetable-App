@@ -67,7 +67,7 @@ class TimetableAdd : MainActivity() {
             val term: String = termSpinner.selectedItem.toString()
             val area: String = areaSpinner.selectedItem.toString()
             val major: String = majorSpinner.selectedItem.toString()
-            if(major == "금오공과대학교")
+            if(major == "컴퓨터공학과")
                 model.requestList("금오공과대학교", year, term, area)
         }
     }
