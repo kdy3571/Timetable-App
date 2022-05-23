@@ -229,12 +229,10 @@ open class TimetableGeneration : AppCompatActivity() {
                             timeTable[i][j] = "Rest"
             }
 
-            while (slist[2].isNotEmpty()) {
-                while (ge != 0) { // 교양을 넣기를 희망한다면
+            while (ge != 0) // 교양을 넣기를 희망한다면
+                while (slist[2].isNotEmpty())
                     if (subjectAdd(slist[2]) == 1)
                         ge -= 1
-                }
-            }
         }
 
         while (credit != 0) { // 학점이 0이 될때까지 채워주기
