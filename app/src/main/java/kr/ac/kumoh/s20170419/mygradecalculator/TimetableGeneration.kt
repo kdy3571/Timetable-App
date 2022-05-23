@@ -75,7 +75,7 @@ open class TimetableGeneration : AppCompatActivity() {
         }
 
         for (i in selectSubject)
-            gbinding.selectSubject.append(i.name)
+            gbinding.selectSubject.append("${i.name} ${i.code.split("-")[1]}분반\n")
 
         for (i in exceptSubject)
             gbinding.exceptSubject.append(i.name)
@@ -117,6 +117,7 @@ open class TimetableGeneration : AppCompatActivity() {
         gbinding.check5.setOnCheckedChangeListener(listener)
 
         gbinding.create.setOnClickListener {
+            model.requestList("금오공과대학교", grade, semester, "전체")
             Log.d("선택과목", selectSubject.toString())
             Log.d("제외과목", exceptSubject.toString())
             scheduleGeneration()
