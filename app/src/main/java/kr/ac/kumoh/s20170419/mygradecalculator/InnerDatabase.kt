@@ -18,13 +18,24 @@ data class weekstate(
     val division  : String?,
     val credit  : String?,
     val grade  : String?,
-    val semester  : String?,
+    val semester  : String?
+)
+
+data class weekstateminimal(
+    val name : String?,
+    val time  : String?
 )
 
 @Dao
 interface weekDao {
     @Query("SELECT * FROM schedule")
-    fun getAll() : weekstate
+    fun getAll() : List<weekstate>
+
+    @Query("SELECT code FROM schedule")
+    fun getCODE() : List<String>
+
+    @Query("SELECT name, time FROM schedule")
+    fun getDATA() : List<weekstateminimal>
 
     @Insert
     fun insert(vararg weekstate: weekstate)
