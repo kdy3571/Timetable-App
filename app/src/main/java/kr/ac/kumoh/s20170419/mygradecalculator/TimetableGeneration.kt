@@ -34,6 +34,7 @@ open class TimetableGeneration : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
+        model.requestList("금오공과대학교", grade, semester, "전체")
 
         gbinding.creditInput.setOnClickListener {
             credit = gbinding.creditInput.text.toString().toInt()
@@ -116,7 +117,6 @@ open class TimetableGeneration : AppCompatActivity() {
         gbinding.check5.setOnCheckedChangeListener(listener)
 
         gbinding.create.setOnClickListener {
-            model.requestList("금오공과대학교", grade, semester, "전체")
             Log.d("선택과목", selectSubject.toString())
             Log.d("제외과목", exceptSubject.toString())
             scheduleGeneration()
@@ -163,7 +163,6 @@ open class TimetableGeneration : AppCompatActivity() {
                         startActivity(intent)
                         break@loop
                     }
-
                     2 -> { // 실패 초기화 후 다시 시뮬레이션
                         timeTable = Array(5) { arrayOfNulls<String?>(12) }
                         selectSubject = selectSubjectTemp

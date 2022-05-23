@@ -65,7 +65,6 @@ class SubjectList : TimetableGeneration() {
                 if (removeSubject.isEmpty())
                     dlg.dialog(subjectData.name, "추가")
 
-
                 for(i in subject)
                     if (i.name == subjectData.name)
                         removeSubject.add(i.name)
