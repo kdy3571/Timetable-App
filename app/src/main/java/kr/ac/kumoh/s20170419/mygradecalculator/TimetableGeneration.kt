@@ -263,6 +263,7 @@ open class TimetableGeneration : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N) // 24버전
     fun subjectAdd(subjectList: ArrayList<ViewModel.Subject>): Int {
         val num = random.nextInt(subjectList.size)
+
         if (credit - subjectList[num].credit.toInt() >= 0) {// list로 불러온 학점이 남은 학점을 초과하는지 확인
             val time = subjectList[num].time.split(", ")
 
