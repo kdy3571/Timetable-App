@@ -9,6 +9,7 @@ import android.view.Menu
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,12 +26,14 @@ open class MainActivity : AppCompatActivity() {
     var red : Int = 0
     var blue : Int = 0
     var green : Int = 0
+    private lateinit var dbmodel : InnerDBViewmodel
+    private lateinit var dbdata : List<weekstateminimal>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         view = ActivityMainBinding.inflate(layoutInflater)
         setContentView(view.root)
 
-
+        dbmodel = ViewModelProvider(this@MainActivity).get(InnerDBViewmodel::class.java)
         view.button2.setOnClickListener {
             val intent = Intent(this, TimetableGeneration::class.java)
             startActivity(intent)
@@ -65,6 +68,12 @@ open class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun databaseget(){
+        Thread(Runnable {
+            dbdata = dbmodel.getdata()
+        }).start()
+    }
+
     fun randomColor(){
         red = (Math.random() * 255).toInt()
         blue = (Math.random() * 255).toInt()
@@ -73,19 +82,21 @@ open class MainActivity : AppCompatActivity() {
 
     fun timesplit() {
         val time = intent.getStringExtra("time")?.split(", ")
-        if (time != null) {
-            for (t in time) {
-                val temp = t.split(":")
-                var day: String? = null
-                when (temp[0].toInt()) {
-                    0 -> weekdata[0][temp[1].toInt()] = intent.getStringExtra("name")
-                    1 -> weekdata[1][temp[1].toInt()] = intent.getStringExtra("name")
-                    2 -> weekdata[2][temp[1].toInt()] = intent.getStringExtra("name")
-                    3 -> weekdata[3][temp[1].toInt()] = intent.getStringExtra("name")
-                    4 -> weekdata[4][temp[1].toInt()] = intent.getStringExtra("name")
-                }
-            }
-        }
+        databaseget()
+        //val temp = dbdata[0]
+//        if (time != null) {
+//            for (t in time) {
+//                val temp = t.split(":")
+//                var day: String? = null
+//                when (temp[0].toInt()) {
+//                    0 -> weekdata[0][temp[1].toInt()] = intent.getStringExtra("name")
+//                    1 -> weekdata[1][temp[1].toInt()] = intent.getStringExtra("name")
+//                    2 -> weekdata[2][temp[1].toInt()] = intent.getStringExtra("name")
+//                    3 -> weekdata[3][temp[1].toInt()] = intent.getStringExtra("name")
+//                    4 -> weekdata[4][temp[1].toInt()] = intent.getStringExtra("name")
+//                }
+//            }
+//        }
     }
 
     fun setting() {

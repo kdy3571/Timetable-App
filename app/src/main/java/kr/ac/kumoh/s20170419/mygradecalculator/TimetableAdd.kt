@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_timetable_add.*
@@ -18,13 +19,14 @@ class TimetableAdd : MainActivity() {
     lateinit var binding: ActivityTimetableAddBinding
     private val model: ViewModel by viewModels()
     private lateinit var dbadapter: DatabaseAdapter
-    var innerdb: ScheduleDatabase? = null
-
+    private lateinit var dbmodel : InnerDBViewmodel
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTimetableAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        dbmodel = ViewModelProvider(this@TimetableAdd).get(InnerDBViewmodel::class.java)
 
         val yeardata: Array<String> = resources.getStringArray(R.array.grade)
         val yearadapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, yeardata)
@@ -68,31 +70,12 @@ class TimetableAdd : MainActivity() {
     private fun adapterOnClick(subjectdata: ViewModel.Subject): Unit {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
         val iintent = Intent(this, MainActivity::class.java)
-        innerdb = ScheduleDatabase.getDatabase(this)!!
         dlg.dialog()
         dlg.setOnClickedListener(object :
             kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener {
             override fun onClicked(data: Int) {
                 if (data == 1) {
-                    Thread(Runnable {
-                        val subj = weekstate(
-                            0,
-                            subjectdata.college,
-                            subjectdata.subject,
-                            subjectdata.name,
-                            subjectdata.professor,
-                            subjectdata.code,
-                            subjectdata.room,
-                            subjectdata.time,
-                            subjectdata.division,
-                            subjectdata.credit,
-                            subjectdata.grade,
-                            subjectdata.semester
-                        )
-                        innerdb?.weekDao()?.insert(subj)
-                        val data = innerdb?.weekDao()?.getAll()
-                        Log.d("database", data.toString())
-                    }).start()
+                    connect(subjectdata)
                     iintent.putExtra("name", subjectdata.name)
                     iintent.putExtra("time", subjectdata.time)
                     finish()
@@ -101,5 +84,10 @@ class TimetableAdd : MainActivity() {
                     Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()
             }
         })
+    }
+    fun connect(subjectdata: ViewModel.Subject){
+        Thread(Runnable {
+            dbmodel.connect(subjectdata)
+        }).start()
     }
 }
