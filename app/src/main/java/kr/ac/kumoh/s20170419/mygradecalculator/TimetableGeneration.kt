@@ -3,6 +3,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.widget.*
 import androidx.activity.viewModels
@@ -74,9 +75,11 @@ open class TimetableGeneration : AppCompatActivity() {
 
         for (i in selectSubject)
             gbinding.selectSubject.append("${i.name} ${i.code.split("-")[1]}분반\n")
+        gbinding.selectSubject.movementMethod =  ScrollingMovementMethod()
 
         for (i in exceptSubject)
             gbinding.exceptSubject.append("${i.name} ${i.code.split("-")[1]}분반\n")
+        gbinding.exceptSubject.movementMethod =  ScrollingMovementMethod()
 
         for (i in rest) {
             when (i) {
