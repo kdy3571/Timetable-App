@@ -3,6 +3,7 @@ package kr.ac.kumoh.s20170419.mygradecalculator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -39,8 +40,33 @@ class SubjectList : TimetableGeneration() {
     private fun adapterOnClick(subjectData: ViewModel.Subject):Unit {
         val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
         val intent = intent
+        val subject = intent.getSerializableExtra("list") as ArrayList<ViewModel.Subject>
+        var removeSubject: String? = null
         val resultIntent = Intent(this, TimetableGeneration::class.java)
-        dlg.dialog()
+
+        if(intent.hasExtra("list")) {
+            val stime = subjectData.time.split(", ")
+
+            if (subject.isEmpty())
+                dlg.dialog(subjectData.name, "추가")
+            else {
+                loop@ for (i in subject) {
+                    val time = i.time.split(", ")
+                    for (j in time) {
+                        for (k in stime) {
+                            if (k == j) {
+                                dlg.dialog(i.name, "변경")
+                                removeSubject = i.name
+                                break@loop
+                            }
+                        }
+                    }
+                }
+                if (removeSubject == null)
+                    dlg.dialog(subjectData.name, "추가")
+            }
+        }
+
         dlg.setOnClickedListener(object : kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener{
             override fun onClicked(data: Int) {
                 if(data == 1) {
@@ -54,7 +80,10 @@ class SubjectList : TimetableGeneration() {
                             }
                         }
                     }
-                    resultIntent.putExtra("data", subjectData)
+                    if (removeSubject != null)
+                        subject.removeIf { it.name == removeSubject }
+                    subject.add(subjectData)
+                    resultIntent.putExtra("data", subject)
                     finish()
                     startActivity(resultIntent)
                 }

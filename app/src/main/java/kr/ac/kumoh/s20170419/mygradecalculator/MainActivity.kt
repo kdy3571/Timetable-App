@@ -22,24 +22,14 @@ private var autoData = ArrayList<ViewModel.Subject>()
 open class MainActivity : AppCompatActivity() {
     private lateinit var view: ActivityMainBinding
     private val model: ViewModel by viewModels()
-
-    //    var db: ScheduleDatabase? = null
+    var red : Int = 0
+    var blue : Int = 0
+    var green : Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         view = ActivityMainBinding.inflate(layoutInflater)
         setContentView(view.root)
 
-//        db = ScheduleDatabase.getDatabase(this)
-//        CoroutineScope(Dispatchers.IO).launch{
-//            var savedContacts = db!!.weekDao().selectALL()
-//            if (savedContacts.isEmpty()) {
-//                weekdata[0] = arrayOf(db!!.weekDao().selectmonday())
-//                weekdata[1] = arrayOf(db!!.weekDao().selecttuesday())
-//                weekdata[2] = arrayOf(db!!.weekDao().selectwednesday())
-//                weekdata[3] = arrayOf(db!!.weekDao().selectthursday())
-//                weekdata[4] = arrayOf(db!!.weekDao().selectfriday())
-//            }
-//        }
 
         view.button2.setOnClickListener {
             val intent = Intent(this, TimetableGeneration::class.java)
@@ -75,6 +65,11 @@ open class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun randomColor(){
+        red = (Math.random() * 255).toInt()
+        blue = (Math.random() * 255).toInt()
+        green = (Math.random() * 255).toInt()
+    }
 
     fun timesplit() {
         val time = intent.getStringExtra("time")?.split(", ")
@@ -94,6 +89,7 @@ open class MainActivity : AppCompatActivity() {
     }
 
     fun setting() {
+        randomColor()
         for (i in 0 until weekdata.size) {
             for (j in 0 until weekdata[0].size) {
                 if (weekdata[i][j] != null) {
@@ -103,36 +99,35 @@ open class MainActivity : AppCompatActivity() {
                                 resources.getIdentifier("monday" + (j + 9), "id", packageName)
                             val weekID = findViewById<TextView>(resID)
                             weekID.text = weekdata[i][j]
-                            weekID.setBackgroundColor(Color.GREEN)
-
+                            weekID.setBackgroundColor(Color.rgb(red, blue, green))
                         }
                         1 -> {
                             val resID =
                                 resources.getIdentifier("tuesday" + (j + 9), "id", packageName)
                             val weekID = findViewById<TextView>(resID)
                             weekID.text = weekdata[i][j]
-                            weekID.setBackgroundColor(Color.GREEN)
+                            weekID.setBackgroundColor(Color.rgb(red, blue, green))
                         }
                         2 -> {
                             val resID =
                                 resources.getIdentifier("wednesday" + (j + 9), "id", packageName)
                             val weekID = findViewById<TextView>(resID)
                             weekID.text = weekdata[i][j]
-                            weekID.setBackgroundColor(Color.GREEN)
+                            weekID.setBackgroundColor(Color.rgb(red, blue, green))
                         }
                         3 -> {
                             val resID =
                                 resources.getIdentifier("thursday" + (j + 9), "id", packageName)
                             val weekID = findViewById<TextView>(resID)
                             weekID.text = weekdata[i][j]
-                            weekID.setBackgroundColor(Color.GREEN)
+                            weekID.setBackgroundColor(Color.rgb(red, blue, green))
                         }
                         4 -> {
                             val resID =
                                 resources.getIdentifier("friday" + (j + 9), "id", packageName)
                             val weekID = findViewById<TextView>(resID)
                             weekID.text = weekdata[i][j]
-                            weekID.setBackgroundColor(Color.GREEN)
+                            weekID.setBackgroundColor(Color.rgb(red, blue, green))
                         }
                     }
                 }
@@ -149,6 +144,8 @@ open class MainActivity : AppCompatActivity() {
             }
         }
 
+        randomColor()
+
         for (i in 0 until weekdata.size) {
             for (j in 0 until weekdata[0].size) {
                 if (weekdata[i][j] != null) {
@@ -158,36 +155,35 @@ open class MainActivity : AppCompatActivity() {
                                 resources.getIdentifier("monday" + (j + 9), "id", packageName)
                             val weekID = findViewById<TextView>(resID)
                             weekID.text = weekdata[i][j]
-                            weekID.setBackgroundColor(Color.GREEN)
-
+                            weekID.setBackgroundColor(Color.rgb(red, blue, green))
                         }
                         1 -> {
                             val resID =
                                 resources.getIdentifier("tuesday" + (j + 9), "id", packageName)
                             val weekID = findViewById<TextView>(resID)
                             weekID.text = weekdata[i][j]
-                            weekID.setBackgroundColor(Color.GREEN)
+                            weekID.setBackgroundColor(Color.rgb(red, blue, green))
                         }
                         2 -> {
                             val resID =
                                 resources.getIdentifier("wednesday" + (j + 9), "id", packageName)
                             val weekID = findViewById<TextView>(resID)
                             weekID.text = weekdata[i][j]
-                            weekID.setBackgroundColor(Color.GREEN)
+                            weekID.setBackgroundColor(Color.rgb(red, blue, green))
                         }
                         3 -> {
                             val resID =
                                 resources.getIdentifier("thursday" + (j + 9), "id", packageName)
                             val weekID = findViewById<TextView>(resID)
                             weekID.text = weekdata[i][j]
-                            weekID.setBackgroundColor(Color.GREEN)
+                            weekID.setBackgroundColor(Color.rgb(red, blue, green))
                         }
                         4 -> {
                             val resID =
                                 resources.getIdentifier("friday" + (j + 9), "id", packageName)
                             val weekID = findViewById<TextView>(resID)
                             weekID.text = weekdata[i][j]
-                            weekID.setBackgroundColor(Color.GREEN)
+                            weekID.setBackgroundColor(Color.rgb(red, blue, green))
                         }
                     }
                 }
