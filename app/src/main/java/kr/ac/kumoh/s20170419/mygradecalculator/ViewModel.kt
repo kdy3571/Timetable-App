@@ -98,18 +98,19 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             val semester = item.getString("semester")
 
             if (College == college) {   // 학교 구분
-                if (Grade == grade && Semester == semester) {   // 학년 구분
-                    if (Area == null) { // 특정 학년, 학기의 과목 불러오기
+                if (Grade == "전체" && Semester == semester) // 학교의 모든 과목 불러오기(학년 구분x)
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
+                else if (Grade == grade && Semester == semester) {   // 학년 구분o
+                    if (Area == "전체") { // 특정 학년, 학기의 과목 불러오기
                         R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
                     } else {
-                        var token = Area.chunked(2)
+                        var token = Area!!.chunked(2)
                         if (token[0] == division)   // 전공일때
                             R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
                         else if (subject == token[0] && division == token[1]) // 교양선택, 전공선택일때
                             R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
                     }
-                } else if (Grade == null && Semester == semester) // 학교의 모든 과목 불러오기
-                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
+                }
             }
         }
     }
