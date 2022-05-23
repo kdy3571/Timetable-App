@@ -31,7 +31,7 @@ open class TimetableGeneration : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
-        model.requestList("금오공과대학교", "4", "1", "전체")
+        model.requestList("금오공과대학교", "전체", "1", "전체")
 
         gbinding.creditInput.setOnClickListener {
             credit = gbinding.creditInput.text.toString().toInt()
@@ -116,34 +116,37 @@ open class TimetableGeneration : AppCompatActivity() {
         gbinding.create.setOnClickListener {
             Log.d("선택과목", selectSubject.toString())
             Log.d("제외과목", exceptSubject.toString())
-            if (credit != 0) {
-                when (autoSchedule()) {
-                    1 -> {
-                        Log.d("timetable", timeTable.contentDeepToString())
-                        Log.d("과목정보", subjectInfo.toString())
-                        val intent = Intent(this, MainActivity::class.java)
-                        intent.putExtra("auto", subjectInfo)
-                        finish()
-                        startActivity(intent)
-                    }
-                    2 -> {
-                        when (autoSchedule()) {
-                            1 -> {
-                                Log.d("timetable", timeTable.contentDeepToString())
-                                Log.d("과목정보", subjectInfo.toString())
-                                val intent = Intent(this, MainActivity::class.java)
-                                intent.putExtra("auto", subjectInfo)
-                                finish()
-                                startActivity(intent)
-                            }
-                            2 -> {
-                                model.requestList("금오공과대학교", "전체", "1", "전체")
-                                Toast.makeText(this@TimetableGeneration, "생성을 다시 눌러주세요", Toast.LENGTH_SHORT)
-                                    .show()
-                                timeTable = Array(5) { arrayOfNulls<String?>(12) }
-                                credit = 0
-                                ge = 0
-                                rest.clear()
+            while (true) {
+                if (credit == 0) {
+                    Toast.makeText(this@TimetableGeneration, "학점을 입력해주세요.", Toast.LENGTH_SHORT)
+                        .show()
+                    break
+                } else {
+                    when (autoSchedule()) {
+                        1 -> {
+                            Log.d("timetable", timeTable.contentDeepToString())
+                            Log.d("과목정보", subjectInfo.toString())
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.putExtra("auto", subjectInfo)
+                            finish()
+                            startActivity(intent)
+                        }
+                        2 -> {
+                            when (autoSchedule()) {
+                                1 -> {
+                                    Log.d("timetable", timeTable.contentDeepToString())
+                                    Log.d("과목정보", subjectInfo.toString())
+                                    val intent = Intent(this, MainActivity::class.java)
+                                    intent.putExtra("auto", subjectInfo)
+                                    finish()
+                                    startActivity(intent)
+                                }
+                                2 -> {
+                                    timeTable = Array(5) { arrayOfNulls<String?>(12) }
+                                    credit = 0
+                                    ge = 0
+                                    rest.clear()
+                                }
                             }
                         }
                     }
@@ -155,7 +158,11 @@ open class TimetableGeneration : AppCompatActivity() {
 
     private fun autoSchedule(): Int {
         slist[0] = model.getR_subject() // slist[0]: 필수, slist[1]: 전공선택, slist[2]: 교양선택
-        for(i in subjectInfo){    // 제외 과목 삭제
+        val credit_temp = credit
+        val ge_temp = ge
+
+
+        for(i in subjectInfo){    // 들어있는 과목 삭제
             slist[0].removeIf { it.code == i.code }
         }
 
@@ -188,8 +195,8 @@ open class TimetableGeneration : AppCompatActivity() {
                         Toast.makeText(this@TimetableGeneration, "다른 공강일을 선택해주세요.", Toast.LENGTH_SHORT)
                             .show()
                         timeTable = Array(5) { arrayOfNulls<String?>(12) }
-                        credit = 0
-                        ge = 0
+                        credit = credit_temp
+                        ge = ge_temp
                         rest.clear()
                         return -1
                     }
