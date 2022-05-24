@@ -35,7 +35,7 @@ interface weekDao {
     fun getCODE() : List<String>
 
     @Query("SELECT name, time FROM schedule")
-    fun getDATA() : List<weekstateminimal>
+    fun getDATA() : MutableList<weekstateminimal>
 
     @Insert
     fun insert(vararg weekstate: weekstate)
