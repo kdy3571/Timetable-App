@@ -7,50 +7,104 @@
     tools:context=".loginActivity">
 
 
-    <EditText
-        android:id="@+id/emailinput"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
-        android:hint="Email"
-        app:layout_constraintBottom_toTopOf="@+id/passwordinput"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/passwordinput"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/emailinput"
-        android:layout_centerHorizontal="true"
-        android:hint="PASSWORD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailinput" />
-
-
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="150dp"
+        android:layout_width="300dp"
         android:layout_height="55dp"
-        android:layout_below="@+id/passwordinput"
-        android:layout_marginStart="56dp"
-        android:layout_toStartOf="@+id/signupButton"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#00FFFFFF"
+        android:textColor="#FF000000"
         android:text="Log in"
         android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordinput" />
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
 
-    <Button
-        android:id="@+id/signupButton"
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:text="Sign up"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toEndOf="@+id/loginButton"
-        app:layout_constraintTop_toBottomOf="@+id/passwordinput" />
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:stretchColumns="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="학교"
+                android:textSize="30dp" />
+
+            <Spinner
+                android:id="@+id/college_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="학과"
+                android:textSize="30dp" />
+
+            <Spinner
+                android:id="@+id/maior_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="학년"
+                android:textSize="30dp" />
+
+            <Spinner
+                android:id="@+id/grade_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="학기"
+                android:textSize="30dp" />
+
+            <Spinner
+                android:id="@+id/semester_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+        </TableRow>
+    </TableLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

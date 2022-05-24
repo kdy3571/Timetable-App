@@ -11,4 +11,24 @@
         <item>D</item>
         <item>F</item>
     </string-array>
+    <string-array name="college_select">
+        <item>금오공과대학교</item>
+        <item>경북대학교</item>
+        <item>영남대학교</item>
+    </string-array>
+    <string-array name="major_select">
+        <item>컴퓨터공학과</item>
+        <item>신소재공학부</item>
+        <item>토목공학과</item>
+    </string-array>
+    <string-array name="grade_select">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="semester_select">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>
