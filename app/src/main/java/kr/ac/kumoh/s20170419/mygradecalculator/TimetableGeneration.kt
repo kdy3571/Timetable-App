@@ -126,8 +126,9 @@ open class TimetableGeneration : AppCompatActivity() {
             var selectSubjectTemp =  selectSubject
             var exceptSubjectTemp = exceptSubject
 
+            model.requestList("금오공과대학교", "전체", semester, "전체")
             loop@ for(i in 0..100) {
-                random.setSeed(System.currentTimeMillis())
+                random.setSeed(System.currentTimeMillis()*i)
                 Log.d("선택과목", selectSubject.toString())
                 Log.d("제외과목", exceptSubject.toString())
                 while (true) {
