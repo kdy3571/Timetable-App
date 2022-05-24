@@ -1,18 +1,15 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock.sleep
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableGenerationBinding
-import java.security.SecureRandom
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 open class TimetableGeneration : AppCompatActivity() {
@@ -28,7 +25,7 @@ open class TimetableGeneration : AppCompatActivity() {
         val grade = "4"
         val semester= "1"
     }
-    val random = SecureRandom()
+    val random = Random(System.currentTimeMillis())
     var subjectInfo = ArrayList<ViewModel.Subject>()
     var timeTable = Array(5) { arrayOfNulls<String?>(12) }
 
@@ -128,7 +125,6 @@ open class TimetableGeneration : AppCompatActivity() {
 
             model.requestList("금오공과대학교", "전체", semester, "전체")
             loop@ for(i in 0..100) {
-                random.setSeed(System.currentTimeMillis()*i)
                 Log.d("선택과목", selectSubject.toString())
                 Log.d("제외과목", exceptSubject.toString())
                 while (true) {
@@ -140,10 +136,16 @@ open class TimetableGeneration : AppCompatActivity() {
                         when (autoSchedule(grade)) { // 선택 학년에서 계산
                             0 -> break@loop    // 공강일이 잘못된 경우
                             1 -> {  // 정상 작동
+                                var creditCheck = 0
+                                for (i in subjectInfo){
+                                    creditCheck += i.credit.toInt()
+                                }
                                 Log.d("timetable", timeTable.contentDeepToString())
                                 Log.d("과목정보", subjectInfo.toString())
+                                Log.d("학점", creditCheck.toString())
                                 val intent = Intent(this, MainActivity::class.java)
                                 intent.putExtra("auto", subjectInfo)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 finish()
                                 startActivity(intent)
                                 break@loop
@@ -156,10 +158,17 @@ open class TimetableGeneration : AppCompatActivity() {
                 while (true) {
                     when (autoSchedule("0")) { // 모든 학년에서 계산
                         1 -> {
+                            var creditCheck = 0
+                            for (i in subjectInfo){
+                                creditCheck += i.credit.toInt()
+                            }
                             Log.d("timetable", timeTable.contentDeepToString())
                             Log.d("과목정보", subjectInfo.toString())
+                            Log.d("학점", creditCheck.toString())
+
                             val intent = Intent(this, MainActivity::class.java)
                             intent.putExtra("auto", subjectInfo)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             finish()
                             startActivity(intent)
                             break@loop
@@ -186,39 +195,38 @@ open class TimetableGeneration : AppCompatActivity() {
 
         if (Grade == grade) { // 특정 학년만 사용
             for (i in 0..4) {
-                if (i != grade.toInt())
-                    slist[0].removeIf { it.grade == i.toString() }
+                if (i != grade.toInt()) {
+                    slist[0].removeIf { it.grade == i.toString() && it.subject != "교양"} //교양을 제외한 나머지 과목 삭제
+                    slist[0].removeIf { it.grade == i.toString() && it.division == "필수"}    // 다른 학년 필수 과목 삭제
+                }
             }
-        }
-        else { // 전체 학년에서 특정 학년 및 필수과목 제거
+        } else { // 전체 학년에서 특정 학년 및 필수과목 제거
             slist[0].removeIf { it.grade == grade }
             slist[0].removeIf { it.division == "필수" }
         }
 
-        for(i in exceptSubject) {    // 제외 과목 과목 리스트에서 삭제
+        for (i in exceptSubject) {    // 제외 과목 과목 리스트에서 삭제
             slist[0].removeIf { it.code == i.code }
             exceptSubject.remove(i)
         }
 
-        for(i in selectSubject) { // 선택 과목 테이블에 추가
+        for (i in selectSubject) { // 선택 과목 테이블에 추가
             slist[0].removeIf { it.name == i.name } // 선택한 과목과 일치하는 분반 모두 삭제
             subjectAdd(selectSubject)
         }
 
-        for(i in slist[0]) {    // 과목 분류 0: 필수, 1: 선택/전공 2: 선택/교양
-            if(i.division == "선택") {
-                if(i.subject == "전공") {
+        for (i in slist[0]) {    // 과목 분류 0: 필수, 1: 선택/전공 2: 선택/교양
+            if (i.division != "필수") {
+                if (i.subject == "전공")
                     slist[1].add(i)
-                }
-                else if (i.subject == "교양") {
+                else if (i.subject == "교양")
                     slist[2].add(i)
-                }
             }
         }
-        slist[0].removeIf { it.division == "선택" }
+        slist[0].removeIf { it.division != "필수" }
 
         if (Grade == grade) { // 처음에 전체학년 대상이 아닐때 작동
-            while (slist[0].isNotEmpty()) // 필수 과목 추가
+            while (slist[0].isNotEmpty()) // 필수 과목 추가slist = {ArrayList[3]@16955}
                 subjectAdd(slist[0])
 
             if (rest.isNotEmpty()) {
@@ -234,8 +242,7 @@ open class TimetableGeneration : AppCompatActivity() {
                 }
                 for (i in rest) // 공강일 가능한 경우
                     for (j in 0..11)
-                        for (j in 0..11)
-                            timeTable[i][j] = "Rest"
+                        timeTable[i][j] = "Rest"
             }
         }
 
@@ -250,13 +257,8 @@ open class TimetableGeneration : AppCompatActivity() {
         while (credit != 0) { // 학점이 0이 될때까지 채워주기
             if (slist[1].isNotEmpty())
                 subjectAdd(slist[1])
-            else {
-                if (slist[2].isNotEmpty())
-                    subjectAdd(slist[2])
-                else {
-                    return 2    // 전체 학년으로 리스트 변환
-                }
-            }
+            else
+                return 2    // 전체 학년으로 리스트 변환
         }
         return 1
     }
@@ -264,33 +266,22 @@ open class TimetableGeneration : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N) // 24버전
     fun subjectAdd(subjectList: ArrayList<ViewModel.Subject>): Int {
         val num = random.nextInt(subjectList.size)
-
-        if (credit - subjectList[num].credit.toInt() >= 0) {// list로 불러온 학점이 남은 학점을 초과하는지 확인
+        if (credit - subjectList[num].credit.toInt() >= 0) {// list 로 불러온 학점이 남은 학점을 초과하는지 확인
             val time = subjectList[num].time.split(", ")
-
-            for (t in time) { // 공강일 확인
+            for (t in time) { // 공강인지 비었는지 확인
                 val temp = t.split(":")
-                if(timeTable[temp[0].toInt()][temp[1].toInt()] == "Rest") {
+                if(timeTable[temp[0].toInt()][temp[1].toInt()] == "Rest" || timeTable[temp[0].toInt()][temp[1].toInt()] != null) {
                     subjectList.removeAt(num)
                     return 0
                 }
             }
-
             for (t in time) {
                 val temp = t.split(":")
-                when (timeTable[temp[0].toInt()][temp[1].toInt()]) { // timeTable의 공간 확인
-                    null -> {
-                        timeTable[temp[0].toInt()][temp[1].toInt()] = subjectList[num].name
-                    }
-                    else -> {
-                        subjectList.removeAt(num)
-                        return 0
-                    }
-                }
+                timeTable[temp[0].toInt()][temp[1].toInt()] = subjectList[num].name
             }
-            subjectInfo.add(subjectList[num])
+            subjectInfo.add(subjectList[num]) // 과목 추가에 성공했을 경우 subjectInfo 에 추가 및 분반 삭제
             credit -= subjectList[num].credit.toInt()
-            subjectList.removeIf { it.name == subjectList[num].name } // 과목 추가에 성공했을 경우 과목명이 같으면 모두 삭제(분반 제거)
+            subjectList.removeIf { it.name == subjectList[num].name }
         }
         else {
             subjectList.removeAt(num)
