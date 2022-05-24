@@ -76,8 +76,8 @@ class TimetableAdd : MainActivity() {
             override fun onClicked(data: Int) {
                 if (data == 1) {
                     connect(subjectdata)
-                    iintent.putExtra("name", subjectdata.name)
-                    iintent.putExtra("time", subjectdata.time)
+//                    iintent.putExtra("name", subjectdata.name)
+//                    iintent.putExtra("time", subjectdata.time)
                     finish()
                     startActivity(iintent)
                 } else if (data == 0)
