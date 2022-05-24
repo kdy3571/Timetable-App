@@ -82,7 +82,7 @@ open class MainActivity : AppCompatActivity() {
         var resID: Int
         lateinit var weekID: TextView
         databaseget()
-        Thread.sleep(1000L)
+        Thread.sleep(100L)
         val time = dbmodel.gettime()
         val name = dbmodel.getname()
         if (time.size != 0) {
@@ -122,7 +122,7 @@ open class MainActivity : AppCompatActivity() {
 
     private fun autoTable(subjectList: ArrayList<ViewModel.Subject>) {
         connect(subjectList)
-        Thread.sleep(1000L)
+        Thread.sleep(100L)
         timesplit()
     }
 
