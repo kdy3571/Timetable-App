@@ -11,12 +11,12 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
     private val db = ScheduleDatabase.getDatabase(context)!!.weekDao()
     val name: ArrayList<String> = arrayListOf()
     val time: ArrayList<String> = arrayListOf()
-    var red: Int = 0
-    var blue: Int = 0
-    var green: Int = 0
-    var redList: ArrayList<Int> = arrayListOf()
-    var blueList: ArrayList<Int> = arrayListOf()
-    var grrenList: ArrayList<Int> = arrayListOf()
+//    var red: Int = 0
+//    var blue: Int = 0
+//    var green: Int = 0
+//    var redList: ArrayList<Int> = arrayListOf()
+//    var blueList: ArrayList<Int> = arrayListOf()
+//    var grrenList: ArrayList<Int> = arrayListOf()
 
     fun connect(subject: ViewModel.Subject) {
         var temp = db.getCODE()
