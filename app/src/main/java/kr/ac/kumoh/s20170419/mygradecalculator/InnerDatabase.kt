@@ -26,6 +26,12 @@ data class weekstateminimal(
     val time  : String?
 )
 
+//data class weekcolor(
+//    val red : Int,
+//    val blue : Int,
+//    val green : Int
+//)
+
 @Dao
 interface weekDao {
     @Query("SELECT * FROM schedule")
@@ -36,6 +42,9 @@ interface weekDao {
 
     @Query("SELECT name, time FROM schedule")
     fun getDATA() : MutableList<weekstateminimal>
+
+//    @Query("SELECT red, blue, green FROM schedule")
+//    fun getCOLOR() : MutableList<weekcolor>
 
     @Insert
     fun insert(vararg weekstate: weekstate)

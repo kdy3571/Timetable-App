@@ -7,13 +7,20 @@ import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.AndroidViewModel
 
-class InnerDBViewmodel(context: Application): AndroidViewModel(context) {
+class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
     private val db = ScheduleDatabase.getDatabase(context)!!.weekDao()
     val name: ArrayList<String> = arrayListOf()
     val time: ArrayList<String> = arrayListOf()
+    var red: Int = 0
+    var blue: Int = 0
+    var green: Int = 0
+    var redList: ArrayList<Int> = arrayListOf()
+    var blueList: ArrayList<Int> = arrayListOf()
+    var grrenList: ArrayList<Int> = arrayListOf()
 
     fun connect(subject: ViewModel.Subject) {
         var temp = db.getCODE()
+        //randomColor()
         val data = weekstate(
             0,
             subject.college,
@@ -52,14 +59,43 @@ class InnerDBViewmodel(context: Application): AndroidViewModel(context) {
         return name
     }
 
-    fun gettime(): ArrayList<String>{
+    fun gettime(): ArrayList<String> {
         return time
     }
-}
-//    fun get(): List<weekstate> {
-//        val temp = db.getAll()
-//        val temp2 = db.getID()
-//        Log.i("database", temp.toString())
-//        Log.i("database", temp.toString())
-//        return temp
+
+//    fun getcolor(): ArrayList<Int> {
+//        var data: MutableList<weekcolor> = db.getCOLOR()
+//        Log.i("test1", data.size.toString())
+//        if (data.size != 0) {
+//            for (i in 0 until data.size) {
+//                redList.add(data[i].red)
+//                blueList.add(data[i].blue)
+//                grrenList.add(data[i].green)
+//            }
+//        }
 //    }
+//
+//    fun getred(): Int {
+//        var data: weekcolor = db.getCOLOR()
+//        red = data.red
+//        return red
+//    }
+//
+//    fun getblue(): Int {
+//        var data: weekcolor = db.getCOLOR()
+//        blue = data.blue
+//        return blue
+//    }
+//
+//    fun getgreen(): Int {
+//        var data: weekcolor = db.getCOLOR()
+//        green = data.green
+//        return green
+//    }
+//
+//    fun randomColor() {
+//        red = (Math.random() * 255).toInt()
+//        blue = (Math.random() * 255).toInt()
+//        green = (Math.random() * 255).toInt()
+//    }
+}
