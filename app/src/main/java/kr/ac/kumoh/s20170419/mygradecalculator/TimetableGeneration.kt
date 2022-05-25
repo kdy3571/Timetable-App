@@ -30,6 +30,7 @@ open class TimetableGeneration : AppCompatActivity() {
         val semester= "1"
         var subjectInfo = ArrayList<ViewModel.Subject>()
         var timeTable = Array(5) { arrayOfNulls<String?>(12) }
+        var subjectList = ArrayList<ViewModel.Subject>()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,13 +40,19 @@ open class TimetableGeneration : AppCompatActivity() {
         model.requestList("금오공과대학교", "전체", semester, "전체")
 
         gbinding.creditInput.setOnClickListener {
-            credit = gbinding.creditInput.text.toString().toInt()
+            if (gbinding.creditInput.text.toString() != "")
+                credit = gbinding.creditInput.text.toString().toInt()
+            else
+                credit =0
             creditTemp = credit
             Log.d("credit", "credit: $credit")
         }
 
         gbinding.geInput.setOnClickListener {
-            ge = gbinding.geInput.text.toString().toInt()
+            if (gbinding.geInput.text.toString() != "")
+                ge = gbinding.geInput.text.toString().toInt()
+            else
+                ge = 0
             geTemp = ge
             Log.d("ge", "ge: $ge")
         }
@@ -122,8 +129,9 @@ open class TimetableGeneration : AppCompatActivity() {
         gbinding.check4.setOnCheckedChangeListener(listener)
         gbinding.check5.setOnCheckedChangeListener(listener)
 
+
         gbinding.create.setOnClickListener {
-            model.requestList("금오공과대학교", "전체", semester, "전체")
+            subjectList = model.getR_subject()
             generation()
         }
 
@@ -185,7 +193,7 @@ open class TimetableGeneration : AppCompatActivity() {
 
     private fun autoSchedule(): Int {
         var slist = Array(5) { ArrayList<ViewModel.Subject>() }
-        slist[0] = model.getR_subject()
+        slist[0] = subjectList
 
         for (i in 0..4)
             if (i != grade.toInt())
