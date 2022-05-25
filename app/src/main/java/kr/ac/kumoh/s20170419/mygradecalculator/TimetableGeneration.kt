@@ -27,6 +27,10 @@ open class TimetableGeneration : AppCompatActivity() {
     }
     var subjectInfo = ArrayList<ViewModel.Subject>()
     var timeTable = Array(5) { arrayOfNulls<String?>(12) }
+    var creditTemp = credit
+    var geTemp = ge
+    var selectSubjectTemp =  selectSubject
+    var exceptSubjectTemp = exceptSubject
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,11 +78,11 @@ open class TimetableGeneration : AppCompatActivity() {
 
         for (i in selectSubject)
             gbinding.selectSubject.append("${i.name} ${i.code.split("-")[1]}분반\n")
-        gbinding.selectSubject.movementMethod =  ScrollingMovementMethod()
+        gbinding.selectSubject.movementMethod = ScrollingMovementMethod()
 
         for (i in exceptSubject)
             gbinding.exceptSubject.append("${i.name} ${i.code.split("-")[1]}분반\n")
-        gbinding.exceptSubject.movementMethod =  ScrollingMovementMethod()
+        gbinding.exceptSubject.movementMethod = ScrollingMovementMethod()
 
         for (i in rest) {
             when (i) {
@@ -117,53 +121,66 @@ open class TimetableGeneration : AppCompatActivity() {
         gbinding.check5.setOnCheckedChangeListener(listener)
 
         gbinding.create.setOnClickListener {
-            var creditTemp = credit
-            var geTemp = ge
-            var selectSubjectTemp =  selectSubject
-            var exceptSubjectTemp = exceptSubject
-
             model.requestList("금오공과대학교", "전체", semester, "전체")
-            loop@ for(i in 0..100) {
-                Log.d("선택과목", selectSubject.toString())
-                Log.d("제외과목", exceptSubject.toString())
-                if (credit == 0) {
-                    Toast.makeText(this@TimetableGeneration, "학점을 입력해주세요.", Toast.LENGTH_SHORT)
-                        .show()
-                    break@loop
-                } else {
-                    when (autoSchedule()) {
-                        0 -> break@loop    // 공강일이 잘못된 경우
-                        1 -> {  // 정상 작동
-                            var creditCheck = 0
-                            for (i in subjectInfo)
-                                creditCheck += i.credit.toInt()
-                            Log.d("timetable", timeTable.contentDeepToString())
-                            Log.d("과목정보", subjectInfo.toString())
-                            Log.d("학점", creditCheck.toString())
-                            val intent = Intent(this, MainActivity::class.java)
-                            intent.putExtra("auto", subjectInfo)
-                            intent.flags =
-                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            finish()
-                            startActivity(intent)
-                            break@loop
-                        }
-                        2 -> { // 실패 초기화 후 다시 시뮬레이션
-                            timeTable = Array(5) { arrayOfNulls<String?>(12) }
-                            selectSubject = selectSubjectTemp
-                            exceptSubject = exceptSubjectTemp
-                            credit = creditTemp
-                            ge = geTemp
-                            subjectInfo.clear()
-                        }
+            generation()
+        }
+
+        if (intent.hasExtra("button")) {
+            if (intent.getStringExtra("button") == "추가") {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("auto", subjectInfo)
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                finish()
+                startActivity(intent)
+            } else if (intent.getStringExtra("button") == "재생성") {
+                timeTable = Array(5) { arrayOfNulls<String?>(12) }
+                selectSubject = selectSubjectTemp
+                exceptSubject = exceptSubjectTemp
+                credit = creditTemp
+                ge = geTemp
+                subjectInfo.clear()
+                generation()
+            }
+        }
+    }
+
+    private fun generation() {
+        loop@ for(i in 0..100) {
+            Log.d("선택과목", selectSubject.toString())
+            Log.d("제외과목", exceptSubject.toString())
+            if (credit == 0) {
+                Toast.makeText(this@TimetableGeneration, "학점을 입력해주세요.", Toast.LENGTH_SHORT)
+                    .show()
+                break@loop
+            } else {
+                when (autoSchedule()) {
+                    0 -> break@loop    // 공강일이 잘못된 경우
+                    1 -> {  // 정상 작동
+                        var creditCheck = 0
+                        for (i in subjectInfo)
+                            creditCheck += i.credit.toInt()
+                        Log.d("timetable", timeTable.contentDeepToString())
+                        Log.d("과목정보", subjectInfo.toString())
+                        Log.d("학점", creditCheck.toString())
+                        val tableIntent = Intent(this, autoTable::class.java)
+                        tableIntent.putExtra("timetable", timeTable)
+                        startActivity(tableIntent)
+                    }
+                    2 -> { // 실패 초기화 후 다시 시뮬레이션
+                        timeTable = Array(5) { arrayOfNulls<String?>(12) }
+                        selectSubject = selectSubjectTemp
+                        exceptSubject = exceptSubjectTemp
+                        credit = creditTemp
+                        ge = geTemp
+                        subjectInfo.clear()
                     }
                 }
             }
         }
     }
 
-
-    private fun autoSchedule(): Int { // Grade는 특정 학년에서 시간표를 완성하지 못하였을때 사용
+    private fun autoSchedule(): Int {
         var slist = Array(5) { ArrayList<ViewModel.Subject>() }
         slist[0] = model.getR_subject()
 
@@ -246,6 +263,10 @@ open class TimetableGeneration : AppCompatActivity() {
                 }
             }
         }
+        for (i in timeTable.indices) // 정상적으로 생성되었을 때, 공강일을 다시 null 값으로 변경
+            for (j in timeTable[i].indices)
+                 if (timeTable[i][j] == "Rest")
+                     timeTable[i][j] == null
         return 1
     }
 
