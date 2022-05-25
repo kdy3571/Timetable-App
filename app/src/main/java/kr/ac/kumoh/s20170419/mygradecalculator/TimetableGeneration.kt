@@ -19,18 +19,18 @@ open class TimetableGeneration : AppCompatActivity() {
     companion object {
         var credit = 0
         var ge = 0
+        var creditTemp = 0
+        var geTemp = 0
         var rest = ArrayList<Int>()
         var selectSubject =  ArrayList<ViewModel.Subject>()
         var exceptSubject = ArrayList<ViewModel.Subject>()
+        var selectSubjectTemp =  ArrayList<ViewModel.Subject>()
+        var exceptSubjectTemp = ArrayList<ViewModel.Subject>()
         val grade = "4"
         val semester= "1"
+        var subjectInfo = ArrayList<ViewModel.Subject>()
+        var timeTable = Array(5) { arrayOfNulls<String?>(12) }
     }
-    var subjectInfo = ArrayList<ViewModel.Subject>()
-    var timeTable = Array(5) { arrayOfNulls<String?>(12) }
-    var creditTemp = credit
-    var geTemp = ge
-    var selectSubjectTemp =  selectSubject
-    var exceptSubjectTemp = exceptSubject
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +40,13 @@ open class TimetableGeneration : AppCompatActivity() {
 
         gbinding.creditInput.setOnClickListener {
             credit = gbinding.creditInput.text.toString().toInt()
+            creditTemp = credit
             Log.d("credit", "credit: $credit")
         }
 
         gbinding.geInput.setOnClickListener {
             ge = gbinding.geInput.text.toString().toInt()
+            geTemp = ge
             Log.d("ge", "ge: $ge")
         }
 
@@ -166,6 +168,7 @@ open class TimetableGeneration : AppCompatActivity() {
                         val tableIntent = Intent(this, autoTable::class.java)
                         tableIntent.putExtra("timetable", timeTable)
                         startActivity(tableIntent)
+                        break@loop
                     }
                     2 -> { // 실패 초기화 후 다시 시뮬레이션
                         timeTable = Array(5) { arrayOfNulls<String?>(12) }
