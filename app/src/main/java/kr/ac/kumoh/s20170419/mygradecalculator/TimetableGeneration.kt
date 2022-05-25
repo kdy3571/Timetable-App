@@ -36,7 +36,6 @@ open class TimetableGeneration : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
-        model.requestList("금오공과대학교", "전체", semester, "전체")
 
         gbinding.creditInput.setOnClickListener {
             if (gbinding.creditInput.text.toString() != "")
@@ -129,8 +128,8 @@ open class TimetableGeneration : AppCompatActivity() {
         gbinding.check5.setOnCheckedChangeListener(listener)
 
 
+        model.requestList("금오공과대학교", "전체", semester, "전체")
         gbinding.create.setOnClickListener {
-            model.requestList("금오공과대학교", "전체", semester, "전체")
             generation()
         }
 
@@ -138,8 +137,9 @@ open class TimetableGeneration : AppCompatActivity() {
             if (intent.getStringExtra("button") == "추가") {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("auto", subjectInfo)
-                finish()
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
+                finish()
             } else if (intent.getStringExtra("button") == "재생성") {
                 timeTable = Array(5) { arrayOfNulls<String?>(12) }
                 selectSubject = selectSubjectTemp
@@ -147,13 +147,13 @@ open class TimetableGeneration : AppCompatActivity() {
                 credit = creditTemp
                 ge = geTemp
                 subjectInfo.clear()
-                startActivity(intent)
                 generation()
             }
         }
     }
 
     private fun generation() {
+        model.requestList("금오공과대학교", "전체", semester, "전체")
         loop@ for(i in 0..100) {
             Log.d("선택과목", selectSubject.toString())
             Log.d("제외과목", exceptSubject.toString())
