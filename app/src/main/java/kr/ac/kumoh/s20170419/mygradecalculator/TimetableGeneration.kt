@@ -30,7 +30,6 @@ open class TimetableGeneration : AppCompatActivity() {
         val semester= "1"
         var subjectInfo = ArrayList<ViewModel.Subject>()
         var timeTable = Array(5) { arrayOfNulls<String?>(12) }
-        var subjectList = ArrayList<ViewModel.Subject>()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -131,7 +130,7 @@ open class TimetableGeneration : AppCompatActivity() {
 
 
         gbinding.create.setOnClickListener {
-            subjectList = model.getR_subject()
+            model.requestList("금오공과대학교", "전체", semester, "전체")
             generation()
         }
 
@@ -139,8 +138,6 @@ open class TimetableGeneration : AppCompatActivity() {
             if (intent.getStringExtra("button") == "추가") {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("auto", subjectInfo)
-                intent.flags =
-                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 finish()
                 startActivity(intent)
             } else if (intent.getStringExtra("button") == "재생성") {
@@ -150,6 +147,7 @@ open class TimetableGeneration : AppCompatActivity() {
                 credit = creditTemp
                 ge = geTemp
                 subjectInfo.clear()
+                startActivity(intent)
                 generation()
             }
         }
@@ -193,7 +191,7 @@ open class TimetableGeneration : AppCompatActivity() {
 
     private fun autoSchedule(): Int {
         var slist = Array(5) { ArrayList<ViewModel.Subject>() }
-        slist[0] = subjectList
+        slist[0] = model.getR_subject()
 
         for (i in 0..4)
             if (i != grade.toInt())

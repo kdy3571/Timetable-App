@@ -20,6 +20,7 @@ class SubjectList : TimetableGeneration() {
         binding = ActivitySubjectListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        model.requestList("금오공과대학교", "전체", semester, "전체")
         dbadapter = DatabaseAdapter(model) { subject -> adapterOnClick(subject) }
         binding.list.apply {
             layoutManager = LinearLayoutManager(applicationContext)

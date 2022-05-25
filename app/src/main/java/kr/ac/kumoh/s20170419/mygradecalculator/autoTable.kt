@@ -13,6 +13,7 @@ class autoTable : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        weekdata =  Array(5) { arrayOfNulls<String?>(11) }
 
         binding = ActivityAutoTableBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -25,15 +26,17 @@ class autoTable : AppCompatActivity() {
         binding.addButton.setOnClickListener {
             val intent = Intent(this, TimetableGeneration::class.java)
             intent.putExtra("button", "추가")
-            finish()
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+            finish()
         }
 
         binding.resetButton.setOnClickListener {
             val intent = Intent(this, TimetableGeneration::class.java)
             intent.putExtra("button", "재생성")
-            finish()
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+            finish()
         }
     }
 
