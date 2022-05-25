@@ -46,8 +46,6 @@ open class MainActivity : AppCompatActivity() {
             val intent = Intent(this, GradeManagement::class.java)
             startActivity(intent)
         }
-
-        timesplit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -64,11 +62,12 @@ open class MainActivity : AppCompatActivity() {
             autoData = intent.getSerializableExtra("auto") as ArrayList<ViewModel.Subject>
             autoTable(autoData)
         }
+        timesplit()
     }
 
     fun databaseget() {
         Thread(Runnable {
-            dbmodel.getdata()
+            dbmodel.getweekdata()
         }).start()
     }
 
@@ -121,6 +120,8 @@ open class MainActivity : AppCompatActivity() {
     }
 
     private fun autoTable(subjectList: ArrayList<ViewModel.Subject>) {
+        resetDatabase()
+        Thread.sleep(100L)
         connect(subjectList)
         Thread.sleep(100L)
         timesplit()
@@ -132,5 +133,45 @@ open class MainActivity : AppCompatActivity() {
                 dbmodel.connect(subjectdata[i])
             }
         }).start()
+    }
+
+    fun resetDatabase() {
+        Thread(Runnable {
+            dbmodel.resetDB()
+        }).start()
+        resetTextView()
+    }
+
+    fun resetTextView() {
+        var resID: Int
+        lateinit var weekID: TextView
+        for (i in  weekdata.indices) {
+            for (j in 0 until weekdata[0].size) {
+                when (i) {
+                    0 -> {
+                        resID = resources.getIdentifier("monday" + (j + 9), "id", packageName)
+                        weekID = findViewById(resID)
+                    }
+                    1 -> {
+                        resID = resources.getIdentifier("tuesday" + (j + 9), "id", packageName)
+                        weekID = findViewById(resID)
+                    }
+                    2 -> {
+                        resID = resources.getIdentifier("wednesday" + (j + 9), "id", packageName)
+                        weekID = findViewById(resID)
+                    }
+                    3 -> {
+                        resID = resources.getIdentifier("thursday" + (j + 9), "id", packageName)
+                        weekID = findViewById(resID)
+                    }
+                    4 -> {
+                        resID = resources.getIdentifier("friday" + (j + 9), "id", packageName)
+                        weekID = findViewById(resID)
+                    }
+                }
+                weekID.text = weekdata[i][j] ?: ""
+                weekID.setBackgroundResource(R.drawable.cell)
+            }
+        }
     }
 }

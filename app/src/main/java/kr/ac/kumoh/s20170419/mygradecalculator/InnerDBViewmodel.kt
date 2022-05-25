@@ -8,7 +8,8 @@ import android.widget.TextView
 import androidx.lifecycle.AndroidViewModel
 
 class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
-    private val db = ScheduleDatabase.getDatabase(context)!!.weekDao()
+    private val weekdb = ScheduleDatabase.getDatabase(context)!!.weekDao()
+    private val userdb = UserDatabase.getDatabase(context)!!.UserDao()
     val name: ArrayList<String> = arrayListOf()
     val time: ArrayList<String> = arrayListOf()
 //    var red: Int = 0
@@ -19,7 +20,7 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
 //    var grrenList: ArrayList<Int> = arrayListOf()
 
     fun connect(subject: ViewModel.Subject) {
-        var temp = db.getCODE()
+        var temp = weekdb.getCODE()
         //randomColor()
         val data = weekstate(
             0,
@@ -37,15 +38,19 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
         )
         val result: Boolean = temp.contains(data.code)
         if (result == false) {
-            db.insert(data)
+            weekdb.insert(data)
         }
-        val temp2 = db.getAll()
+        val temp2 = weekdb.getAll()
         Log.i("database", temp2.toString())
     }
 
-    fun getdata() {
+    fun connect(){
+
+    }
+
+    fun getweekdata() {
         var data: MutableList<weekstateminimal> = arrayListOf()
-        data = db.getDATA()
+        data = weekdb.getDATA()
         Log.i("test1", data.size.toString())
         if (data.size != 0) {
             for (i in 0 until data.size) {
@@ -61,6 +66,11 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
 
     fun gettime(): ArrayList<String> {
         return time
+    }
+
+    fun resetDB(){
+        weekdb.deleteALL()
+        weekdb.resetID()
     }
 
 //    fun getcolor(): ArrayList<Int> {
