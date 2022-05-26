@@ -16,6 +16,7 @@ import java.io.Serializable
 class ViewModel(application: Application): AndroidViewModel(application) {
     companion object {
         const val QUEUE_TAG = "VolleyRequest"
+        private val R_subject = ArrayList<Subject>()
     }
 
     private lateinit var mQueue: RequestQueue
@@ -36,7 +37,6 @@ class ViewModel(application: Application): AndroidViewModel(application) {
 
     val list = MutableLiveData<ArrayList<Subject>>()
     val filteredList = MutableLiveData<ArrayList<Subject>>()
-    private val R_subject = ArrayList<Subject>()
 
     init {
         list.value = R_subject
