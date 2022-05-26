@@ -46,6 +46,11 @@ open class MainActivity : AppCompatActivity() {
             val intent = Intent(this, GradeManagement::class.java)
             startActivity(intent)
         }
+
+        view.button4.setOnClickListener {
+            val intent = Intent(this, CalendarActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
