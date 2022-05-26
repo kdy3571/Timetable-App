@@ -32,13 +32,11 @@ open class MainActivity : AppCompatActivity() {
         dbmodel = ViewModelProvider(this@MainActivity).get(InnerDBViewmodel::class.java)
         view.button2.setOnClickListener {
             val intent = Intent(this, TimetableGeneration::class.java)
-            finish()
             startActivity(intent)
         }
 
         view.button.setOnClickListener {
             val intent = Intent(this, TimetableAdd::class.java)
-            finish()
             startActivity(intent)
         }
 

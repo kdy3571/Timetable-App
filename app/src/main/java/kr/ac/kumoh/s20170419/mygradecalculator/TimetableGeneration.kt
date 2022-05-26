@@ -1,4 +1,5 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.widget.*
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat.finishAffinity
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableGenerationBinding
 import java.util.*
 
@@ -28,9 +30,9 @@ open class TimetableGeneration : AppCompatActivity() {
         var exceptSubjectTemp = ArrayList<ViewModel.Subject>()
         val grade = "4"
         val semester= "1"
-        var subjectInfo = ArrayList<ViewModel.Subject>()
         var timeTable = Array(5) { arrayOfNulls<String?>(12) }
     }
+    var subjectInfo = ArrayList<ViewModel.Subject>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -138,6 +140,7 @@ open class TimetableGeneration : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("auto", subjectInfo)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                finishAffinity(this)
                 startActivity(intent)
                 finish()
             } else if (intent.getStringExtra("button") == "재생성") {
