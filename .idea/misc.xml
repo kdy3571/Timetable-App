@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/admin/AndroidStudioProjects/-AI/app/src/main/res/layout/activity_login.xml" value="0.22916666666666666" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/-AI/app/src/main/res/layout/activity_main.xml" value="0.1661600810536981" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/-AI/app/src/main/res/layout/activity_subjeclist_layout.xml" value="0.2630208333333333" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/-AI/app/src/main/res/layout/activity_subject_list.xml" value="0.2640625" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Users/admin/AndroidStudioProjects/-AI/app/src/main/res/layout/dialog_layout.xml" value="0.2640625" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/-AI/app/src/main/res/layout/fragment_item.xml" value="0.2640625" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/-AI/app/src/main/res/layout/fragment_item_list.xml" value="0.2640625" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/-AI/app/src/main/res/layout/login_layout.xml" value="0.22916666666666666" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/-AI/app/src/main/res/layout/spinneritem.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/drawable/cell.xml" value="0.2265" />
         <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/drawable/itemspinner.xml" value="0.208" />
