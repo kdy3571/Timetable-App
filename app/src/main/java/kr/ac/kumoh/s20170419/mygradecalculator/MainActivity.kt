@@ -8,9 +8,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.activity_auto_table.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
+import java.nio.file.Files.delete
 import kotlin.collections.ArrayList
 
 private var weekdata = Array(5) { kotlin.arrayOfNulls<String?>(11) }
@@ -58,6 +61,68 @@ open class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CalendarActivity::class.java)
             startActivity(intent)
         }
+        monday9.setOnLongClickListener{ delete(monday9); return@setOnLongClickListener(true) }
+        monday10.setOnLongClickListener{ delete(monday10); return@setOnLongClickListener(true) }
+        monday11.setOnLongClickListener{ delete(monday11); return@setOnLongClickListener(true) }
+        monday12.setOnLongClickListener{ delete(monday12); return@setOnLongClickListener(true) }
+        monday13.setOnLongClickListener{ delete(monday13); return@setOnLongClickListener(true) }
+        monday14.setOnLongClickListener{ delete(monday14); return@setOnLongClickListener(true) }
+        monday15.setOnLongClickListener{ delete(monday15); return@setOnLongClickListener(true) }
+        monday16.setOnLongClickListener{ delete(monday16); return@setOnLongClickListener(true) }
+        monday17.setOnLongClickListener{ delete(monday17); return@setOnLongClickListener(true) }
+        monday18.setOnLongClickListener{ delete(monday18); return@setOnLongClickListener(true) }
+        monday19.setOnLongClickListener{ delete(monday19); return@setOnLongClickListener(true) }
+        monday20.setOnLongClickListener{ delete(monday20); return@setOnLongClickListener(true) }
+        tuesday9.setOnLongClickListener{ delete(tuesday9); return@setOnLongClickListener(true) }
+        tuesday10.setOnLongClickListener{ delete(tuesday10); return@setOnLongClickListener(true) }
+        tuesday11.setOnLongClickListener{ delete(tuesday11); return@setOnLongClickListener(true) }
+        tuesday12.setOnLongClickListener{ delete(tuesday12); return@setOnLongClickListener(true) }
+        tuesday13.setOnLongClickListener{ delete(tuesday13); return@setOnLongClickListener(true) }
+        tuesday14.setOnLongClickListener{ delete(tuesday14); return@setOnLongClickListener(true) }
+        tuesday15.setOnLongClickListener{ delete(tuesday15); return@setOnLongClickListener(true) }
+        tuesday16.setOnLongClickListener{ delete(tuesday16); return@setOnLongClickListener(true) }
+        tuesday17.setOnLongClickListener{ delete(tuesday17); return@setOnLongClickListener(true) }
+        tuesday18.setOnLongClickListener{ delete(tuesday18); return@setOnLongClickListener(true) }
+        tuesday19.setOnLongClickListener{ delete(tuesday19); return@setOnLongClickListener(true) }
+        tuesday20.setOnLongClickListener{ delete(tuesday20); return@setOnLongClickListener(true) }
+        wednesday9.setOnLongClickListener{ delete(wednesday9); return@setOnLongClickListener(true) }
+        wednesday10.setOnLongClickListener{ delete(wednesday10); return@setOnLongClickListener(true) }
+        wednesday11.setOnLongClickListener{ delete(wednesday11); return@setOnLongClickListener(true) }
+        wednesday12.setOnLongClickListener{ delete(wednesday12); return@setOnLongClickListener(true) }
+        wednesday13.setOnLongClickListener{ delete(wednesday13); return@setOnLongClickListener(true) }
+        wednesday14.setOnLongClickListener{ delete(wednesday14); return@setOnLongClickListener(true) }
+        wednesday15.setOnLongClickListener{ delete(wednesday15); return@setOnLongClickListener(true) }
+        wednesday16.setOnLongClickListener{ delete(wednesday16); return@setOnLongClickListener(true) }
+        wednesday17.setOnLongClickListener{ delete(wednesday17); return@setOnLongClickListener(true) }
+        wednesday18.setOnLongClickListener{ delete(wednesday18); return@setOnLongClickListener(true) }
+        wednesday19.setOnLongClickListener{ delete(wednesday19); return@setOnLongClickListener(true) }
+        wednesday20.setOnLongClickListener{ delete(wednesday20); return@setOnLongClickListener(true) }
+        thursday9.setOnLongClickListener{ delete(thursday9); return@setOnLongClickListener(true) }
+        thursday10.setOnLongClickListener{ delete(thursday10); return@setOnLongClickListener(true) }
+        thursday11.setOnLongClickListener{ delete(thursday11); return@setOnLongClickListener(true) }
+        thursday12.setOnLongClickListener{ delete(thursday12); return@setOnLongClickListener(true) }
+        thursday13.setOnLongClickListener{ delete(thursday13); return@setOnLongClickListener(true) }
+        thursday14.setOnLongClickListener{ delete(thursday14); return@setOnLongClickListener(true) }
+        thursday15.setOnLongClickListener{ delete(thursday15); return@setOnLongClickListener(true) }
+        thursday16.setOnLongClickListener{ delete(thursday16); return@setOnLongClickListener(true) }
+        thursday17.setOnLongClickListener{ delete(thursday17); return@setOnLongClickListener(true) }
+        thursday18.setOnLongClickListener{ delete(thursday18); return@setOnLongClickListener(true) }
+        thursday19.setOnLongClickListener{ delete(thursday19); return@setOnLongClickListener(true) }
+        thursday20.setOnLongClickListener{ delete(thursday20); return@setOnLongClickListener(true) }
+        friday9.setOnLongClickListener{ delete(friday9); return@setOnLongClickListener(true) }
+        friday10.setOnLongClickListener{ delete(friday10); return@setOnLongClickListener(true) }
+        friday11.setOnLongClickListener{ delete(friday11); return@setOnLongClickListener(true) }
+        friday12.setOnLongClickListener{ delete(friday12); return@setOnLongClickListener(true) }
+        friday13.setOnLongClickListener{ delete(friday13); return@setOnLongClickListener(true) }
+        friday14.setOnLongClickListener{ delete(friday14); return@setOnLongClickListener(true) }
+        friday15.setOnLongClickListener{ delete(friday15); return@setOnLongClickListener(true) }
+        friday16.setOnLongClickListener{ delete(friday16); return@setOnLongClickListener(true) }
+        friday17.setOnLongClickListener{ delete(friday17); return@setOnLongClickListener(true) }
+        friday18.setOnLongClickListener{ delete(friday18); return@setOnLongClickListener(true) }
+        friday19.setOnLongClickListener{ delete(friday19); return@setOnLongClickListener(true) }
+        friday20.setOnLongClickListener{ delete(friday20); return@setOnLongClickListener(true) }
+
+        resetTextView()
         timesplit()
     }
 
@@ -201,5 +266,28 @@ open class MainActivity : AppCompatActivity() {
                 weekID.setBackgroundResource(R.drawable.cell)
             }
         }
+    }
+
+    fun delete(weekID : TextView){
+        val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
+        dlg.dialog(weekID.text.toString(), "삭제")
+        dlg.setOnClickedListener(object :
+            kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener {
+            override fun onClicked(data: Int) {
+                if (data == 1) {
+                    deleteSchedule(weekID)
+                    finish()
+                    startActivity(getIntent())
+                } else if (data == 0)
+                    Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+    fun deleteSchedule(weekID : TextView){
+        Thread(Runnable {
+            dbmodel.deleteDB(weekID.text.toString())
+        }).start()
+        resetTextView()
+        timesplit()
     }
 }

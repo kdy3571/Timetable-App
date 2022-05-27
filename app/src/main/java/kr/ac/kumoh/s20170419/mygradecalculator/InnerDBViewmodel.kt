@@ -66,4 +66,8 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
     fun resetDB(gs: String){
         weekdb.delete(gs)
     }
+
+    fun deleteDB(name : String){
+        weekdb.deletename(name)
+    }
 }

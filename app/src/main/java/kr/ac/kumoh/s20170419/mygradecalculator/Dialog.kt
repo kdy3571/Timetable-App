@@ -37,7 +37,7 @@ class Dialog(context: Context): AppCompatActivity() {
             btnOK = dlg.findViewById(R.id.ok3)
             btnCancel = dlg.findViewById(R.id.cancel3)
             textView = dlg.findViewById(R.id.change_Content)
-            textView.text = "$name 을/를 빼고 변경하시겠습니까?"
+            textView.text = "$name 을/를 삭제하시겠습니까?"
         }
         dlg.setCancelable(false)
 

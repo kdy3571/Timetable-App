@@ -60,6 +60,10 @@ interface weekDao {
     @Query("DELETE FROM schedule where gs = :gs")
     fun delete(gs: String)
 
+
+    @Query("DELETE FROM schedule WHERE name = :name")
+    fun deletename(name: String?)
+
 //    @Query("UPDATE schedule SET id = 0: + 1")
 //    fun resetID()
 
