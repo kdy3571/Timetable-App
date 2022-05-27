@@ -1,15 +1,11 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.app.Application
-import android.content.Intent
-import android.graphics.Color
 import android.util.Log
-import android.widget.TextView
 import androidx.lifecycle.AndroidViewModel
 
 class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
     private val weekdb = ScheduleDatabase.getDatabase(context)!!.weekDao()
-    private val userdb = UserDatabase.getDatabase(context)!!.UserDao()
     val name: ArrayList<String> = arrayListOf()
     val time: ArrayList<String> = arrayListOf()
 //    var red: Int = 0

@@ -2,9 +2,7 @@ package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.icu.util.Calendar
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast

@@ -1,7 +1,6 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.content.Context
-import androidx.core.graphics.scaleMatrix
 import androidx.room.*
 
 @Entity(tableName = "Schedule")
@@ -74,15 +73,6 @@ interface weekDao {
     fun insert(vararg weekstate: weekstate)
 }
 
-@Dao
-interface UserDao{
-    @Insert
-    fun insert(vararg User : User)
-
-    @Query("SELECT * FROM User")
-    fun getALL() : List<User>
-}
-
 @Database(entities = [weekstate::class], version = 1, exportSchema = false)
 abstract class ScheduleDatabase : RoomDatabase() {
     abstract fun weekDao(): weekDao
@@ -96,26 +86,6 @@ abstract class ScheduleDatabase : RoomDatabase() {
                     context.applicationContext,
                     ScheduleDatabase::class.java,
                     "week.db"
-                ).fallbackToDestructiveMigration().build()
-            }
-            return database
-        }
-    }
-}
-
-@Database(entities = [User::class], version = 1, exportSchema = false)
-abstract class UserDatabase : RoomDatabase() {
-    abstract fun UserDao() : UserDao
-
-    companion object {
-        private var database: UserDatabase? = null
-
-        fun getDatabase(context: Context): UserDatabase? {
-            if (database == null) {
-                database = Room.databaseBuilder(
-                    context.applicationContext,
-                    UserDatabase::class.java,
-                    "User.db"
                 ).fallbackToDestructiveMigration().build()
             }
             return database

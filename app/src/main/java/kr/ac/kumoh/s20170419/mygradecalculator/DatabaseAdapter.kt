@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.listdesign.view.*
 
 val id: String? = null
 
