@@ -1,11 +1,13 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +26,11 @@ open class MainActivity : AppCompatActivity() {
     var green: Int = 0
     private lateinit var dbmodel: InnerDBViewmodel
     private lateinit var dbdata: List<weekstateminimal?>
+    val user = getSharedPreferences("user", Context.MODE_PRIVATE)
+    var grade = user.getString("grade", "")
+    var semester = user.getString("semester", "")
+    var gs = "$grade-$semester"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         view = ActivityMainBinding.inflate(layoutInflater)
@@ -57,12 +64,29 @@ open class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu1 -> {
+                gs = "1-1"
+            }
+            R.id.menu2 -> {
+                gs = "1-2"
+            }
+            R.id.menu3 -> {
+                gs = "4-1"
+            }
+        }
+        timesplit()
+
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onResume() {
         super.onResume()
 
         if (intent.hasExtra("auto")) {
             weekdata = Array(5) { kotlin.arrayOfNulls<String?>(11) }
-            autoData = intent.getSerializableExtra("auto") as ArrayList<ViewModel.Subject>
+            autoData = intent.getSerializableExtra("autoInfo") as ArrayList<ViewModel.Subject>
             autoTable(autoData)
         }
         timesplit()
@@ -70,7 +94,7 @@ open class MainActivity : AppCompatActivity() {
 
     fun databaseget() {
         Thread(Runnable {
-            dbmodel.getweekdata()
+            dbmodel.getweekdata(gs)
         }).start()
     }
 
@@ -90,29 +114,29 @@ open class MainActivity : AppCompatActivity() {
         if (time.size != 0) {
             for (i in 0 until time.size) {
                 randomColor()
-                val time2 = time[i].toString().split(", ")
+                val time2 = time[i].split(", ")
                 for (t in time2) {
                     val temp = t.split(":")
                     when (temp[0].toInt()) {
                         0 -> {
                             resID = resources.getIdentifier("monday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById<TextView>(resID)
+                            weekID = findViewById(resID)
                         }
                         1 -> {
                             resID = resources.getIdentifier("tuesday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById<TextView>(resID)
+                            weekID = findViewById(resID)
                         }
                         2 -> {
                             resID = resources.getIdentifier("wednesday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById<TextView>(resID)
+                            weekID = findViewById(resID)
                         }
                         3 -> {
                             resID = resources.getIdentifier("thursday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById<TextView>(resID)
+                            weekID = findViewById(resID)
                         }
                         4 -> {
                             resID = resources.getIdentifier("friday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById<TextView>(resID)
+                            weekID = findViewById(resID)
                         }
                     }
                     weekID.text = name[i] ?: ""
@@ -133,7 +157,7 @@ open class MainActivity : AppCompatActivity() {
     fun connect(subjectdata: ArrayList<ViewModel.Subject>){
         Thread(Runnable {
             for(i in 0 until subjectdata.size){
-                dbmodel.connect(subjectdata[i])
+                dbmodel.connect(gs, subjectdata[i])
             }
         }).start()
     }
