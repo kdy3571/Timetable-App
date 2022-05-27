@@ -19,9 +19,10 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
 //    var blueList: ArrayList<Int> = arrayListOf()
 //    var grrenList: ArrayList<Int> = arrayListOf()
 
-    fun connect(subject: ViewModel.Subject) {
+    fun connect(gs: String,subject: ViewModel.Subject) {
         val data = weekstate(
             0,
+            gs,
             subject.college,
             subject.subject,
             subject.name,
@@ -39,9 +40,11 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
         Log.i("database", temp2.toString())
     }
 
-    fun getweekdata() {
-        var data: MutableList<weekstateminimal> = arrayListOf()
-        data = weekdb.getDATA()
+
+    fun getweekdata(gs: String) {
+        var data: MutableList<weekstateminimal> = weekdb.getDATA(gs)
+        name.clear()
+        time.clear()
         Log.i("test1", data.size.toString())
         if (data.size != 0) {
             for (i in 0 until data.size) {
