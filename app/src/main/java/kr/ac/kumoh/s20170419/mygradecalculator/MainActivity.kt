@@ -69,15 +69,9 @@ open class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu1 -> {
-                gs = "1-1"
-            }
-            R.id.menu2 -> {
-                gs = "1-2"
-            }
-            R.id.menu3 -> {
-                gs = "4-1"
-            }
+            R.id.menu1 -> gs = "1-1"
+            R.id.menu2 -> gs = "1-2"
+            R.id.menu3 -> gs = "4-1"
         }
         timesplit()
 
