@@ -20,8 +20,6 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
 //    var grrenList: ArrayList<Int> = arrayListOf()
 
     fun connect(subject: ViewModel.Subject) {
-        var temp = weekdb.getCODE()
-        //randomColor()
         val data = weekstate(
             0,
             subject.college,
@@ -36,16 +34,9 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
             subject.grade,
             subject.semester
         )
-        val result: Boolean = temp.contains(data.code)
-        if (result == false) {
-            weekdb.insert(data)
-        }
+        weekdb.insert(data)
         val temp2 = weekdb.getAll()
         Log.i("database", temp2.toString())
-    }
-
-    fun connect(){
-
     }
 
     fun getweekdata() {
@@ -72,40 +63,4 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
         weekdb.deleteALL()
         weekdb.resetID()
     }
-
-//    fun getcolor(): ArrayList<Int> {
-//        var data: MutableList<weekcolor> = db.getCOLOR()
-//        Log.i("test1", data.size.toString())
-//        if (data.size != 0) {
-//            for (i in 0 until data.size) {
-//                redList.add(data[i].red)
-//                blueList.add(data[i].blue)
-//                grrenList.add(data[i].green)
-//            }
-//        }
-//    }
-//
-//    fun getred(): Int {
-//        var data: weekcolor = db.getCOLOR()
-//        red = data.red
-//        return red
-//    }
-//
-//    fun getblue(): Int {
-//        var data: weekcolor = db.getCOLOR()
-//        blue = data.blue
-//        return blue
-//    }
-//
-//    fun getgreen(): Int {
-//        var data: weekcolor = db.getCOLOR()
-//        green = data.green
-//        return green
-//    }
-//
-//    fun randomColor() {
-//        red = (Math.random() * 255).toInt()
-//        blue = (Math.random() * 255).toInt()
-//        green = (Math.random() * 255).toInt()
-//    }
 }

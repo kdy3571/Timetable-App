@@ -76,6 +76,8 @@ class TimetableAdd : MainActivity() {
             override fun onClicked(data: Int) {
                 if (data == 1) {
                     connect(subjectdata)
+                    iintent.putExtra("manual", 1)
+                    iintent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     finish()
                     startActivity(iintent)
                 } else if (data == 0)

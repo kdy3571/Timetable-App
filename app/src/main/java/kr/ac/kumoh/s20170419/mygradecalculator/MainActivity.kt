@@ -49,6 +49,7 @@ open class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CalendarActivity::class.java)
             startActivity(intent)
         }
+        timesplit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -59,13 +60,17 @@ open class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
-        if (intent.hasExtra("auto")) {
+        if (intent.hasExtra("autoInfo")) {
             weekdata = Array(5) { kotlin.arrayOfNulls<String?>(11) }
-            autoData = intent.getSerializableExtra("auto") as ArrayList<ViewModel.Subject>
+            autoData = intent.getSerializableExtra("autoInfo") as ArrayList<ViewModel.Subject>
             autoTable(autoData)
+            resetTextView()
+            timesplit()
         }
-        timesplit()
+        if (intent.hasExtra("manual")) {
+            resetTextView()
+            timesplit()
+        }
     }
 
     fun databaseget() {
@@ -127,7 +132,6 @@ open class MainActivity : AppCompatActivity() {
         Thread.sleep(100L)
         connect(subjectList)
         Thread.sleep(100L)
-        timesplit()
     }
 
     fun connect(subjectdata: ArrayList<ViewModel.Subject>){
@@ -142,13 +146,12 @@ open class MainActivity : AppCompatActivity() {
         Thread(Runnable {
             dbmodel.resetDB()
         }).start()
-        resetTextView()
     }
 
     fun resetTextView() {
         var resID: Int
         lateinit var weekID: TextView
-        for (i in  weekdata.indices) {
+        for (i in weekdata.indices) {
             for (j in 0 until weekdata[0].size) {
                 when (i) {
                     0 -> {
@@ -172,7 +175,7 @@ open class MainActivity : AppCompatActivity() {
                         weekID = findViewById(resID)
                     }
                 }
-                weekID.text = weekdata[i][j] ?: ""
+                weekID.text = ""
                 weekID.setBackgroundResource(R.drawable.cell)
             }
         }
