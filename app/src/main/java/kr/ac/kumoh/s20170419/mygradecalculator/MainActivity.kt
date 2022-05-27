@@ -1,16 +1,16 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
-import org.intellij.lang.annotations.Identifier
 import kotlin.collections.ArrayList
 
 private var weekdata = Array(5) { kotlin.arrayOfNulls<String?>(11) }
@@ -24,14 +24,23 @@ open class MainActivity : AppCompatActivity() {
     var green: Int = 0
     private lateinit var dbmodel: InnerDBViewmodel
     private lateinit var dbdata: List<weekstateminimal?>
+    companion object {
+        var gs = ""
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         view = ActivityMainBinding.inflate(layoutInflater)
         setContentView(view.root)
 
+        if (intent.hasExtra("gs")) {
+            gs = intent.getStringExtra("gs")!!
+        }
+
         dbmodel = ViewModelProvider(this@MainActivity).get(InnerDBViewmodel::class.java)
         view.button2.setOnClickListener {
             val intent = Intent(this, TimetableGeneration::class.java)
+            intent.putExtra("gs", gs)
             startActivity(intent)
         }
 
@@ -49,6 +58,7 @@ open class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CalendarActivity::class.java)
             startActivity(intent)
         }
+        timesplit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -57,20 +67,41 @@ open class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        if (intent.hasExtra("auto")) {
-            weekdata = Array(5) { kotlin.arrayOfNulls<String?>(11) }
-            autoData = intent.getSerializableExtra("auto") as ArrayList<ViewModel.Subject>
-            autoTable(autoData)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu1 -> {
+                gs = "1-1"
+            }
+            R.id.menu2 -> {
+                gs = "1-2"
+            }
+            R.id.menu3 -> {
+                gs = "4-1"
+            }
         }
         timesplit()
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (intent.hasExtra("autoInfo")) {
+            weekdata = Array(5) { kotlin.arrayOfNulls<String?>(11) }
+            autoData = intent.getSerializableExtra("autoInfo") as ArrayList<ViewModel.Subject>
+            autoTable(autoData)
+            resetTextView()
+            timesplit()
+        }
+        if (intent.hasExtra("manual")) {
+            resetTextView()
+            timesplit()
+        }
     }
 
     fun databaseget() {
         Thread(Runnable {
-            dbmodel.getweekdata()
+            dbmodel.getweekdata(gs)
         }).start()
     }
 
@@ -90,29 +121,29 @@ open class MainActivity : AppCompatActivity() {
         if (time.size != 0) {
             for (i in 0 until time.size) {
                 randomColor()
-                val time2 = time[i].toString().split(", ")
+                val time2 = time[i].split(", ")
                 for (t in time2) {
                     val temp = t.split(":")
                     when (temp[0].toInt()) {
                         0 -> {
                             resID = resources.getIdentifier("monday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById<TextView>(resID)
+                            weekID = findViewById(resID)
                         }
                         1 -> {
                             resID = resources.getIdentifier("tuesday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById<TextView>(resID)
+                            weekID = findViewById(resID)
                         }
                         2 -> {
                             resID = resources.getIdentifier("wednesday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById<TextView>(resID)
+                            weekID = findViewById(resID)
                         }
                         3 -> {
                             resID = resources.getIdentifier("thursday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById<TextView>(resID)
+                            weekID = findViewById(resID)
                         }
                         4 -> {
                             resID = resources.getIdentifier("friday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById<TextView>(resID)
+                            weekID = findViewById(resID)
                         }
                     }
                     weekID.text = name[i] ?: ""
@@ -120,6 +151,8 @@ open class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        else
+            resetTextView()
     }
 
     private fun autoTable(subjectList: ArrayList<ViewModel.Subject>) {
@@ -127,28 +160,26 @@ open class MainActivity : AppCompatActivity() {
         Thread.sleep(100L)
         connect(subjectList)
         Thread.sleep(100L)
-        timesplit()
     }
 
     fun connect(subjectdata: ArrayList<ViewModel.Subject>){
         Thread(Runnable {
             for(i in 0 until subjectdata.size){
-                dbmodel.connect(subjectdata[i])
+                dbmodel.connect(gs, subjectdata[i])
             }
         }).start()
     }
 
     fun resetDatabase() {
         Thread(Runnable {
-            dbmodel.resetDB()
+            dbmodel.resetDB(gs)
         }).start()
-        resetTextView()
     }
 
     fun resetTextView() {
         var resID: Int
         lateinit var weekID: TextView
-        for (i in  weekdata.indices) {
+        for (i in weekdata.indices) {
             for (j in 0 until weekdata[0].size) {
                 when (i) {
                     0 -> {
@@ -172,7 +203,7 @@ open class MainActivity : AppCompatActivity() {
                         weekID = findViewById(resID)
                     }
                 }
-                weekID.text = weekdata[i][j] ?: ""
+                weekID.text = ""
                 weekID.setBackgroundResource(R.drawable.cell)
             }
         }

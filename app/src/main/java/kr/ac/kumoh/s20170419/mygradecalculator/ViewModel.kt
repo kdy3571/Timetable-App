@@ -79,7 +79,9 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         return filteredList
     }
 
-    fun getR_subject() = R_subject
+    fun getR_subject(): ArrayList<Subject> {
+        return R_subject
+    }
     fun getR_subject(i: Int) = R_subject[i]
     fun getSize() = R_subject.size
     private fun parseSubjectJSON(items: JSONArray, College: String, Grade: String, Semester: String, Area: String?) {

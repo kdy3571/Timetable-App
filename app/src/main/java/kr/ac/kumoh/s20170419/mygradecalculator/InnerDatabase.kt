@@ -6,8 +6,9 @@ import androidx.room.*
 
 @Entity(tableName = "Schedule")
 data class weekstate(
-    @PrimaryKey(autoGenerate = true)
-    val id : Int,
+    @PrimaryKey()
+    val key: String,
+    val gs: String?,
     val college : String?,
     val subject  : String?,
     val name : String?,
@@ -50,14 +51,17 @@ interface weekDao {
     @Query("SELECT code FROM schedule")
     fun getCODE() : List<String>
 
-    @Query("SELECT name, time FROM schedule")
-    fun getDATA() : MutableList<weekstateminimal>
+    @Query("SELECT name, time FROM schedule WHERE gs = :gs")
+    fun getDATA(gs: String) : MutableList<weekstateminimal>
 
     @Query("DELETE FROM schedule")
     fun deleteALL()
 
-    @Query("UPDATE schedule SET id = 0")
-    fun resetID()
+    @Query("DELETE FROM schedule where gs = :gs")
+    fun delete(gs: String)
+
+//    @Query("UPDATE schedule SET id = 0: + 1")
+//    fun resetID()
 
 //    @Query("SELECT red, blue, green FROM schedule")
 //    fun getCOLOR() : MutableList<weekcolor>

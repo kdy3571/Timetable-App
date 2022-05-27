@@ -7,8 +7,6 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_login.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityLoginBinding
-import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
-import android.content.SharedPreferences as SharedPreferences
 
 class loginActivity : AppCompatActivity() {
 
@@ -25,6 +23,7 @@ class loginActivity : AppCompatActivity() {
         val editor = user.edit()
         if (user.getString("college", "") != "") {
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("gs", "${user.getString("grade", "")}-${user.getString("semester", "")}")
             finishAffinity()
             startActivity(intent)
         }
@@ -52,8 +51,8 @@ class loginActivity : AppCompatActivity() {
         view.loginButton.setOnClickListener {
             editor.putString("college", college_select.selectedItem.toString())
             editor.putString("major", major_select.selectedItem.toString())
-            editor.putInt("grade", grade_select.selectedItem.toString().toInt())
-            editor.putInt("semster", semester_select.selectedItem.toString().toInt())
+            editor.putString("grade", grade_select.selectedItem.toString())
+            editor.putString("semester", semester_select.selectedItem.toString())
             editor.apply()
             finishAffinity()
             val intent = Intent(this, MainActivity::class.java)

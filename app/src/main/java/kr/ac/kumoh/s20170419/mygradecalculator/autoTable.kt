@@ -6,36 +6,38 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityAutoTableBinding
+import java.util.ArrayList
 
 class autoTable : AppCompatActivity() {
     private lateinit var binding: ActivityAutoTableBinding
     var weekdata =  Array(5) { arrayOfNulls<String?>(11) }
+    var subjectInfo = ArrayList<ViewModel.Subject>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        weekdata =  Array(5) { arrayOfNulls<String?>(11) }
-
         binding = ActivityAutoTableBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (intent.hasExtra("timetable")) {
+        if (intent.hasExtra("timetable") && intent.hasExtra("info")) {
             weekdata = intent.getSerializableExtra("timetable") as Array<Array<String?>>
+            subjectInfo = intent.getSerializableExtra("info") as ArrayList<ViewModel.Subject>
             setting()
         }
 
         binding.addButton.setOnClickListener {
-            val intent = Intent(this, TimetableGeneration::class.java)
-            intent.putExtra("button", "추가")
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("autoInfo", subjectInfo)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            finishAffinity()
             startActivity(intent)
-            finish()
         }
 
         binding.resetButton.setOnClickListener {
             val intent = Intent(this, TimetableGeneration::class.java)
             intent.putExtra("button", "재생성")
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            finish()
+            finishAffinity()
+            startActivity(intent)
         }
     }
 
