@@ -5,14 +5,12 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
-import org.intellij.lang.annotations.Identifier
 import kotlin.collections.ArrayList
 
 private var weekdata = Array(5) { kotlin.arrayOfNulls<String?>(11) }
@@ -26,19 +24,21 @@ open class MainActivity : AppCompatActivity() {
     var green: Int = 0
     private lateinit var dbmodel: InnerDBViewmodel
     private lateinit var dbdata: List<weekstateminimal?>
-    val user = getSharedPreferences("user", Context.MODE_PRIVATE)
-    var grade = user.getString("grade", "")
-    var semester = user.getString("semester", "")
-    var gs = "$grade-$semester"
+    var gs = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         view = ActivityMainBinding.inflate(layoutInflater)
         setContentView(view.root)
 
+        if (intent.hasExtra("gs")) {
+            gs = intent.getStringExtra("gs")!!
+        }
+
         dbmodel = ViewModelProvider(this@MainActivity).get(InnerDBViewmodel::class.java)
         view.button2.setOnClickListener {
             val intent = Intent(this, TimetableGeneration::class.java)
+            intent.putExtra("gs", gs)
             startActivity(intent)
         }
 
@@ -149,6 +149,8 @@ open class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        else
+            resetTextView()
     }
 
     private fun autoTable(subjectList: ArrayList<ViewModel.Subject>) {

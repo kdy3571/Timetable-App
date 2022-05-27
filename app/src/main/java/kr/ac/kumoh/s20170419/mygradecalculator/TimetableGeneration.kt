@@ -24,20 +24,26 @@ open class TimetableGeneration : AppCompatActivity() {
         var creditTemp = 0
         var geTemp = 0
         var rest = ArrayList<Int>()
-        var selectSubject =  ArrayList<ViewModel.Subject>()
-        var exceptSubject = ArrayList<ViewModel.Subject>()
         var selectSubjectTemp =  ArrayList<ViewModel.Subject>()
         var exceptSubjectTemp = ArrayList<ViewModel.Subject>()
         var subjectInfo = ArrayList<ViewModel.Subject>()
         var timeTable = Array(5) { arrayOfNulls<String?>(12) }
-        val grade = "4"
-        val semester= "1"
+        lateinit var grade: String
+        lateinit var semester: String
     }
+    var selectSubject =  ArrayList<ViewModel.Subject>()
+    var exceptSubject = ArrayList<ViewModel.Subject>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
+
+        if (intent.hasExtra("gs")) {
+            val temp = intent.getStringExtra("gs")!!.split("-")
+            grade = temp[0]
+            semester = temp[1]
+        }
 
         gbinding.creditInput.setOnClickListener {
             if (gbinding.creditInput.text.toString() != "")
