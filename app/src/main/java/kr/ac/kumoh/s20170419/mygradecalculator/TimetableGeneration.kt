@@ -28,11 +28,11 @@ open class TimetableGeneration : AppCompatActivity() {
         var exceptSubject = ArrayList<ViewModel.Subject>()
         var selectSubjectTemp =  ArrayList<ViewModel.Subject>()
         var exceptSubjectTemp = ArrayList<ViewModel.Subject>()
+        var subjectInfo = ArrayList<ViewModel.Subject>()
+        var timeTable = Array(5) { arrayOfNulls<String?>(12) }
         val grade = "4"
         val semester= "1"
-        var timeTable = Array(5) { arrayOfNulls<String?>(12) }
     }
-    var subjectInfo = ArrayList<ViewModel.Subject>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,20 +136,7 @@ open class TimetableGeneration : AppCompatActivity() {
         }
 
         if (intent.hasExtra("button")) {
-            if (intent.getStringExtra("button") == "추가") {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("auto", subjectInfo)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                finishAffinity(this)
-                startActivity(intent)
-                finish()
-            } else if (intent.getStringExtra("button") == "재생성") {
-                timeTable = Array(5) { arrayOfNulls<String?>(12) }
-                selectSubject = selectSubjectTemp
-                exceptSubject = exceptSubjectTemp
-                credit = creditTemp
-                ge = geTemp
-                subjectInfo.clear()
+            if (intent.getStringExtra("button") == "재생성") {
                 generation()
             }
         }
@@ -166,7 +153,13 @@ open class TimetableGeneration : AppCompatActivity() {
                 break@loop
             } else {
                 when (autoSchedule()) {
-                    0 -> break@loop    // 공강일이 잘못된 경우
+                    0 -> {    // 공강일이 잘못된 경우
+                        selectSubject = selectSubjectTemp
+                        exceptSubject = exceptSubjectTemp
+                        credit = creditTemp
+                        ge = geTemp
+                        break@loop
+                    }
                     1 -> {  // 정상 작동
                         var creditCheck = 0
                         for (i in subjectInfo)
@@ -176,16 +169,16 @@ open class TimetableGeneration : AppCompatActivity() {
                         Log.d("학점", creditCheck.toString())
                         val tableIntent = Intent(this, autoTable::class.java)
                         tableIntent.putExtra("timetable", timeTable)
+                        tableIntent.putExtra("info", subjectInfo)
                         startActivity(tableIntent)
+                        finish()
                         break@loop
                     }
                     2 -> { // 실패 초기화 후 다시 시뮬레이션
-                        timeTable = Array(5) { arrayOfNulls<String?>(12) }
                         selectSubject = selectSubjectTemp
                         exceptSubject = exceptSubjectTemp
                         credit = creditTemp
                         ge = geTemp
-                        subjectInfo.clear()
                     }
                 }
             }
@@ -193,6 +186,11 @@ open class TimetableGeneration : AppCompatActivity() {
     }
 
     private fun autoSchedule(): Int {
+        timeTable = Array(5) { arrayOfNulls<String?>(12) }
+        subjectInfo.clear()
+        selectSubjectTemp = selectSubject
+        exceptSubjectTemp = exceptSubject
+
         var slist = Array(5) { ArrayList<ViewModel.Subject>() }
         slist[0] = model.getR_subject()
 
@@ -200,11 +198,9 @@ open class TimetableGeneration : AppCompatActivity() {
             if (i != grade.toInt())
                 slist[0].removeIf { it.grade == i.toString() && it.division == "필수" }    // 다른 학년 필수 과목 삭제
 
-
-        for (i in exceptSubject) {    // 제외 과목 과목 리스트에서 삭제
+        for (i in exceptSubject)    // 제외 과목 과목 리스트에서 삭제
             slist[0].removeIf { it.code == i.code }
-            exceptSubject.remove(i)
-        }
+        exceptSubject.clear()
 
         for (i in selectSubject) { // 선택 과목 테이블에 추가
             slist[0].removeIf { it.name == i.name } // 선택한 과목과 일치하는 분반 모두 삭제
