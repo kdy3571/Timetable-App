@@ -87,7 +87,7 @@ class TimetableAdd : MainActivity() {
     }
     fun connect(subjectdata: ViewModel.Subject){
         Thread(Runnable {
-            dbmodel.connect(subjectdata)
+            dbmodel.connect(gs, subjectdata)
         }).start()
     }
 }
