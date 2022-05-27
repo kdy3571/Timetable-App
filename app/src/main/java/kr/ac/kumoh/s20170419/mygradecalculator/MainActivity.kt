@@ -24,7 +24,9 @@ open class MainActivity : AppCompatActivity() {
     var green: Int = 0
     private lateinit var dbmodel: InnerDBViewmodel
     private lateinit var dbdata: List<weekstateminimal?>
-    var gs = ""
+    companion object {
+        var gs = ""
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -170,7 +172,7 @@ open class MainActivity : AppCompatActivity() {
 
     fun resetDatabase() {
         Thread(Runnable {
-            dbmodel.resetDB()
+            dbmodel.resetDB(gs)
         }).start()
     }
 

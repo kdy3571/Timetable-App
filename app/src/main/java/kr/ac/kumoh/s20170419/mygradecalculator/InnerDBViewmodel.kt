@@ -20,8 +20,9 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
 //    var grrenList: ArrayList<Int> = arrayListOf()
 
     fun connect(gs: String,subject: ViewModel.Subject) {
+        val key = gs + subject.code
         val data = weekstate(
-            0,
+            key,
             gs,
             subject.college,
             subject.subject,
@@ -62,8 +63,7 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
         return time
     }
 
-    fun resetDB(){
-        weekdb.deleteALL()
-        weekdb.resetID()
+    fun resetDB(gs: String){
+        weekdb.delete(gs)
     }
 }
