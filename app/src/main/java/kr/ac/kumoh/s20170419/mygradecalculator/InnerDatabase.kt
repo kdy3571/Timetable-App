@@ -31,11 +31,6 @@ data class User(
     val semester: String?
 )
 
-data class weekstateminimal(
-    val name : String?,
-    val time  : String?
-)
-
 //data class weekcolor(
 //    val red : Int,
 //    val blue : Int,
@@ -49,9 +44,6 @@ interface weekDao {
 
     @Query("SELECT code FROM schedule")
     fun getCODE() : List<String>
-
-    @Query("SELECT name, time FROM schedule WHERE gs = :gs")
-    fun getDATA(gs: String) : MutableList<weekstateminimal>
 
     @Query("DELETE FROM schedule")
     fun deleteALL()

@@ -35,28 +35,6 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
         weekdb.insert(data)
     }
 
-
-    fun getweekdata(gs: String) {
-        var data: MutableList<weekstateminimal> = weekdb.getDATA(gs)
-        name.clear()
-        time.clear()
-        Log.i("test1", data.size.toString())
-        if (data.size != 0) {
-            for (i in 0 until data.size) {
-                name.add(data[i].name.toString())
-                time.add(data[i].time.toString())
-            }
-        }
-    }
-
-    fun getname(): ArrayList<String> {
-        return name
-    }
-
-    fun gettime(): ArrayList<String> {
-        return time
-    }
-
     fun getall(gs: String): List<weekstate> {
         return weekdb.getAll(gs)
     }
