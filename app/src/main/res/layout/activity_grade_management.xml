@@ -185,13 +185,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/subject1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/credit1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -215,13 +215,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/subject2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/credit2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -245,13 +245,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/subject3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/credit3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -275,13 +275,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/subject4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/credit4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -305,13 +305,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/subject5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/credit5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -335,13 +335,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/subject6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/credit6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -365,13 +365,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/subject7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/credit7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -395,13 +395,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/subject8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/credit8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -425,13 +425,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/subject9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/credit9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -455,13 +455,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/subject10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/credit10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -476,6 +476,66 @@
 
                     <CheckBox
                         android:id="@+id/major_division10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/subject11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3" />
+
+                    <EditText
+                        android:id="@+id/credit11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/grade11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1" />
+
+                    <CheckBox
+                        android:id="@+id/major_division11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/subject12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3" />
+
+                    <EditText
+                        android:id="@+id/credit12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/grade12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1" />
+
+                    <CheckBox
+                        android:id="@+id/major_division12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />

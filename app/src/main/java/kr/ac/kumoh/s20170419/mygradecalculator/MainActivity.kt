@@ -286,7 +286,7 @@ open class MainActivity : AppCompatActivity() {
     }
     fun deleteSchedule(weekID : TextView){
         Thread(Runnable {
-            dbmodel.deleteDB(weekID.text.toString())
+            dbmodel.deleteDB(weekID.text.toString(), gs)
         }).start()
         resetTextView()
         timesplit()
