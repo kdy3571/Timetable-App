@@ -45,8 +45,8 @@ data class weekstateminimal(
 
 @Dao
 interface weekDao {
-    @Query("SELECT * FROM schedule")
-    fun getAll() : List<weekstate>
+    @Query("SELECT * FROM schedule WHERE gs = :gs")
+    fun getAll(gs: String) : List<weekstate>
 
     @Query("SELECT code FROM schedule")
     fun getCODE() : List<String>
@@ -61,8 +61,8 @@ interface weekDao {
     fun delete(gs: String)
 
 
-    @Query("DELETE FROM schedule WHERE name = :name")
-    fun deletename(name: String?)
+    @Query("DELETE FROM schedule WHERE name = :name AND gs = :gs")
+    fun deletename(name: String?, gs: String?)
 
 //    @Query("UPDATE schedule SET id = 0: + 1")
 //    fun resetID()

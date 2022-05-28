@@ -1,10 +1,7 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.app.Application
-import android.content.Intent
-import android.graphics.Color
 import android.util.Log
-import android.widget.TextView
 import androidx.lifecycle.AndroidViewModel
 
 class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
@@ -37,8 +34,6 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
             subject.semester
         )
         weekdb.insert(data)
-        val temp2 = weekdb.getAll()
-        Log.i("database", temp2.toString())
     }
 
 
@@ -63,11 +58,15 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
         return time
     }
 
+    fun getall(gs: String): List<weekstate> {
+        return weekdb.getAll(gs)
+    }
+
     fun resetDB(gs: String){
         weekdb.delete(gs)
     }
 
-    fun deleteDB(name : String){
-        weekdb.deletename(name)
+    fun deleteDB(name : String?, gs: String?){
+        weekdb.deletename(name, gs)
     }
 }
