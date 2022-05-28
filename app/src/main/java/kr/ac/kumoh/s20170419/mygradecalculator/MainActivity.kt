@@ -57,6 +57,7 @@ open class MainActivity : AppCompatActivity() {
 
         view.button3.setOnClickListener {
             val intent = Intent(this, GradeManagement::class.java)
+            intent.putExtra("gs", gs)
             startActivity(intent)
         }
 
