@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_rectangle"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/subjectname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="subjectname"
+            android:textSize="25sp"
+            android:textStyle="bold">
+        </TextView>
+
+        <TextView
+            android:id="@+id/professor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="교수님 이름"
+            android:textSize="18sp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="room"
+            android:textSize="15sp">
+        </TextView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/arlam_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#00FFFFFF"
+        android:gravity="center_vertical"
+        android:text="   알림설정"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:textColor="#000000"
+        android:textSize="30dp">
+    </Button>
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#00FFFFFF"
+        android:gravity="center_vertical"
+        android:text="   삭제하기"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:textColor="#000000"
+        android:textSize="30dp">
+    </Button>
+
+
+</LinearLayout>

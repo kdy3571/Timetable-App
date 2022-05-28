@@ -1,8 +1,10 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
@@ -10,6 +12,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_auto_table.*
+import kotlinx.android.synthetic.main.listdesign.*
+import kotlinx.android.synthetic.main.listdesign.view.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
 import kotlin.collections.ArrayList
 
@@ -19,6 +23,7 @@ private var autoData = ArrayList<ViewModel.Subject>()
 open class MainActivity : AppCompatActivity() {
     private lateinit var view: ActivityMainBinding
     private val model: ViewModel by viewModels()
+    var alldb : List<weekstate> = arrayListOf()
     var red: Int = 0
     var blue: Int = 0
     var green: Int = 0
@@ -41,6 +46,7 @@ open class MainActivity : AppCompatActivity() {
         view.button2.setOnClickListener {
             val intent = Intent(this, TimetableGeneration::class.java)
             intent.putExtra("gs", gs)
+            finish()
             startActivity(intent)
         }
 
@@ -230,6 +236,13 @@ open class MainActivity : AppCompatActivity() {
         }).start()
     }
 
+    fun DBgetall(){
+        Thread(Runnable {
+            alldb = dbmodel.getall(gs)
+        }).start()
+        Thread.sleep(100L)
+    }
+
     fun resetDatabase() {
         Thread(Runnable {
             dbmodel.resetDB(gs)
@@ -270,24 +283,40 @@ open class MainActivity : AppCompatActivity() {
     }
 
     fun delete(weekID : TextView){
-        val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
-        dlg.dialog(weekID.text.toString(), "삭제")
-        dlg.setOnClickedListener(object :
-            kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener {
-            override fun onClicked(data: Int) {
-                if (data == 1) {
-                    deleteSchedule(weekID)
-                    finish()
-                    startActivity(getIntent())
-                } else if (data == 0)
-                    Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()
+        DBgetall()
+        if (weekID.text != ""){
+            for (i in 0 until alldb.size){
+                if( weekID.text == alldb[i].name ){
+                    val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
+                    val dlg2 = kr.ac.kumoh.s20170419.mygradecalculator.ListDialog(this)
+                    dlg2.dialog(alldb[i], "리스트")
+                    dlg2.setOnClickedListener(object : ListDialog.ButtonClickListener {
+                        override fun onClicked(data: String) {
+                            if (data == "리스트"){
+                                dlg.dialog(weekID.text.toString(), "삭제")
+                                dlg.setOnClickedListener(object : Dialog.ButtonClickListener{
+                                    override fun onClicked(data: Int) {
+                                        if (data == 1) {
+                                            deleteSchedule(weekID)
+                                            finish()
+                                            startActivity(getIntent())
+                                        } else if (data == 0)
+                                            Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()
+                                    }
+                                })
+                            }
+                        }
+                    })
+                }
             }
-        })
+        }
     }
+
     fun deleteSchedule(weekID : TextView){
         Thread(Runnable {
-            dbmodel.deleteDB(weekID.text.toString())
+            dbmodel.deleteDB(weekID.text.toString(), gs)
         }).start()
+        Thread.sleep(100L)
         resetTextView()
         timesplit()
     }
