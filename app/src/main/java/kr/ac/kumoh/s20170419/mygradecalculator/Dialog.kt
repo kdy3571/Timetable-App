@@ -6,10 +6,6 @@ import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_timetable_generation.*
-import kotlinx.android.synthetic.main.dialog_layout.*
-import kotlinx.android.synthetic.main.dialog_layout2.*
-
 class Dialog(context: Context): AppCompatActivity() {
     private val dlg = Dialog(context)   //부모 액티비티의 context 가 들어감
     private lateinit var btnOK : Button

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityGradeManagementBinding
-import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
 
 class GradeManagement : AppCompatActivity() {
     private lateinit var view: ActivityGradeManagementBinding

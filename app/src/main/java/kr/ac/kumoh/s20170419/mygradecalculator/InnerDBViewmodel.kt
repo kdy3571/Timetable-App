@@ -6,7 +6,6 @@ import androidx.lifecycle.AndroidViewModel
 
 class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
     private val weekdb = ScheduleDatabase.getDatabase(context)!!.weekDao()
-    private val userdb = UserDatabase.getDatabase(context)!!.UserDao()
     val name: ArrayList<String> = arrayListOf()
     val time: ArrayList<String> = arrayListOf()
 //    var red: Int = 0

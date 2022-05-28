@@ -1,8 +1,6 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.app.Application
-import android.text.Editable
-import android.widget.Filter
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
