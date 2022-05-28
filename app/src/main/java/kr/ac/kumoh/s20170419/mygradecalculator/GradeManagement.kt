@@ -39,6 +39,8 @@ class GradeManagement : AppCompatActivity() {
         view.grade8.adapter = subject_grade_data_apter
         view.grade9.adapter = subject_grade_data_apter
         view.grade10.adapter = subject_grade_data_apter
+        view.grade11.adapter = subject_grade_data_apter
+        view.grade12.adapter = subject_grade_data_apter
 
 
         getAll(gs)

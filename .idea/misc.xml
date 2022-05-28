@@ -17,7 +17,6 @@
         <entry key="..\:/Users/admin/AndroidStudioProjects/-AI/app/src/main/res/layout/spinneritem.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/-AI/app/src/main/res/layout/timetable_layout.xml" value="0.2859375" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/-AI/app/src/main/res/menu/menu_option.xml" value="0.2859375" />
-        <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/drawable/background_rectangle.xml" value="0.208" />
         <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/drawable/cell.xml" value="0.2265" />
         <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/drawable/itemspinner.xml" value="0.208" />
         <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/drawable/listdesign.xml" value="0.208" />
@@ -28,11 +27,9 @@
         <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/layout/activity_timetable_add.xml" value="0.358695652173913" />
         <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/layout/dialog_layout.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/layout/dialog_layout2.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/layout/dialog_layout3.xml" value="0.5" />
-        <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/layout/dialog_layout_list.xml" value="0.33" />
+        <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/layout/dialog_layout3.xml" value="0.273828125" />
         <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/layout/listdesign.xml" value="0.3541666666666667" />
         <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/layout/spinneritem.xml" value="0.3541666666666667" />
-        <entry key="..\:/Users/ansvl/AndroidStudioProjects/-AI/app/src/main/res/menu/menu_option.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/bbakdo/AndroidStudioProjects/-AI3/app/src/main/res/drawable/background_rectangle.xml" value="0.2585" />
         <entry key="..\:/Users/bbakdo/AndroidStudioProjects/-AI3/app/src/main/res/drawable/background_round.xml" value="0.259" />
         <entry key="..\:/Users/bbakdo/AndroidStudioProjects/-AI3/app/src/main/res/layout/activity_grade_management.xml" value="0.25364583333333335" />
@@ -51,6 +48,7 @@
         <entry key="..\:/Users/lacoon/AndroidStudioProjects/-AI/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/lacoon/AndroidStudioProjects/-AI/app/src/main/res/layout/activity_timetable_add.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/lacoon/AndroidStudioProjects/-AI/app/src/main/res/layout/activity_timetable_generation.xml" value="0.25364583333333335" />
+        <entry key="..\:/programming/AndroidProject/-AI/app/src/main/res/layout/activity_calendar.xml" value="0.36614583333333334" />
         <entry key="..\:/programming/AndroidProject/-AI/app/src/main/res/layout/activity_grade_management.xml" value="0.33" />
         <entry key="..\:/programming/AndroidProject/-AI/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
       </map>
