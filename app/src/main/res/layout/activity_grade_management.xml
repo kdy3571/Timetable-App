@@ -236,7 +236,7 @@
                     android:layout_weight="1" />
 
                 <CheckBox
-                    android:id="@+id/major_division2"
+                    android:id="@+id/major_check2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -271,7 +271,7 @@
                     android:layout_weight="1" />
 
                 <CheckBox
-                    android:id="@+id/major_division3"
+                    android:id="@+id/major_check3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -306,7 +306,7 @@
                     android:layout_weight="1" />
 
                 <CheckBox
-                    android:id="@+id/major_division4"
+                    android:id="@+id/major_check4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -341,7 +341,7 @@
                     android:layout_weight="1" />
 
                 <CheckBox
-                    android:id="@+id/major_division5"
+                    android:id="@+id/major_check5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -376,7 +376,7 @@
                     android:layout_weight="1" />
 
                 <CheckBox
-                    android:id="@+id/major_division6"
+                    android:id="@+id/major_check6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -411,7 +411,7 @@
                     android:layout_weight="1" />
 
                 <CheckBox
-                    android:id="@+id/major_division7"
+                    android:id="@+id/major_check7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -446,7 +446,7 @@
                     android:layout_weight="1" />
 
                 <CheckBox
-                    android:id="@+id/major_division8"
+                    android:id="@+id/major_check8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -481,7 +481,7 @@
                     android:layout_weight="1" />
 
                 <CheckBox
-                    android:id="@+id/major_division9"
+                    android:id="@+id/major_check9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -516,7 +516,7 @@
                     android:layout_weight="1" />
 
                 <CheckBox
-                    android:id="@+id/major_division10"
+                    android:id="@+id/major_check10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -551,7 +551,7 @@
                     android:layout_weight="1" />
 
                 <CheckBox
-                    android:id="@+id/major_division11"
+                    android:id="@+id/major_check11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -586,7 +586,7 @@
                     android:layout_weight="1" />
 
                 <CheckBox
-                    android:id="@+id/major_division12"
+                    android:id="@+id/major_check12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
