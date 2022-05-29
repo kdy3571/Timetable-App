@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/background_rectangle"
@@ -39,26 +40,31 @@
 
     <Button
         android:id="@+id/arlam_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:backgroundTint="#00FFFFFF"
         android:gravity="center_vertical"
         android:text="   알림설정"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:textColor="#000000"
-        android:textSize="30dp">
-    </Button>
+        android:textSize="20dp"
+        app:icon="@drawable/bell"
+        app:iconGravity="end"
+        app:iconTint="#191818"></Button>
+
     <Button
         android:id="@+id/delete_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:backgroundTint="#00FFFFFF"
         android:gravity="center_vertical"
         android:text="   삭제하기"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:textColor="#000000"
-        android:textSize="30dp">
-    </Button>
+        android:textSize="20dp"
+        app:icon="@drawable/delete"
+        app:iconGravity="end"
+        app:iconTint="#272424"></Button>
 
 
 </LinearLayout>

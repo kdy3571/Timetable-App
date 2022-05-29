@@ -191,6 +191,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:inputType="text"
+                        android:textSize="15dp"
                         android:imeOptions="actionDone" />
 
                     <EditText
@@ -198,6 +199,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15dp"
                         android:inputType="number" />
 
                     <Spinner
@@ -224,6 +226,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:inputType="text"
+                        android:textSize="15dp"
                         android:imeOptions="actionDone" />
 
                     <EditText
@@ -231,6 +234,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15dp"
                         android:inputType="number" />
 
                     <Spinner
@@ -257,6 +261,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:inputType="text"
+                        android:textSize="15dp"
                         android:imeOptions="actionDone" />
 
                     <EditText
@@ -264,6 +269,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15dp"
                         android:inputType="number" />
 
                     <Spinner
@@ -290,6 +296,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:inputType="text"
+                        android:textSize="15dp"
                         android:imeOptions="actionDone" />
 
                     <EditText
@@ -297,6 +304,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15dp"
                         android:inputType="number" />
 
                     <Spinner
@@ -323,6 +331,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:inputType="text"
+                        android:textSize="15dp"
                         android:imeOptions="actionDone" />
 
                     <EditText
@@ -330,6 +339,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15dp"
                         android:inputType="number" />
 
                     <Spinner
@@ -356,6 +366,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:inputType="text"
+                        android:textSize="15dp"
                         android:imeOptions="actionDone" />
 
                     <EditText
@@ -363,6 +374,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15dp"
                         android:inputType="number"/>
 
                     <Spinner
@@ -389,6 +401,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:inputType="text"
+                        android:textSize="15dp"
                         android:imeOptions="actionDone" />
 
                     <EditText
@@ -396,6 +409,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15dp"
                         android:inputType="number"/>
 
                     <Spinner
@@ -422,6 +436,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:inputType="text"
+                        android:textSize="15dp"
                         android:imeOptions="actionDone" />
 
                     <EditText
@@ -429,6 +444,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15dp"
                         android:inputType="number"/>
 
                     <Spinner
@@ -455,6 +471,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:inputType="text"
+                        android:textSize="15dp"
                         android:imeOptions="actionDone" />
 
                     <EditText
@@ -462,6 +479,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15dp"
                         android:inputType="number"/>
 
                     <Spinner
@@ -488,6 +506,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:inputType="text"
+                        android:textSize="15dp"
                         android:imeOptions="actionDone" />
 
                     <EditText
@@ -495,6 +514,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15dp"
                         android:inputType="number"/>
 
                     <Spinner
@@ -521,6 +541,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:inputType="text"
+                        android:textSize="15dp"
                         android:imeOptions="actionDone" />
 
                     <EditText
@@ -528,6 +549,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15dp"
                         android:inputType="number"/>
 
                     <Spinner
@@ -554,6 +576,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:inputType="text"
+                        android:textSize="15dp"
                         android:imeOptions="actionDone" />
 
                     <EditText
@@ -561,6 +584,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15dp"
                         android:inputType="number"/>
 
                     <Spinner

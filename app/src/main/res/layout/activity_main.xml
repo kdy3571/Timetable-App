@@ -94,6 +94,7 @@
                     android:padding="10dp"
                     android:text="학점"
                     android:textSize="15dp" />
+
             </TableRow>
 
             <TableRow
@@ -103,15 +104,16 @@
                 <TextView
                     android:padding="10dp"
                     android:text="평균 학점"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
 
                 <TextView
-                    android:text="(실제학점삽입)"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:text="/4.5"
-                    android:textSize="20dp" />
+                    android:padding="10dp"
+                    android:text="취득 학점"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
 
             </TableRow>
 
@@ -120,17 +122,37 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:padding="10dp"
-                    android:text="취득 학점"
-                    android:textSize="20dp" />
-
-                <TextView
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="right"
                     android:text="(실제학점삽입)"
+                    android:textColor="#EF0808"
                     android:textSize="20dp" />
 
                 <TextView
-                    android:text="/140"
+                    android:layout_width="0dp"
+                    android:text="/4.5"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="(실제학점삽입)"
+                    android:textColor="#EF0808"
                     android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="/140"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
 
             </TableRow>
 
