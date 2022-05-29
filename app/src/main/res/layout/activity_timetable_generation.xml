@@ -32,6 +32,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="학점"
+            android:inputType="number"
             android:textSize="20dp" />
 
         <EditText

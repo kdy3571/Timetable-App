@@ -21,19 +21,15 @@ data class weekstate(
     val semester  : String?
 )
 
-@Entity(tableName = "User")
-data class User(
+@Entity(tableName = "GP")
+data class gpstate(
     @PrimaryKey(autoGenerate = true)
-    val id : Int,
-    val college : String?,
-    val major : String?,
-    val grade: String?,
-    val semester: String?
-)
-
-data class weekstateminimal(
-    val name : String?,
-    val time  : String?
+    val key : Int,
+    val gs : String?,
+    val subject: String?,
+    val name: String?,
+    val credit: String?,
+    val gp: String?
 )
 
 //data class weekcolor(
@@ -44,14 +40,14 @@ data class weekstateminimal(
 
 @Dao
 interface weekDao {
+    @Query("SELECT * FROM schedule")
+    fun getAll() : List<weekstate>
+
     @Query("SELECT * FROM schedule WHERE gs = :gs")
     fun getAll(gs: String) : List<weekstate>
 
     @Query("SELECT code FROM schedule")
     fun getCODE() : List<String>
-
-    @Query("SELECT name, time FROM schedule WHERE gs = :gs")
-    fun getDATA(gs: String) : MutableList<weekstateminimal>
 
     @Query("DELETE FROM schedule")
     fun deleteALL()
@@ -63,14 +59,23 @@ interface weekDao {
     @Query("DELETE FROM schedule WHERE name = :name AND gs = :gs")
     fun deletename(name: String?, gs: String?)
 
-//    @Query("UPDATE schedule SET id = 0: + 1")
-//    fun resetID()
-
 //    @Query("SELECT red, blue, green FROM schedule")
 //    fun getCOLOR() : MutableList<weekcolor>
 
     @Insert
     fun insert(vararg weekstate: weekstate)
+}
+
+@Dao
+interface gpDao {
+    @Query("SELECT * FROM GP WHERE gs = :gs")
+    fun getInfo(gs: String) : List<gpstate>
+
+    @Query("DELETE FROM GP where gs = :gs")
+    fun delete(gs: String)
+
+    @Insert
+    fun insert(vararg gpastate: gpstate)
 }
 
 @Database(entities = [weekstate::class], version = 1, exportSchema = false)
@@ -86,6 +91,26 @@ abstract class ScheduleDatabase : RoomDatabase() {
                     context.applicationContext,
                     ScheduleDatabase::class.java,
                     "week.db"
+                ).fallbackToDestructiveMigration().build()
+            }
+            return database
+        }
+    }
+}
+
+@Database(entities = [gpstate::class], version = 1, exportSchema = false)
+abstract class GPDatabase : RoomDatabase() {
+    abstract fun gpDao(): gpDao
+
+    companion object {
+        private var database: GPDatabase? = null
+
+        fun getDatabase(context: Context): GPDatabase? {
+            if (database == null) {
+                database = Room.databaseBuilder(
+                    context.applicationContext,
+                    GPDatabase::class.java,
+                    "gpa.db"
                 ).fallbackToDestructiveMigration().build()
             }
             return database

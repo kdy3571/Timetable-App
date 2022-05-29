@@ -22,13 +22,11 @@ private var autoData = ArrayList<ViewModel.Subject>()
 
 open class MainActivity : AppCompatActivity() {
     private lateinit var view: ActivityMainBinding
-    private val model: ViewModel by viewModels()
+    private lateinit var dbmodel: InnerDBViewmodel
     var alldb : List<weekstate> = arrayListOf()
     var red: Int = 0
     var blue: Int = 0
     var green: Int = 0
-    private lateinit var dbmodel: InnerDBViewmodel
-    private lateinit var dbdata: List<weekstateminimal?>
     companion object {
         var gs = ""
     }
@@ -57,6 +55,7 @@ open class MainActivity : AppCompatActivity() {
 
         view.button3.setOnClickListener {
             val intent = Intent(this, GradeManagement::class.java)
+            intent.putExtra("gs", gs)
             startActivity(intent)
         }
 
@@ -164,12 +163,6 @@ open class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun databaseget() {
-        Thread(Runnable {
-            dbmodel.getweekdata(gs)
-        }).start()
-    }
-
     fun randomColor() {
         red = (Math.random() * 255).toInt()
         blue = (Math.random() * 255).toInt()
@@ -177,48 +170,30 @@ open class MainActivity : AppCompatActivity() {
     }
 
     fun timesplit() {
-        var resID: Int
+        var resID = 0
         lateinit var weekID: TextView
         resetTextView()
-        databaseget()
+        DBgetall()
         Thread.sleep(100L)
-        val time = dbmodel.gettime()
-        val name = dbmodel.getname()
-        if (time.size != 0) {
-            for (i in 0 until time.size) {
+        if (alldb.isNotEmpty()) {
+            for (i in alldb) {
                 randomColor()
-                val time2 = time[i].split(", ")
-                for (t in time2) {
+                val time = i.time!!.split(", ")
+                for (t in time) {
                     val temp = t.split(":")
                     when (temp[0].toInt()) {
-                        0 -> {
-                            resID = resources.getIdentifier("monday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById(resID)
-                        }
-                        1 -> {
-                            resID = resources.getIdentifier("tuesday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById(resID)
-                        }
-                        2 -> {
-                            resID = resources.getIdentifier("wednesday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById(resID)
-                        }
-                        3 -> {
-                            resID = resources.getIdentifier("thursday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById(resID)
-                        }
-                        4 -> {
-                            resID = resources.getIdentifier("friday" + (temp[1].toInt() + 9), "id", packageName)
-                            weekID = findViewById(resID)
-                        }
+                        0 -> resID = resources.getIdentifier("monday" + (temp[1].toInt() + 9), "id", packageName)
+                        1 -> resID = resources.getIdentifier("tuesday" + (temp[1].toInt() + 9), "id", packageName)
+                        2 -> resID = resources.getIdentifier("wednesday" + (temp[1].toInt() + 9), "id", packageName)
+                        3 -> resID = resources.getIdentifier("thursday" + (temp[1].toInt() + 9), "id", packageName)
+                        4 -> resID = resources.getIdentifier("friday" + (temp[1].toInt() + 9), "id", packageName)
                     }
-                    weekID.text = name[i] ?: ""
+                    weekID = findViewById(resID)
+                    weekID.text = i.name
                     weekID.setBackgroundColor(Color.rgb(red, blue, green))
                 }
             }
         }
-        else
-            resetTextView()
     }
 
     private fun autoTable(subjectList: ArrayList<ViewModel.Subject>) {
