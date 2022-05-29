@@ -1,609 +1,598 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GradeManagement">
 
-
-    <TableLayout
-        android:id="@+id/grade_manage"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/background_round"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:padding="10dp"
-                android:text="전체 학점"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:gravity="center" />
-
-            <TextView
-                android:padding="10dp"
-                android:text="전공 학점"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:gravity="center"/>
-
-            <TextView
-                android:padding="10dp"
-                android:text="취득 학점"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:gravity="center"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="0dp"
-                android:id="@+id/all_grade"
-                android:text="4.0"
-                android:textColor="#ff00"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="right"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:text="/4.5"
-                android:textSize="15dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"/>
-
-
-            <TextView
-                android:layout_width="0dp"
-                android:id="@+id/major_grade"
-                android:text="(실제학점삽입)"
-                android:textColor="#ff00"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="right"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:text="/4.5"
-                android:textSize="15dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:id="@+id/earned_credits"
-                android:text="(실제학점삽입)"
-                android:textColor="#ff00"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="right"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:text="/140"
-                android:textSize="15dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"/>
-
-        </TableRow>
-
-
-    </TableLayout>
-
-    <Button
-        android:id="@+id/Load_Timetable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="#00FFFFFF"
-        android:text="시간표 불러오기"
-        android:textSize="10dp"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/grade_manage" />
-
-    <LinearLayout
-        android:layout_width="405dp"
-        android:layout_height="512dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Load_Timetable">
-
-        <ScrollView
+        android:orientation="vertical">
+        <TableLayout
+            android:id="@+id/grade_manage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:background="@drawable/background_round"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Load_Timetable"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TableLayout
-                android:id="@+id/timetable_manage"
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
-                <TableRow
+                <TextView
+                    android:padding="10dp"
+                    android:text="전체 학점"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TextView
+                    android:padding="10dp"
+                    android:text="전공 학점"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:padding="10dp"
+                    android:text="취득 학점"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="0dp"
+                    android:id="@+id/all_grade"
+                    android:text="4.0"
+                    android:textColor="#ff00"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="right"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="/4.5"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:id="@+id/major_grade"
+                    android:text="(실제학점삽입)"
+                    android:textColor="#ff00"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="right"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="/4.5"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:id="@+id/earned_credits"
+                    android:text="(실제학점삽입)"
+                    android:textColor="#ff00"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="right"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="/140"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+            </TableRow>
+
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/Load_Timetable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="#00FFFFFF"
+            android:text="시간표 불러오기"
+            android:textSize="10dp"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/grade_manage" />
+
+
+
+        <TableLayout
+            android:id="@+id/timetable_manage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_round"
+            app:layout_constraintTop_toBottomOf="@+id/Load_Timetable"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:text="과목명" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:padding="5dp"
-                        android:text="과목명" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="학점" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="성적" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="전공" />
-                </TableRow>
-
-                <TableRow
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="학점" />
 
-                    <EditText
-                        android:id="@+id/subject1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="text"
-                        android:textSize="15dp"
-                        android:imeOptions="actionDone" />
-
-                    <EditText
-                        android:id="@+id/credit1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15dp"
-                        android:inputType="number" />
-
-                    <Spinner
-                        android:id="@+id/gp1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
-
-                    <CheckBox
-                        android:id="@+id/major_division1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="성적" />
 
-                    <EditText
-                        android:id="@+id/subject2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="text"
-                        android:textSize="15dp"
-                        android:imeOptions="actionDone" />
-
-                    <EditText
-                        android:id="@+id/credit2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15dp"
-                        android:inputType="number" />
-
-                    <Spinner
-                        android:id="@+id/gp2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
-
-                    <CheckBox
-                        android:id="@+id/major_division2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="전공" />
+            </TableRow>
 
-                    <EditText
-                        android:id="@+id/subject3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="text"
-                        android:textSize="15dp"
-                        android:imeOptions="actionDone" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                    <EditText
-                        android:id="@+id/credit3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15dp"
-                        android:inputType="number" />
-
-                    <Spinner
-                        android:id="@+id/gp3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
-
-                    <CheckBox
-                        android:id="@+id/major_division3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
+                <EditText
+                    android:id="@+id/subject1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:textSize="15dp"
+                    android:imeOptions="actionDone" />
 
-                    <EditText
-                        android:id="@+id/subject4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="text"
-                        android:textSize="15dp"
-                        android:imeOptions="actionDone" />
-
-                    <EditText
-                        android:id="@+id/credit4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15dp"
-                        android:inputType="number" />
-
-                    <Spinner
-                        android:id="@+id/gp4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
-
-                    <CheckBox
-                        android:id="@+id/major_division4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
+                <EditText
+                    android:id="@+id/credit1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:inputType="number" />
 
-                    <EditText
-                        android:id="@+id/subject5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="text"
-                        android:textSize="15dp"
-                        android:imeOptions="actionDone" />
-
-                    <EditText
-                        android:id="@+id/credit5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15dp"
-                        android:inputType="number" />
-
-                    <Spinner
-                        android:id="@+id/gp5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
-
-                    <CheckBox
-                        android:id="@+id/major_division5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
+                <Spinner
+                    android:id="@+id/gp1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
 
-                    <EditText
-                        android:id="@+id/subject6"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="text"
-                        android:textSize="15dp"
-                        android:imeOptions="actionDone" />
-
-                    <EditText
-                        android:id="@+id/credit6"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15dp"
-                        android:inputType="number"/>
-
-                    <Spinner
-                        android:id="@+id/gp6"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
-
-                    <CheckBox
-                        android:id="@+id/major_division6"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
+                <CheckBox
+                    android:id="@+id/major_division1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
 
-                    <EditText
-                        android:id="@+id/subject7"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="text"
-                        android:textSize="15dp"
-                        android:imeOptions="actionDone" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                    <EditText
-                        android:id="@+id/credit7"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15dp"
-                        android:inputType="number"/>
-
-                    <Spinner
-                        android:id="@+id/gp7"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
-
-                    <CheckBox
-                        android:id="@+id/major_division7"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
+                <EditText
+                    android:id="@+id/subject2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:textSize="15dp"
+                    android:imeOptions="actionDone" />
 
-                    <EditText
-                        android:id="@+id/subject8"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="text"
-                        android:textSize="15dp"
-                        android:imeOptions="actionDone" />
-
-                    <EditText
-                        android:id="@+id/credit8"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15dp"
-                        android:inputType="number"/>
-
-                    <Spinner
-                        android:id="@+id/gp8"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
-
-                    <CheckBox
-                        android:id="@+id/major_division8"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
+                <EditText
+                    android:id="@+id/credit2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:inputType="number" />
 
-                    <EditText
-                        android:id="@+id/subject9"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="text"
-                        android:textSize="15dp"
-                        android:imeOptions="actionDone" />
-
-                    <EditText
-                        android:id="@+id/credit9"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15dp"
-                        android:inputType="number"/>
-
-                    <Spinner
-                        android:id="@+id/gp9"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
-
-                    <CheckBox
-                        android:id="@+id/major_division9"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
+                <Spinner
+                    android:id="@+id/gp2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
 
-                    <EditText
-                        android:id="@+id/subject10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="text"
-                        android:textSize="15dp"
-                        android:imeOptions="actionDone" />
-
-                    <EditText
-                        android:id="@+id/credit10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15dp"
-                        android:inputType="number"/>
-
-                    <Spinner
-                        android:id="@+id/gp10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
-
-                    <CheckBox
-                        android:id="@+id/major_division10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
+                <CheckBox
+                    android:id="@+id/major_division2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
 
-                    <EditText
-                        android:id="@+id/subject11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="text"
-                        android:textSize="15dp"
-                        android:imeOptions="actionDone" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                    <EditText
-                        android:id="@+id/credit11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15dp"
-                        android:inputType="number"/>
-
-                    <Spinner
-                        android:id="@+id/gp11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
-
-                    <CheckBox
-                        android:id="@+id/major_division11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
+                <EditText
+                    android:id="@+id/subject3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:textSize="15dp"
+                    android:imeOptions="actionDone" />
 
-                    <EditText
-                        android:id="@+id/subject12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="text"
-                        android:textSize="15dp"
-                        android:imeOptions="actionDone" />
+                <EditText
+                    android:id="@+id/credit3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:inputType="number" />
 
-                    <EditText
-                        android:id="@+id/credit12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15dp"
-                        android:inputType="number"/>
+                <Spinner
+                    android:id="@+id/gp3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
 
-                    <Spinner
-                        android:id="@+id/gp12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
+                <CheckBox
+                    android:id="@+id/major_division3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
 
-                    <CheckBox
-                        android:id="@+id/major_division12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-            </TableLayout>
-        </ScrollView>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/subject4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:textSize="15dp"
+                    android:imeOptions="actionDone" />
+
+                <EditText
+                    android:id="@+id/credit4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:inputType="number" />
+
+                <Spinner
+                    android:id="@+id/gp4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/major_division4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/subject5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:textSize="15dp"
+                    android:imeOptions="actionDone" />
+
+                <EditText
+                    android:id="@+id/credit5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:inputType="number" />
+
+                <Spinner
+                    android:id="@+id/gp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/major_division5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/subject6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:textSize="15dp"
+                    android:imeOptions="actionDone" />
+
+                <EditText
+                    android:id="@+id/credit6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:inputType="number"/>
+
+                <Spinner
+                    android:id="@+id/gp6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/major_division6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/subject7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:textSize="15dp"
+                    android:imeOptions="actionDone" />
+
+                <EditText
+                    android:id="@+id/credit7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:inputType="number"/>
+
+                <Spinner
+                    android:id="@+id/gp7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/major_division7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/subject8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:textSize="15dp"
+                    android:imeOptions="actionDone" />
+
+                <EditText
+                    android:id="@+id/credit8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:inputType="number"/>
+
+                <Spinner
+                    android:id="@+id/gp8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/major_division8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/subject9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:textSize="15dp"
+                    android:imeOptions="actionDone" />
+
+                <EditText
+                    android:id="@+id/credit9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:inputType="number"/>
+
+                <Spinner
+                    android:id="@+id/gp9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/major_division9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/subject10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:textSize="15dp"
+                    android:imeOptions="actionDone" />
+
+                <EditText
+                    android:id="@+id/credit10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:inputType="number"/>
+
+                <Spinner
+                    android:id="@+id/gp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/major_division10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/subject11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:textSize="15dp"
+                    android:imeOptions="actionDone" />
+
+                <EditText
+                    android:id="@+id/credit11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:inputType="number"/>
+
+                <Spinner
+                    android:id="@+id/gp11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/major_division11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/subject12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:textSize="15dp"
+                    android:imeOptions="actionDone" />
+
+                <EditText
+                    android:id="@+id/credit12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:inputType="number"/>
+
+                <Spinner
+                    android:id="@+id/gp12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/major_division12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
