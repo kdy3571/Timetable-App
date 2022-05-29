@@ -74,8 +74,6 @@ interface gpDao {
     @Query("DELETE FROM GP where gs = :gs")
     fun delete(gs: String)
 
-    @Query("SELECT * FROM GP WHERE gs = :gs")
-
     @Insert
     fun insert(vararg gpastate: gpstate)
 }
