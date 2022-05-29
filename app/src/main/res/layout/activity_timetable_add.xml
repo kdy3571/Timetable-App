@@ -24,21 +24,15 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp">
         </Spinner>
-
         <Spinner
             android:id="@+id/termSpinner"
             android:layout_width="106dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"></Spinner>
-
-        <Spinner
-            android:id="@+id/areaSpinner"
-            android:layout_width="156dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"></Spinner>
+            android:layout_marginLeft="10dp">
+        </Spinner>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -49,34 +43,38 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp">
-        <Spinner
-            android:id="@+id/majorSpinner"
-            android:layout_width="230dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp">
-        </Spinner>
-        <android.widget.Button
-            android:id="@+id/search_button"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:background="@color/design_default_color_background"
+        <EditText
+            android:id="@+id/et1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="검색어"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            app:layout_constraintRight_toLeftOf="@id/search_btn"
+            android:layout_weight="3">
+        </EditText>
+        <Button
+            android:id="@+id/search_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="검색"
-            android:textColor="#000000"
-            android:textSize="15dp"
-            android:textStyle="bold">
-        </android.widget.Button>
+            app:layout_constraintLeft_toRightOf="@id/et1"
+            app:layout_constraintRight_toRightOf="parent">
+        </Button>
+
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listdata"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -92,4 +90,20 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
     </TextView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="143dp">
+
+        <Spinner
+            android:id="@+id/areaSpinner"
+            android:layout_width="156dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"></Spinner>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

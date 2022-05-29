@@ -18,6 +18,7 @@ class TimetableAdd : MainActivity() {
     private val model: ViewModel by viewModels()
     private lateinit var dbadapter: DatabaseAdapter
     private lateinit var dbmodel : InnerDBViewmodel
+    private lateinit var searchdata : String
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +39,6 @@ class TimetableAdd : MainActivity() {
         val areaadapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, areadata)
         binding.areaSpinner.adapter = areaadapter
 
-        val majordata: Array<String> = resources.getStringArray(R.array.major)
-        val majoradapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, majordata)
-        binding.majorSpinner.adapter = majoradapter
-
-        val search_button: Button = findViewById(R.id.search_button)
 
         dbadapter = DatabaseAdapter(model) { subject -> adapterOnClick(subject) }
         binding.listdata.apply {
@@ -54,14 +50,12 @@ class TimetableAdd : MainActivity() {
         model.list.observe(this) {
             dbadapter.notifyDataSetChanged()
         }
+        model.requestList("금오공과대학교", "전체", "1", "전체")
 
-        search_button.setOnClickListener {
-            val year: String = yearSpinner.selectedItem.toString()
-            val term: String = termSpinner.selectedItem.toString()
-            val area: String = areaSpinner.selectedItem.toString()
-            val major: String = majorSpinner.selectedItem.toString()
-            if (major == "컴퓨터공학과")
-                model.requestList("금오공과대학교", year, term, area)
+
+        search_btn.setOnClickListener {
+            searchdata = binding.et1.text.toString()
+            model.requestList(searchdata)
         }
     }
 

@@ -10,14 +10,17 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+        <item>전체</item>
     </string-array>
     <string-array name="semester">
         <item>1</item>
         <item>2</item>
+        <item>전체</item>
     </string-array>
     <string-array name="area">
         <item>필수</item>
         <item>전공선택</item>
         <item>교양선택</item>
+        <item>전체</item>
     </string-array>
 </resources>
