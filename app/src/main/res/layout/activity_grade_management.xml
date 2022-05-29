@@ -203,7 +203,7 @@
                         android:inputType="number" />
 
                     <Spinner
-                        android:id="@+id/grade1"
+                        android:id="@+id/gp1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -238,7 +238,7 @@
                         android:inputType="number" />
 
                     <Spinner
-                        android:id="@+id/grade2"
+                        android:id="@+id/gp2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -273,7 +273,7 @@
                         android:inputType="number" />
 
                     <Spinner
-                        android:id="@+id/grade3"
+                        android:id="@+id/gp3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -308,7 +308,7 @@
                         android:inputType="number" />
 
                     <Spinner
-                        android:id="@+id/grade4"
+                        android:id="@+id/gp4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -343,7 +343,7 @@
                         android:inputType="number" />
 
                     <Spinner
-                        android:id="@+id/grade5"
+                        android:id="@+id/gp5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -378,7 +378,7 @@
                         android:inputType="number"/>
 
                     <Spinner
-                        android:id="@+id/grade6"
+                        android:id="@+id/gp6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -413,7 +413,7 @@
                         android:inputType="number"/>
 
                     <Spinner
-                        android:id="@+id/grade7"
+                        android:id="@+id/gp7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -448,7 +448,7 @@
                         android:inputType="number"/>
 
                     <Spinner
-                        android:id="@+id/grade8"
+                        android:id="@+id/gp8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -483,7 +483,7 @@
                         android:inputType="number"/>
 
                     <Spinner
-                        android:id="@+id/grade9"
+                        android:id="@+id/gp9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -518,7 +518,7 @@
                         android:inputType="number"/>
 
                     <Spinner
-                        android:id="@+id/grade10"
+                        android:id="@+id/gp10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -553,7 +553,7 @@
                         android:inputType="number"/>
 
                     <Spinner
-                        android:id="@+id/grade11"
+                        android:id="@+id/gp11"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -588,7 +588,7 @@
                         android:inputType="number"/>
 
                     <Spinner
-                        android:id="@+id/grade12"
+                        android:id="@+id/gp12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
