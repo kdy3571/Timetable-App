@@ -156,7 +156,7 @@ open class TimetableGeneration : AppCompatActivity() {
 
     private fun generation() {
         model.requestList(college, major, "전체", semester, "전체", "전체")
-        loop@ for(i in 0..100) {
+        loop@ for(i in 0..1000) {
             Log.d("선택과목", selectSubject.toString())
             Log.d("제외과목", exceptSubject.toString())
             if (credit == 0) {
@@ -191,11 +191,6 @@ open class TimetableGeneration : AppCompatActivity() {
                         exceptSubject = exceptSubjectTemp
                         credit = creditTemp
                         ge = geTemp
-                    }
-                    3 -> {
-                        Toast.makeText(this@TimetableGeneration, "교양수를 변경해주세요.", Toast.LENGTH_SHORT)
-                            .show()
-                        break@loop
                     }
                 }
             }
@@ -269,7 +264,7 @@ open class TimetableGeneration : AppCompatActivity() {
                     ge -= 1
             }
             else
-                return 3
+                break
         }
 
         while (credit != 0) { // 학점이 0이 될때까지 채워주기
