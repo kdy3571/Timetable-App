@@ -50,12 +50,13 @@ class TimetableAdd : MainActivity() {
         model.list.observe(this) {
             dbadapter.notifyDataSetChanged()
         }
-        model.requestList("금오공과대학교", "전체", "1", "전체")
+        model.requestList(college, major, "전체", "1", "전체", "전체")
 
 
         search_btn.setOnClickListener {
             searchdata = binding.et1.text.toString()
-            model.requestList(searchdata)
+            model.requestList(college, major, "전체", "1", "전체", "전체")
+            model.search(searchdata, "") // ""에는 searchType 입력
         }
     }
 
