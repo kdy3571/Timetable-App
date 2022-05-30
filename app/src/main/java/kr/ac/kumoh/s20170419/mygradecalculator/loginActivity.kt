@@ -22,7 +22,6 @@ class loginActivity : AppCompatActivity() {
         val editor = user.edit()
         if (user.getString("college", "") != "") {
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("gs", "${user.getString("grade", "")}-${user.getString("semester", "")}")
             finishAffinity()
             startActivity(intent)
         }
@@ -55,6 +54,7 @@ class loginActivity : AppCompatActivity() {
             editor.apply()
             finishAffinity()
             val intent = Intent(this, MainActivity::class.java)
+            finishAffinity()
             startActivity(intent)
         }
     }

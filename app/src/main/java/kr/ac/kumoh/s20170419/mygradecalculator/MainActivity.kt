@@ -1,19 +1,15 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_auto_table.*
-import kotlinx.android.synthetic.main.listdesign.*
-import kotlinx.android.synthetic.main.listdesign.view.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
 import kotlin.collections.ArrayList
 
@@ -28,7 +24,7 @@ open class MainActivity : AppCompatActivity() {
     var blue: Int = 0
     var green: Int = 0
     companion object {
-        var gs = ""
+        lateinit var gs: String
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,15 +32,15 @@ open class MainActivity : AppCompatActivity() {
         view = ActivityMainBinding.inflate(layoutInflater)
         setContentView(view.root)
 
-        if (intent.hasExtra("gs")) {
-            gs = intent.getStringExtra("gs")!!
+        val user = getSharedPreferences("user", Context.MODE_PRIVATE)
+        if (user.getString("grade", "") != "" && user.getString("semester", "") != "") {
+            gs = "${user.getString("grade", "")}-${user.getString("semester", "")}"
         }
 
         dbmodel = ViewModelProvider(this@MainActivity).get(InnerDBViewmodel::class.java)
         view.button2.setOnClickListener {
             val intent = Intent(this, TimetableGeneration::class.java)
             intent.putExtra("gs", gs)
-            finish()
             startActivity(intent)
         }
 
@@ -203,17 +199,17 @@ open class MainActivity : AppCompatActivity() {
         Thread.sleep(100L)
     }
 
-    fun connect(subjectdata: ArrayList<ViewModel.Subject>){
+    fun connect(subjectData: ArrayList<ViewModel.Subject>){
         Thread(Runnable {
-            for(i in 0 until subjectdata.size){
-                dbmodel.connect(gs, subjectdata[i])
+            for(i in 0 until subjectData.size){
+                dbmodel.connect(gs, subjectData[i])
             }
         }).start()
     }
 
     fun DBgetall(){
         Thread(Runnable {
-            alldb = dbmodel.getall(gs)
+            alldb = dbmodel.getSubject(gs)
         }).start()
         Thread.sleep(100L)
     }

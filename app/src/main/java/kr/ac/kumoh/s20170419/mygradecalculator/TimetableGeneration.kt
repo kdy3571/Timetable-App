@@ -1,4 +1,5 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -22,15 +23,15 @@ open class TimetableGeneration : AppCompatActivity() {
         var creditTemp = 0
         var geTemp = 0
         var rest = ArrayList<Int>()
-        var selectSubjectTemp =  ArrayList<ViewModel.Subject>()
+        var selectSubjectTemp = ArrayList<ViewModel.Subject>()
         var exceptSubjectTemp = ArrayList<ViewModel.Subject>()
         var subjectInfo = ArrayList<ViewModel.Subject>()
         var timeTable = Array(5) { arrayOfNulls<String?>(12) }
-        var college = ""
-        var major = ""
-        var grade = ""
-        var semester = ""
+        lateinit var grade: String
+        lateinit var semester: String
     }
+    lateinit var college: String
+    lateinit var major: String
     var selectSubject =  ArrayList<ViewModel.Subject>()
     var exceptSubject = ArrayList<ViewModel.Subject>()
 
@@ -39,28 +40,32 @@ open class TimetableGeneration : AppCompatActivity() {
         gbinding = ActivityTimetableGenerationBinding.inflate(layoutInflater)
         setContentView(gbinding.root)
 
+        val user = getSharedPreferences("user", Context.MODE_PRIVATE)
+        if (user.getString("college", "") != "") {
+            college =  user.getString("college", "")!!
+            major =  user.getString("major", "")!!
+        }
+
         if (intent.hasExtra("gs")) {
             val temp = intent.getStringExtra("gs")!!.split("-")
-            college =  intent.getStringExtra("college")!!
-            major =  intent.getStringExtra("major")!! 
             grade = temp[0]
             semester = temp[1]
         }
 
         gbinding.creditInput.setOnClickListener {
-            if (gbinding.creditInput.text.toString() != "")
-                credit = gbinding.creditInput.text.toString().toInt()
+            credit = if (gbinding.creditInput.text.toString() != "")
+                gbinding.creditInput.text.toString().toInt()
             else
-                credit =0
+                0
             creditTemp = credit
             Log.d("credit", "credit: $credit")
         }
 
         gbinding.geInput.setOnClickListener {
-            if (gbinding.geInput.text.toString() != "")
-                ge = gbinding.geInput.text.toString().toInt()
+            ge = if (gbinding.geInput.text.toString() != "")
+                gbinding.geInput.text.toString().toInt()
             else
-                ge = 0
+                0
             geTemp = ge
             Log.d("ge", "ge: $ge")
         }
