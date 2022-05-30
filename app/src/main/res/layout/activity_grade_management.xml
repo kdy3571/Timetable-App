@@ -182,8 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="text"
-                    android:textSize="15dp"
-                    android:imeOptions="actionDone" />
+                    android:textSize="15dp" />
 
                 <EditText
                     android:id="@+id/credit1"
@@ -217,8 +216,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="text"
-                    android:textSize="15dp"
-                    android:imeOptions="actionDone" />
+                    android:textSize="15dp" />
 
                 <EditText
                     android:id="@+id/credit2"
@@ -252,8 +250,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="text"
-                    android:textSize="15dp"
-                    android:imeOptions="actionDone" />
+                    android:textSize="15dp"/>
 
                 <EditText
                     android:id="@+id/credit3"
@@ -287,8 +284,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="text"
-                    android:textSize="15dp"
-                    android:imeOptions="actionDone" />
+                    android:textSize="15dp"/>
 
                 <EditText
                     android:id="@+id/credit4"
@@ -322,8 +318,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="text"
-                    android:textSize="15dp"
-                    android:imeOptions="actionDone" />
+                    android:textSize="15dp"/>
 
                 <EditText
                     android:id="@+id/credit5"
@@ -357,8 +352,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="text"
-                    android:textSize="15dp"
-                    android:imeOptions="actionDone" />
+                    android:textSize="15dp"/>
 
                 <EditText
                     android:id="@+id/credit6"
@@ -392,8 +386,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="text"
-                    android:textSize="15dp"
-                    android:imeOptions="actionDone" />
+                    android:textSize="15dp"/>
 
                 <EditText
                     android:id="@+id/credit7"
@@ -427,8 +420,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="text"
-                    android:textSize="15dp"
-                    android:imeOptions="actionDone" />
+                    android:textSize="15dp"/>
 
                 <EditText
                     android:id="@+id/credit8"
@@ -462,8 +454,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="text"
-                    android:textSize="15dp"
-                    android:imeOptions="actionDone" />
+                    android:textSize="15dp"/>
 
                 <EditText
                     android:id="@+id/credit9"
@@ -497,8 +488,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="text"
-                    android:textSize="15dp"
-                    android:imeOptions="actionDone" />
+                    android:textSize="15dp"/>
 
                 <EditText
                     android:id="@+id/credit10"
@@ -532,8 +522,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="text"
-                    android:textSize="15dp"
-                    android:imeOptions="actionDone" />
+                    android:textSize="15dp"/>
 
                 <EditText
                     android:id="@+id/credit11"
@@ -567,8 +556,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="text"
-                    android:textSize="15dp"
-                    android:imeOptions="actionDone" />
+                    android:textSize="15dp"/>
 
                 <EditText
                     android:id="@+id/credit12"
@@ -583,13 +571,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <CheckBox
                     android:id="@+id/major_check12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
             </TableRow>
         </TableLayout>
     </LinearLayout>

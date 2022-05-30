@@ -18,19 +18,20 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp">
         <Spinner
-            android:id="@+id/yearSpinner"
+            android:id="@+id/gradeSpinner"
             android:layout_width="128dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp">
         </Spinner>
         <Spinner
-            android:id="@+id/termSpinner"
+            android:id="@+id/semesterSpinner"
             android:layout_width="106dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp">
         </Spinner>
+
     </LinearLayout>
 
     <LinearLayout
@@ -100,8 +101,15 @@
         tools:layout_editor_absoluteY="143dp">
 
         <Spinner
-            android:id="@+id/areaSpinner"
-            android:layout_width="156dp"
+            android:id="@+id/subjectSpinner"
+            android:layout_width="106dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"></Spinner>
+
+        <Spinner
+            android:id="@+id/divisionSpinner"
+            android:layout_width="106dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"></Spinner>
