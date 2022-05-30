@@ -192,6 +192,11 @@ open class TimetableGeneration : AppCompatActivity() {
                         credit = creditTemp
                         ge = geTemp
                     }
+                    3 -> {
+                        Toast.makeText(this@TimetableGeneration, "교양수를 변경해주세요.", Toast.LENGTH_SHORT)
+                            .show()
+                        break@loop
+                    }
                 }
             }
         }
@@ -264,7 +269,7 @@ open class TimetableGeneration : AppCompatActivity() {
                     ge -= 1
             }
             else
-                break
+                return 3
         }
 
         while (credit != 0) { // 학점이 0이 될때까지 채워주기
