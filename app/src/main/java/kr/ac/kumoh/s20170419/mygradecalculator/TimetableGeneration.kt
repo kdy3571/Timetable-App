@@ -263,6 +263,8 @@ open class TimetableGeneration : AppCompatActivity() {
                 if (subjectAdd(slist[4]) == 1)
                     ge -= 1
             }
+            else
+                break
         }
 
         while (credit != 0) { // 학점이 0이 될때까지 채워주기
