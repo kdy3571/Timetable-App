@@ -5,13 +5,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_timetable_add.*
+import kr.ac.kumoh.s20170419.mygradecalculator.TimetableGeneration.Companion.rest
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableAddBinding
+import java.util.ArrayList
 
 class TimetableAdd : MainActivity() {
     lateinit var binding: ActivityTimetableAddBinding
@@ -19,6 +22,7 @@ class TimetableAdd : MainActivity() {
     private lateinit var dbadapter: DatabaseAdapter
     private lateinit var dbmodel : InnerDBViewmodel
     private lateinit var searchData : String
+    private lateinit var searchType : String
     var college = ""
     var major = ""
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
@@ -56,6 +60,14 @@ class TimetableAdd : MainActivity() {
             dbadapter.notifyDataSetChanged()
         }
 
+        binding.Ridiogroup.setOnCheckedChangeListener { radioGroup, i ->
+            when(i) {
+                R.id.RB1 -> searchType = "name"
+                R.id.RB2 -> searchType = "code"
+                R.id.RB3 -> searchType = "professor"
+            }
+        }
+
         val user = getSharedPreferences("user", Context.MODE_PRIVATE)
         if (user.getString("college", "") != "") {
             college =  user.getString("college", "")!!
@@ -72,7 +84,7 @@ class TimetableAdd : MainActivity() {
             searchData = binding.et1.text.toString()
 //            model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(),
 //                subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
-            model.search(searchData, "name") // ""에는 searchType 입력
+            model.search(searchData, searchType) // ""에는 searchType 입력
             dbadapter.notifyDataSetChanged()
         }
 
