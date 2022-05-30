@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,138 +7,157 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/linear2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/linear1"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        android:orientation="vertical">
 
-        <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="match_parent"
-            android:layout_height="550dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
 
-            <include layout="@layout/timetable_layout" />
-        </ScrollView>
+        <include layout="@layout/timetable_layout" />
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/linear2"
+            app:layout_constraintBottom_toTopOf="@id/button"
+            tools:ignore="MissingConstraints">
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="410dp"
+                android:layout_height="135dp"
+                android:background="@drawable/background_round"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+                app:layout_constraintBottom_toTopOf="@id/button">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:padding="10dp"
+                        android:text="학점"
+                        android:textSize="15dp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:padding="10dp"
+                        android:text="평균 학점"
+                        android:textSize="20dp"
+                        android:layout_weight="1"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:padding="10dp"
+                        android:text="취득 학점"
+                        android:textSize="20dp"
+                        android:layout_weight="1"
+                        android:gravity="center"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="(실제학점삽입)"
+                        android:textColor="#EF0808"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="/4.5"
+                        android:textSize="15dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"/>
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="(실제학점삽입)"
+                        android:textColor="#EF0808"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="/140"
+                        android:textSize="15dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"/>
+
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageButton
+                        android:id="@+id/button"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="#00FFFFFF"
+                        android:src="@drawable/add3"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="60dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/button2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageButton
+                        android:id="@+id/button2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="#00FFFFFF"
+                        android:src="@drawable/create2"
+                        android:layout_marginRight="60dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/button3"
+                        app:layout_constraintStart_toEndOf="@+id/button"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageButton
+                        android:id="@+id/button3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="#00FFFFFF"
+                        android:src="@drawable/management2"
+                        android:layout_marginRight="60dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/button4"
+                        app:layout_constraintStart_toEndOf="@+id/button2"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageButton
+                        android:id="@+id/button4"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="#00FFFFFF"
+                        android:src="@drawable/calendar2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/button3"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </TableRow>
+            </TableLayout>
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="#00FFFFFF"
-        android:src="@drawable/add3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/button2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="#00FFFFFF"
-        android:src="@drawable/create2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/button3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="#00FFFFFF"
-        android:src="@drawable/management2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/button4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="#00FFFFFF"
-        android:src="@drawable/calendar2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        tools:ignore="SpeakableTextPresentCheck" />
-    <LinearLayout
-        android:id="@+id/linear1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/linear2"
-        app:layout_constraintBottom_toTopOf="@id/button"
-        tools:ignore="MissingConstraints">
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="410dp"
-            android:layout_height="135dp"
-            android:background="@drawable/background_round"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-            app:layout_constraintBottom_toTopOf="@id/button">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:padding="10dp"
-                    android:text="학점"
-                    android:textSize="15dp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:padding="10dp"
-                    android:text="평균 학점"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:text="(실제학점삽입)"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:text="/4.5"
-                    android:textSize="20dp" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:padding="10dp"
-                    android:text="취득 학점"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:text="(실제학점삽입)"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:text="/140"
-                    android:textSize="20dp" />
-
-            </TableRow>
-
-        </TableLayout>
-    </LinearLayout>
-
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

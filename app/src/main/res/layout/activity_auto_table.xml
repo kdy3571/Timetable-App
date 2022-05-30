@@ -784,7 +784,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="66dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#00FFFFFF"
         android:text="추가"
+        android:textColor="#1C0101"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -794,7 +796,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#00FFFFFF"
         android:text="재생성"
+        android:textColor="#1E0202"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
