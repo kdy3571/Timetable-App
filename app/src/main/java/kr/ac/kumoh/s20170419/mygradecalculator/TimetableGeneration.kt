@@ -259,7 +259,7 @@ open class TimetableGeneration : AppCompatActivity() {
             if (slist[2].isNotEmpty()) {
                 if (subjectAdd(slist[2]) == 1)
                     ge -= 1
-            } else {
+            } else if(slist[4].isNotEmpty()){
                 if (subjectAdd(slist[4]) == 1)
                     ge -= 1
             }
