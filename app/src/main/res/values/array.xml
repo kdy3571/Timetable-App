@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="major">
-        <item>컴퓨터공학과</item>
-        <item>신소재공학부</item>
-        <item>토목공학과</item>
-    </string-array>
     <string-array name="grade">
+        <item>전체</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
-        <item>전체</item>
     </string-array>
     <string-array name="semester">
         <item>1</item>
         <item>2</item>
-        <item>전체</item>
     </string-array>
-    <string-array name="area">
-        <item>필수</item>
-        <item>전공선택</item>
-        <item>교양선택</item>
+    <string-array name="subject">
         <item>전체</item>
+        <item>전공</item>
+        <item>교양</item>
+        <item>MSC</item>
+    </string-array>
+    <string-array name="division">
+        <item>전체</item>
+        <item>필수</item>
+        <item>선택</item>
     </string-array>
 </resources>
