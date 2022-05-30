@@ -44,7 +44,7 @@ interface weekDao {
     fun getAll() : List<weekstate>
 
     @Query("SELECT * FROM schedule WHERE gs = :gs")
-    fun getAll(gs: String) : List<weekstate>
+    fun getSubject(gs: String) : List<weekstate>
 
     @Query("SELECT code FROM schedule")
     fun getCODE() : List<String>
