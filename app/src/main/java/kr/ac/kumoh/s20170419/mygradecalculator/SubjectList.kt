@@ -19,7 +19,7 @@ class SubjectList : TimetableGeneration() {
         binding = ActivitySubjectListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        model.requestList("금오공과대학교", "전체", semester, "전체")
+        model.requestList(college, major, "전체", semester, "전체", "전체")
         dbadapter = DatabaseAdapter(model) { subject -> adapterOnClick(subject) }
         binding.list.apply {
             layoutManager = LinearLayoutManager(applicationContext)
@@ -31,21 +31,17 @@ class SubjectList : TimetableGeneration() {
         model.list.observe(this) {
             dbadapter.notifyDataSetChanged()
         }
-
-        model.filteredList.observe(this) {
-            dbadapter.notifyDataSetChanged()
-        }
     }
 
     private fun adapterOnClick(subjectData: ViewModel.Subject):Unit {
-        val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
+        val dlg = Dialog(this)
         val intent = intent
         val subject = intent.getSerializableExtra("list") as ArrayList<ViewModel.Subject>
         var removeSubject = ArrayList<String>()
         val resultIntent = Intent(this, TimetableGeneration::class.java)
 
         if(intent.hasExtra("list")) {
-            val stime = subjectData.time.split(", ")
+            val sTime = subjectData.time.split(", ")
 
             if (subject.isEmpty())
                 dlg.dialog(subjectData.name, "추가")
@@ -53,7 +49,7 @@ class SubjectList : TimetableGeneration() {
                 loop@ for (i in subject) {
                     val time = i.time.split(", ")
                     for (j in time) {
-                        for (k in stime) {
+                        for (k in sTime) {
                             if (k == j) {
                                 dlg.dialog(i.name, "변경")
                                 removeSubject.add(i.name)
@@ -92,7 +88,7 @@ class SubjectList : TimetableGeneration() {
                     startActivity(resultIntent)
                 }
                 else if(data == 0)
-                    Toast.makeText(application, "취소당", Toast.LENGTH_LONG).show()
+                    Toast.makeText(application, "취소하였습니다.", Toast.LENGTH_LONG).show()
             }
         })
     }
