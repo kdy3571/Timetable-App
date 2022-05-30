@@ -19,6 +19,8 @@ class TimetableAdd : MainActivity() {
     private lateinit var dbadapter: DatabaseAdapter
     private lateinit var dbmodel : InnerDBViewmodel
     private lateinit var searchdata : String
+    var college = ""
+    var major = ""
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,18 +29,21 @@ class TimetableAdd : MainActivity() {
 
         dbmodel = ViewModelProvider(this@TimetableAdd).get(InnerDBViewmodel::class.java)
 
-        val yeardata: Array<String> = resources.getStringArray(R.array.grade)
-        val yearadapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, yeardata)
-        binding.yearSpinner.adapter = yearadapter
+        val gradeData: Array<String> = resources.getStringArray(R.array.grade)
+        val gradeAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, gradeData)
+        binding.gradeSpinner.adapter = gradeAdapter
 
         val termdata: Array<String> = resources.getStringArray(R.array.semester)
         val termadapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, termdata)
-        binding.termSpinner.adapter = termadapter
+        binding.semesterSpinner.adapter = termadapter
 
-        val areadata: Array<String> = resources.getStringArray(R.array.area)
-        val areaadapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, areadata)
-        binding.areaSpinner.adapter = areaadapter
+        val subjectdata: Array<String> = resources.getStringArray(R.array.subject)
+        val subjectadapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, subjectdata)
+        binding.subjectSpinner.adapter = subjectadapter
 
+        val divisionData: Array<String> = resources.getStringArray(R.array.division)
+        val divisionAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, divisionData)
+        binding.divisionSpinner.adapter = subjectadapter
 
         dbadapter = DatabaseAdapter(model) { subject -> adapterOnClick(subject) }
         binding.listdata.apply {
@@ -50,7 +55,13 @@ class TimetableAdd : MainActivity() {
         model.list.observe(this) {
             dbadapter.notifyDataSetChanged()
         }
-        model.requestList(college, major, "전체", "1", "전체", "전체")
+
+        if (intent.hasExtra("gs")) {
+            val temp = intent.getStringExtra("gs")!!.split("-")
+            college =  intent.getStringExtra("college")!!
+            major =  intent.getStringExtra("major")!!
+        }
+        model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
 
 
         search_btn.setOnClickListener {
