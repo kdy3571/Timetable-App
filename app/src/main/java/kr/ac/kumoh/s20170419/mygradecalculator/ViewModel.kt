@@ -15,7 +15,7 @@ import java.io.Serializable
 class ViewModel(application: Application): AndroidViewModel(application) {
     companion object {
         const val QUEUE_TAG = "VolleyRequest"
-        private val R_subject = ArrayList<Subject>()
+        private var R_subject = ArrayList<Subject>()
     }
 
     private lateinit var mQueue: RequestQueue
@@ -81,7 +81,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     fun getR_subject(): ArrayList<Subject> {
         return R_subject
     }
-    
+
     fun getR_subject(i: Int) = R_subject[i]
     fun getSize() = R_subject.size
     private fun parseSubjectJSON(items: JSONArray, College: String, Major: String, Grade: String, Semester: String, Subject: String, Division: String) {
@@ -120,23 +120,20 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             }
         }
     }
-    
+
     fun search(searchData: String, searchType: String) {
-        for (i in R_subject) {
-            when(searchType) {
-               "name" -> {
-                   if (!i.name.contains(searchData))
-                      R_subject.remove(i)
-               }
-               "professor" -> {
-                   if (!i.professor.contains(searchData))
-                       R_subject.remove(i)
-               }
-               "code" -> {
-                   if (!i.code.contains(searchData))
-                       R_subject.remove(i)
-               }
+        val temp = R_subject
+        when (searchType) {
+            "name" -> {
+                temp.removeIf { !it.name.contains(searchData) }
+            }
+            "professor" -> {
+                temp.removeIf { !it.professor.contains(searchData) }
+            }
+            "code" -> {
+                temp.removeIf { !it.code.contains(searchData) }
             }
         }
+        R_subject = temp
     }
 }

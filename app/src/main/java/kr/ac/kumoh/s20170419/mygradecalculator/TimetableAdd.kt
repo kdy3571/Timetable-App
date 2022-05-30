@@ -1,6 +1,7 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -55,19 +56,26 @@ class TimetableAdd : MainActivity() {
             dbadapter.notifyDataSetChanged()
         }
 
-        if (intent.hasExtra("gs")) {
-            val temp = intent.getStringExtra("gs")!!.split("-")
-            college =  intent.getStringExtra("college")!!
-            major =  intent.getStringExtra("major")!!
+        val user = getSharedPreferences("user", Context.MODE_PRIVATE)
+        if (user.getString("college", "") != "") {
+            college =  user.getString("college", "")!!
+            major =  user.getString("major", "")!!
         }
+//        val year: String = yearSpinner.selectedItem.toString()
+//        val term: String = termSpinner.selectedItem.toString()
+//        val area: String = areaSpinner.selectedItem.toString()
+//        val major: String = majorSpinner.selectedItem.toString()
         model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
 
 
         search_btn.setOnClickListener {
             searchData = binding.et1.text.toString()
-            model.requestList(college, major, "전체", "1", "전체", "전체")
+//            model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(),
+//                subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
             model.search(searchData, "name") // ""에는 searchType 입력
+            dbadapter.notifyDataSetChanged()
         }
+
     }
 
     private fun adapterOnClick(subjectData: ViewModel.Subject): Unit {
