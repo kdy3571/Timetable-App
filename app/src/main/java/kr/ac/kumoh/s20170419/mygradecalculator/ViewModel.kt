@@ -62,26 +62,6 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         mQueue.add(request)
     }
 
-    fun requestList(searchdata : String) {
-        val url = "https://expresssongdb-ocmes.run.goorm.io/?t=1651835082540"
-
-        val request = JsonArrayRequest(
-            Request.Method.GET,
-            url,
-            null,
-            {
-                R_subject.clear()
-                parseSubjectJSON(it, searchdata)
-                list.value = R_subject
-            },
-            {
-                Toast.makeText(getApplication(), it.toString(), Toast.LENGTH_LONG).show()
-            }
-        )
-        request.tag = QUEUE_TAG
-        mQueue.add(request)
-    }
-
     override fun onCleared() {
         super.onCleared()
         mQueue.cancelAll(QUEUE_TAG)
@@ -101,6 +81,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     fun getR_subject(): ArrayList<Subject> {
         return R_subject
     }
+    
     fun getR_subject(i: Int) = R_subject[i]
     fun getSize() = R_subject.size
     private fun parseSubjectJSON(items: JSONArray, College: String, Major: String, Grade: String, Semester: String, Subject: String, Division: String) {
@@ -147,22 +128,22 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         }
     }
     
-    private fun parseSubjectJSON(items: JSONArray, searchData: String, searchType: String) {
-        for (i in 0 until items.length()) {
-            val item: JSONObject = items.getJSONObject(i)
-            val college = item.getString("college")
-            val subject = item.getString("subject")
-            val name = item.getString("name")
-            val professor = item.getString("professor")
-            val code = item.getString("code")
-            val room = item.getString("room")
-            val time = item.getString("time")
-            val division = item.getString("division")
-            val credit = item.getString("credit")
-            val grade = item.getString("grade")
-            val semester = item.getString("semester")
-            if (name.contains(searchdata))
-                R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
+    private fun Search(searchData: String, searchType: String) {
+        for (i in 0 until R_subject.length()) {
+            when(searchType) {
+               name -> {
+                   if (!name.contains(searchdata))
+                      R_Subject.removeAt(i)
+               }
+               professor -> {
+                   if (!professor.contains(searchdata))
+                       R_Subject.removeAt(i)
+               }
+               code -> {
+                   if (!code.contains(searchdata))
+                       R_Subject.removeAt(i)
+               }
+            }
         }
     }
 }
