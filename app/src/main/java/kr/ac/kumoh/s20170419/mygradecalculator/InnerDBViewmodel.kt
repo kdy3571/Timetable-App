@@ -46,6 +46,19 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
         gpdb.insert(data)
     }
 
+    fun connect(gs: String, name: String?, credit: String?, gp: String?, check: Boolean) {
+        val subject = if (check) "전공" else null
+        val data = gpstate(
+            0,
+            gs,
+            subject,
+            name,
+            credit,
+            gp
+        )
+        gpdb.insert(data)
+    }
+
     fun getInfo(gs: String): List<gpstate> {
         return gpdb.getInfo(gs)
     }
@@ -64,5 +77,9 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
 
     fun deleteDB(name : String?, gs: String?){
         weekdb.deletename(name, gs)
+    }
+
+    fun update(db: gpstate) {
+        gpdb.update(db)
     }
 }

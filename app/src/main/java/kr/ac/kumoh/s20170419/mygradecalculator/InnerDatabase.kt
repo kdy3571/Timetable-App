@@ -26,10 +26,10 @@ data class gpstate(
     @PrimaryKey(autoGenerate = true)
     val key : Int,
     val gs : String?,
-    val subject: String?,
-    val name: String?,
-    val credit: String?,
-    val gp: String?
+    var subject: String?,
+    var name: String?,
+    var credit: String?,
+    var gp: String?
 )
 
 //data class weekcolor(
@@ -73,6 +73,9 @@ interface gpDao {
 
     @Query("DELETE FROM GP where gs = :gs")
     fun delete(gs: String)
+
+    @Update
+    fun update(vararg gpastate: gpstate)
 
     @Insert
     fun insert(vararg gpastate: gpstate)
