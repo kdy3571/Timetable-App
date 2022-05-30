@@ -98,50 +98,43 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             val credit = item.getString("credit")
             val grade = item.getString("grade")
             val semester = item.getString("semester")
-            
-            if (College == college && Major == major) {
-                if (Grade == "전체" && Semester == semester && Subject == "전체" && Division == "전체") {
+
+            if (College == college && Major == "컴퓨터공학과" && Semester == semester) {
+                if (Grade == "전체" && Subject == "전체" && Division == "전체") {
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                }
-                else if (Grade == "전체" && Semester == semester && Subject == "전체" && Division == division) {
+                } else if (Grade == "전체" && Subject == "전체" && Division == division) {
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                }
-                else if (Grade == "전체" && Semester == semester && Subject == Subject && Division == "전체") {
+                } else if (Grade == "전체" && Subject == Subject && Division == "전체") {
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                }
-                else if (Grade == "전체" && Semester == semester && Subject == Subject && Division == division) {
+                } else if (Grade == "전체" && Subject == Subject && Division == division) {
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                }
-                else if (Grade == grade && Semester == semester && Subject == "전체" && Division == "전체") {
+                } else if (Grade == grade && Subject == "전체" && Division == "전체") {
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                }
-                else if (Grade == grade && Semester == semester && Subject == "전체" && Division == division) {
+                } else if (Grade == grade && Subject == "전체" && Division == division) {
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                }
-                else if (Grade == grade && Semester == semester && Subject == subject && Division == "전체") {
+                } else if (Grade == grade && Subject == subject && Division == "전체") {
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                }
-                else if (Grade == grade && Semester == semester && Subject == Subject && Division == division) {
+                } else if (Grade == grade && Subject == Subject && Division == division) {
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
                 }
             }
         }
     }
     
-    private fun Search(searchData: String, searchType: String) {
-        for (i in 0 until R_subject.length()) {
+    fun search(searchData: String, searchType: String) {
+        for (i in R_subject) {
             when(searchType) {
-               name -> {
-                   if (!name.contains(searchdata))
-                      R_Subject.removeAt(i)
+               "name" -> {
+                   if (!i.name.contains(searchData))
+                      R_subject.remove(i)
                }
-               professor -> {
-                   if (!professor.contains(searchdata))
-                       R_Subject.removeAt(i)
+               "professor" -> {
+                   if (!i.professor.contains(searchData))
+                       R_subject.remove(i)
                }
-               code -> {
-                   if (!code.contains(searchdata))
-                       R_Subject.removeAt(i)
+               "code" -> {
+                   if (!i.code.contains(searchData))
+                       R_subject.remove(i)
                }
             }
         }
