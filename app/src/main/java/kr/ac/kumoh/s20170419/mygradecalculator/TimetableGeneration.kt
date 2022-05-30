@@ -26,8 +26,10 @@ open class TimetableGeneration : AppCompatActivity() {
         var exceptSubjectTemp = ArrayList<ViewModel.Subject>()
         var subjectInfo = ArrayList<ViewModel.Subject>()
         var timeTable = Array(5) { arrayOfNulls<String?>(12) }
-        lateinit var grade: String
-        lateinit var semester: String
+        var college = ""
+        var major = ""
+        var grade = ""
+        var semester = ""
     }
     var selectSubject =  ArrayList<ViewModel.Subject>()
     var exceptSubject = ArrayList<ViewModel.Subject>()
@@ -39,6 +41,8 @@ open class TimetableGeneration : AppCompatActivity() {
 
         if (intent.hasExtra("gs")) {
             val temp = intent.getStringExtra("gs")!!.split("-")
+            college =  intent.getStringExtra("college")!!
+            major =  intent.getStringExtra("major")!! 
             grade = temp[0]
             semester = temp[1]
         }
@@ -133,8 +137,7 @@ open class TimetableGeneration : AppCompatActivity() {
         gbinding.check4.setOnCheckedChangeListener(listener)
         gbinding.check5.setOnCheckedChangeListener(listener)
 
-
-        model.requestList("금오공과대학교", "전체", semester, "전체")
+        model.requestList(college, major, "전체", semester, "전체", "전체")
         gbinding.create.setOnClickListener {
             generation()
         }
@@ -147,7 +150,7 @@ open class TimetableGeneration : AppCompatActivity() {
     }
 
     private fun generation() {
-        model.requestList("금오공과대학교", "전체", semester, "전체")
+        model.requestList(college, major, "전체", semester, "전체", "전체")
         loop@ for(i in 0..100) {
             Log.d("선택과목", selectSubject.toString())
             Log.d("제외과목", exceptSubject.toString())
