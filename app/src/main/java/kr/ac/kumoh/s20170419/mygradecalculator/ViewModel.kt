@@ -42,7 +42,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         mQueue = VolleyRequest.getInstance(application).requestQueue
     }
 
-    fun requestList(College: String, Grade: String, Semester: String, Area: String?) {
+    fun requestList(College: String, Major: String, Grade: String, Semester: String, Subject: String, Division: String) {
         val url = "https://expresssongdb-ocmes.run.goorm.io/?t=1651835082540"
 
         val request = JsonArrayRequest(
@@ -51,7 +51,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             null,
             {
                 R_subject.clear()
-                parseSubjectJSON(it, College, Grade, Semester, Area)
+                parseSubjectJSON(it, College, Major, Grade, Semester, Subject, Division)
                 list.value = R_subject
             },
             {
@@ -103,7 +103,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     }
     fun getR_subject(i: Int) = R_subject[i]
     fun getSize() = R_subject.size
-    private fun parseSubjectJSON(items: JSONArray, College: String, Grade: String, Semester: String, Area: String?) {
+    private fun parseSubjectJSON(items: JSONArray, College: String, Major: String, Grade: String, Semester: String, Subject: String, Division: String) {
         for (i in 0 until items.length()) {
             val item: JSONObject = items.getJSONObject(i)
             val college = item.getString("college")
@@ -117,25 +117,37 @@ class ViewModel(application: Application): AndroidViewModel(application) {
             val credit = item.getString("credit")
             val grade = item.getString("grade")
             val semester = item.getString("semester")
-
-            if (College == college) {   // 학교 구분
-                if (Grade == "전체" && Semester == semester) // 학교의 모든 과목 불러오기(학년 구분x)
+            
+            if (College == college && Major == major) {
+                if (Grade == "전체" && Semester == semester && Subject == "전체" && Division == "전체") {
                     R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                else if (Grade == grade && Semester == semester) {   // 학년 구분o
-                    if (Area == "전체") { // 특정 학년, 학기의 과목 불러오기
-                        R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                    } else {
-                        var token = Area!!.chunked(2)
-                        if (token[0] == division)   // 전공일때
-                            R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                        else if (subject == token[0] && division == token[1]) // 교양선택, 전공선택일때
-                            R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
-                    }
+                }
+                else if (Grade == "전체" && Semester == semester && Subject == "전체" && Division == division) {
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
+                }
+                else if (Grade == "전체" && Semester == semester && Subject == Subject && Division == "전체") {
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
+                }
+                else if (Grade == "전체" && Semester == semester && Subject == Subject && Division == division) {
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
+                }
+                else if (Grade == grade && Semester == semester && Subject == "전체" && Division == "전체") {
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
+                }
+                else if (Grade == grade && Semester == semester && Subject == "전체" && Division == division) {
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
+                }
+                else if (Grade == grade && Semester == semester && Subject == subject && Division == "전체") {
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
+                }
+                else if (Grade == grade && Semester == semester && Subject == Subject && Division == division) {
+                    R_subject.add(Subject(college, subject, name, professor, code, room, time, division, credit, grade, semester))
                 }
             }
         }
     }
-    private fun parseSubjectJSON(items: JSONArray, searchdata: String) {
+    
+    private fun parseSubjectJSON(items: JSONArray, searchData: String, searchType: String) {
         for (i in 0 until items.length()) {
             val item: JSONObject = items.getJSONObject(i)
             val college = item.getString("college")
