@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +17,7 @@ class TimetableAdd : MainActivity() {
     private val model: ViewModel by viewModels()
     private lateinit var dbadapter: DatabaseAdapter
     private lateinit var dbmodel : InnerDBViewmodel
-    private lateinit var searchdata : String
+    private lateinit var searchData : String
     var college = ""
     var major = ""
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
@@ -33,17 +32,17 @@ class TimetableAdd : MainActivity() {
         val gradeAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, gradeData)
         binding.gradeSpinner.adapter = gradeAdapter
 
-        val termdata: Array<String> = resources.getStringArray(R.array.semester)
-        val termadapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, termdata)
-        binding.semesterSpinner.adapter = termadapter
+        val semesterData: Array<String> = resources.getStringArray(R.array.semester)
+        val semesterAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, semesterData)
+        binding.semesterSpinner.adapter = semesterAdapter
 
-        val subjectdata: Array<String> = resources.getStringArray(R.array.subject)
-        val subjectadapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, subjectdata)
-        binding.subjectSpinner.adapter = subjectadapter
+        val subjectData: Array<String> = resources.getStringArray(R.array.subject)
+        val subjectAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, subjectData)
+        binding.subjectSpinner.adapter = subjectAdapter
 
         val divisionData: Array<String> = resources.getStringArray(R.array.division)
         val divisionAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, divisionData)
-        binding.divisionSpinner.adapter = subjectadapter
+        binding.divisionSpinner.adapter = divisionAdapter
 
         dbadapter = DatabaseAdapter(model) { subject -> adapterOnClick(subject) }
         binding.listdata.apply {
@@ -65,33 +64,33 @@ class TimetableAdd : MainActivity() {
 
 
         search_btn.setOnClickListener {
-            searchdata = binding.et1.text.toString()
+            searchData = binding.et1.text.toString()
             model.requestList(college, major, "전체", "1", "전체", "전체")
-            model.search(searchdata, "") // ""에는 searchType 입력
+            model.search(searchData, "name") // ""에는 searchType 입력
         }
     }
 
-    private fun adapterOnClick(subjectdata: ViewModel.Subject): Unit {
-        val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
-        val iintent = Intent(this, MainActivity::class.java)
-        dlg.dialog(subjectdata.name, "추가")
+    private fun adapterOnClick(subjectData: ViewModel.Subject): Unit {
+        val dlg = Dialog(this)
+        val mIntent = Intent(this, MainActivity::class.java)
+        dlg.dialog(subjectData.name, "추가")
         dlg.setOnClickedListener(object :
-            kr.ac.kumoh.s20170419.mygradecalculator.Dialog.ButtonClickListener {
+            Dialog.ButtonClickListener {
             override fun onClicked(data: Int) {
                 if (data == 1) {
-                    connect(subjectdata)
-                    iintent.putExtra("manual", 1)
-                    iintent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    connect(subjectData)
+                    mIntent.putExtra("manual", 1)
+                    mIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     finish()
-                    startActivity(iintent)
+                    startActivity(mIntent)
                 } else if (data == 0)
-                    Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()
+                    Toast.makeText(application, "취소하였습니다.", Toast.LENGTH_LONG).show()
             }
         })
     }
-    fun connect(subjectdata: ViewModel.Subject){
+    fun connect(subjectData: ViewModel.Subject){
         Thread(Runnable {
-            dbmodel.connect(gs, subjectdata)
+            dbmodel.connect(gs, subjectData)
         }).start()
     }
 }
