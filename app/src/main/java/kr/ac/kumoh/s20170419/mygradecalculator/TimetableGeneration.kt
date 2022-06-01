@@ -149,6 +149,10 @@ open class TimetableGeneration : AppCompatActivity() {
 
         if (intent.hasExtra("button")) {
             if (intent.getStringExtra("button") == "재생성") {
+                selectSubject = selectSubjectTemp
+                exceptSubject = exceptSubjectTemp
+                credit = creditTemp
+                ge = geTemp
                 generation()
             }
         }
