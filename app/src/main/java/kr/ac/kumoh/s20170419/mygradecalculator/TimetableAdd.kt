@@ -5,13 +5,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.CompoundButton
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_subject_list.*
 import kotlinx.android.synthetic.main.activity_timetable_add.*
 import kr.ac.kumoh.s20170419.mygradecalculator.TimetableGeneration.Companion.rest
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableAddBinding
@@ -22,8 +25,7 @@ class TimetableAdd : MainActivity() {
     private val model: ViewModel by viewModels()
     private lateinit var dbadapter: DatabaseAdapter
     private lateinit var dbmodel : InnerDBViewmodel
-    private lateinit var searchData : String
-    private lateinit var searchType : String
+    var searchType : String = "name"
     var college = ""
     var major = ""
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
@@ -31,7 +33,6 @@ class TimetableAdd : MainActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTimetableAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         dbmodel = ViewModelProvider(this@TimetableAdd).get(InnerDBViewmodel::class.java)
 
@@ -62,6 +63,7 @@ class TimetableAdd : MainActivity() {
             dbadapter.notifyDataSetChanged()
         }
 
+        binding.Ridiogroup.check(R.id.RB1)
         binding.Ridiogroup.setOnCheckedChangeListener { radioGroup, i ->
             when(i) {
                 R.id.RB1 -> searchType = "name"
@@ -75,20 +77,28 @@ class TimetableAdd : MainActivity() {
             college =  user.getString("college", "")!!
             major =  user.getString("major", "")!!
         }
-//        val year: String = yearSpinner.selectedItem.toString()
-//        val term: String = termSpinner.selectedItem.toString()
-//        val area: String = areaSpinner.selectedItem.toString()
-//        val major: String = majorSpinner.selectedItem.toString()
+
         model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
 
 
-        search_btn.setOnClickListener {
-            searchData = binding.et1.text.toString()
-//            model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
-            model.search(searchData, searchType) // ""에는 searchType 입력
-            dbadapter.notifyDataSetChanged()
-        }
+        searchView_timetable_add.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
+                return false
+            }
+            override fun onQueryTextSubmit(query: String): Boolean {
+                model.search(query, searchType) // ""에는 searchType 입력
+                dbadapter.notifyDataSetChanged()
+                hideSoftInput()
+                return false
+            }
+        })
+    }
 
+    fun hideSoftInput() {
+        val inputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(searchView_timetable_add.windowToken, 0)
     }
 
     private fun adapterOnClick(subjectData: ViewModel.Subject): Unit {
