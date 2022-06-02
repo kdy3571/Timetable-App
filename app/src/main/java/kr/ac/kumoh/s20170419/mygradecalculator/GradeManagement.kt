@@ -549,6 +549,7 @@ class GradeManagement : AppCompatActivity() {
                     majorCreditSum += i.credit!!.toInt()
                 }
             }
+            binding.earnedCredits.text = creditSum.toString()
             if(creditSum != 0) {
                 binding.allGrade.text =
                     ((gpSum / creditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
@@ -559,45 +560,50 @@ class GradeManagement : AppCompatActivity() {
             }
         }
 
-//        if (subjectList.isNotEmpty()) {
-//            gpSum = 0.0
-//            majorgpSum = 0.0
-//            creditSum = 0
-//            majorCreditSum = 0
-//            for (i in subjectList) {  // 현재 학기 학점
-//                when (i.gp) {
-//                    "A+" -> gpSum += 4.5 * i.credit!!.toInt()
-//                    "A" -> gpSum += 4.0 * i.credit!!.toInt()
-//                    "B+" -> gpSum += 3.5 * i.credit!!.toInt()
-//                    "B" -> gpSum += 3.0 * i.credit!!.toInt()
-//                    "C+" -> gpSum += 2.5 * i.credit!!.toInt()
-//                    "C" -> gpSum += 2.0 * i.credit!!.toInt()
-//                    "D+" -> gpSum += 1.5 * i.credit!!.toInt()
-//                    "D" -> gpSum += 1.0 * i.credit!!.toInt()
-//                    "F" -> gpSum += 0.0 * i.credit!!.toInt()
-//                }
-//                creditSum += i.credit!!.toInt()
-//
-//                if (i.subject == "전공") {
-//                    when (i.gp) {
-//                        "A+" -> majorgpSum += 4.5 * i.credit!!.toInt()
-//                        "A" -> majorgpSum += 4.0 * i.credit!!.toInt()
-//                        "B+" -> majorgpSum += 3.5 * i.credit!!.toInt()
-//                        "B" -> majorgpSum += 3.0 * i.credit!!.toInt()
-//                        "C+" -> majorgpSum += 2.5 * i.credit!!.toInt()
-//                        "C" -> majorgpSum += 2.0 * i.credit!!.toInt()
-//                        "D+" -> majorgpSum += 1.5 * i.credit!!.toInt()
-//                        "D" -> majorgpSum += 1.0 * i.credit!!.toInt()
-//                        "F" -> majorgpSum += 0.0 * i.credit!!.toInt()
-//                    }
-//                    majorCreditSum += i.credit!!.toInt()
-//                }
+        if (subjectList.isNotEmpty()) {
+            gpSum = 0.0
+            majorgpSum = 0.0
+            creditSum = 0
+            majorCreditSum = 0
+            for (i in subjectList) {  // 현재 학기 학점
+                when (i.gp) {
+                    "A+" -> gpSum += 4.5 * i.credit!!.toInt()
+                    "A" -> gpSum += 4.0 * i.credit!!.toInt()
+                    "B+" -> gpSum += 3.5 * i.credit!!.toInt()
+                    "B" -> gpSum += 3.0 * i.credit!!.toInt()
+                    "C+" -> gpSum += 2.5 * i.credit!!.toInt()
+                    "C" -> gpSum += 2.0 * i.credit!!.toInt()
+                    "D+" -> gpSum += 1.5 * i.credit!!.toInt()
+                    "D" -> gpSum += 1.0 * i.credit!!.toInt()
+                    "F" -> gpSum += 0.0 * i.credit!!.toInt()
+                }
+                creditSum += i.credit!!.toInt()
+
+                if (i.subject == "전공") {
+                    when (i.gp) {
+                        "A+" -> majorgpSum += 4.5 * i.credit!!.toInt()
+                        "A" -> majorgpSum += 4.0 * i.credit!!.toInt()
+                        "B+" -> majorgpSum += 3.5 * i.credit!!.toInt()
+                        "B" -> majorgpSum += 3.0 * i.credit!!.toInt()
+                        "C+" -> majorgpSum += 2.5 * i.credit!!.toInt()
+                        "C" -> majorgpSum += 2.0 * i.credit!!.toInt()
+                        "D+" -> majorgpSum += 1.5 * i.credit!!.toInt()
+                        "D" -> majorgpSum += 1.0 * i.credit!!.toInt()
+                        "F" -> majorgpSum += 0.0 * i.credit!!.toInt()
+                    }
+                    majorCreditSum += i.credit!!.toInt()
+                }
+            }
+//            binding.earnedCredits.text = creditSum.toString()
+//            if(creditSum != 0) {
+//                binding.allGrade.text =
+//                    ((gpSum / creditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
 //            }
-//            binding.allGrade.text =
-//                ((gpSum / creditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
-//            binding.majorGrade.text =
-//                ((majorgpSum / majorCreditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
-//        }
+//            if(majorCreditSum != 0) {
+//                binding.majorGrade.text =
+//                    ((majorgpSum / majorCreditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
+//            }
+        }
     }
 
     private fun loadInfo(subjectList: List<gpstate>) {
