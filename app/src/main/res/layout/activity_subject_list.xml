@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/search"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingRight="10dp"
@@ -20,7 +20,7 @@
         <EditText
             android:id="@+id/search_edit"
             android:layout_width="311dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:hint="과목명"
             app:layout_constraintRight_toLeftOf="@id/search_button"
             app:layout_constraintStart_toStartOf="parent" />

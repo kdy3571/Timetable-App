@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.CompoundButton
 import android.widget.Toast
@@ -30,6 +31,7 @@ class TimetableAdd : MainActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTimetableAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         dbmodel = ViewModelProvider(this@TimetableAdd).get(InnerDBViewmodel::class.java)
 
@@ -82,8 +84,7 @@ class TimetableAdd : MainActivity() {
 
         search_btn.setOnClickListener {
             searchData = binding.et1.text.toString()
-//            model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(),
-//                subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
+//            model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
             model.search(searchData, searchType) // ""에는 searchType 입력
             dbadapter.notifyDataSetChanged()
         }
