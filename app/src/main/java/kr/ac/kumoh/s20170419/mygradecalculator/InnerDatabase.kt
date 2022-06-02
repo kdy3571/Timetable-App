@@ -74,6 +74,9 @@ interface gpDao {
     @Query("DELETE FROM GP where gs = :gs")
     fun delete(gs: String)
 
+    @Query("SELECT * FROM GP")
+    fun getAll() : List<gpstate>
+
     @Update
     fun update(vararg gpastate: gpstate)
 

@@ -59,6 +59,10 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
         gpdb.insert(data)
     }
 
+    fun getInfo(): List<gpstate> {
+        return gpdb.getAll()
+    }
+
     fun getInfo(gs: String): List<gpstate> {
         return gpdb.getInfo(gs)
     }
