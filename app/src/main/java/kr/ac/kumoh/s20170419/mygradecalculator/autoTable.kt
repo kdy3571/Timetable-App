@@ -72,7 +72,7 @@ class autoTable : AppCompatActivity() {
                 val range = 1..255
                 weekID.text = weekdata[i][j] ?: ""
                 if (weekdata[i][j] != null)
-                    weekID.setBackgroundColor(Color.rgb(range.random(), range.random(), range.random()))
+                    //weekID.setBackgroundColor(Color.rgb(range.random(), range.random(), range.random()))
                 else
                     weekID.setBackgroundResource(R.drawable.cell)
             }

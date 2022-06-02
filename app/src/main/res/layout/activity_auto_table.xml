@@ -85,7 +85,7 @@
                     android:text="금" />
 
                 <TextView
-                    android:layout_rowWeight="1"
+
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -94,7 +94,7 @@
                 <TextView
                     android:id="@+id/monday9"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
@@ -105,7 +105,7 @@
                 <TextView
                     android:id="@+id/tuesday9"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
@@ -116,7 +116,7 @@
                 <TextView
                     android:id="@+id/wednesday9"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
@@ -127,7 +127,7 @@
                 <TextView
                     android:id="@+id/thursday9"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
@@ -138,7 +138,7 @@
                 <TextView
                     android:id="@+id/friday9"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
@@ -147,7 +147,7 @@
                     android:text="" />
 
                 <TextView
-                    android:layout_rowWeight="1"
+
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -156,7 +156,7 @@
                 <TextView
                     android:id="@+id/monday10"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -166,7 +166,7 @@
                 <TextView
                     android:id="@+id/tuesday10"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -176,7 +176,7 @@
                 <TextView
                     android:id="@+id/wednesday10"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -186,7 +186,7 @@
                 <TextView
                     android:id="@+id/thursday10"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -196,7 +196,7 @@
                 <TextView
                     android:id="@+id/friday10"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -204,7 +204,7 @@
                     android:text="" />
 
                 <TextView
-                    android:layout_rowWeight="1"
+
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -213,7 +213,7 @@
                 <TextView
                     android:id="@+id/monday11"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -223,7 +223,7 @@
                 <TextView
                     android:id="@+id/tuesday11"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -233,7 +233,7 @@
                 <TextView
                     android:id="@+id/wednesday11"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -243,7 +243,7 @@
                 <TextView
                     android:id="@+id/thursday11"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -253,7 +253,7 @@
                 <TextView
                     android:id="@+id/friday11"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -261,7 +261,7 @@
                     android:text="" />
 
                 <TextView
-                    android:layout_rowWeight="1"
+
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -270,7 +270,7 @@
                 <TextView
                     android:id="@+id/monday12"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -280,7 +280,7 @@
                 <TextView
                     android:id="@+id/tuesday12"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -290,7 +290,7 @@
                 <TextView
                     android:id="@+id/wednesday12"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -300,7 +300,7 @@
                 <TextView
                     android:id="@+id/thursday12"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -310,7 +310,7 @@
                 <TextView
                     android:id="@+id/friday12"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -318,7 +318,7 @@
                     android:text="" />
 
                 <TextView
-                    android:layout_rowWeight="1"
+
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -327,7 +327,7 @@
                 <TextView
                     android:id="@+id/monday13"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -337,7 +337,7 @@
                 <TextView
                     android:id="@+id/tuesday13"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -347,7 +347,7 @@
                 <TextView
                     android:id="@+id/wednesday13"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -357,7 +357,7 @@
                 <TextView
                     android:id="@+id/thursday13"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -367,7 +367,7 @@
                 <TextView
                     android:id="@+id/friday13"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -375,7 +375,7 @@
                     android:text="" />
 
                 <TextView
-                    android:layout_rowWeight="1"
+
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -384,7 +384,7 @@
                 <TextView
                     android:id="@+id/monday14"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -394,7 +394,7 @@
                 <TextView
                     android:id="@+id/tuesday14"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -404,7 +404,7 @@
                 <TextView
                     android:id="@+id/wednesday14"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -414,7 +414,7 @@
                 <TextView
                     android:id="@+id/thursday14"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -424,7 +424,7 @@
                 <TextView
                     android:id="@+id/friday14"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -432,7 +432,7 @@
                     android:text="" />
 
                 <TextView
-                    android:layout_rowWeight="1"
+
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -441,7 +441,7 @@
                 <TextView
                     android:id="@+id/monday15"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -451,7 +451,7 @@
                 <TextView
                     android:id="@+id/tuesday15"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -461,7 +461,7 @@
                 <TextView
                     android:id="@+id/wednesday15"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -471,7 +471,7 @@
                 <TextView
                     android:id="@+id/thursday15"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -481,7 +481,7 @@
                 <TextView
                     android:id="@+id/friday15"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -489,7 +489,7 @@
                     android:text="" />
 
                 <TextView
-                    android:layout_rowWeight="1"
+
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -498,7 +498,7 @@
                 <TextView
                     android:id="@+id/monday16"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -508,7 +508,7 @@
                 <TextView
                     android:id="@+id/tuesday16"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -518,7 +518,7 @@
                 <TextView
                     android:id="@+id/wednesday16"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -528,7 +528,7 @@
                 <TextView
                     android:id="@+id/thursday16"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -538,7 +538,7 @@
                 <TextView
                     android:id="@+id/friday16"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -546,7 +546,7 @@
                     android:text="" />
 
                 <TextView
-                    android:layout_rowWeight="1"
+
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -555,7 +555,7 @@
                 <TextView
                     android:id="@+id/monday17"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -565,7 +565,7 @@
                 <TextView
                     android:id="@+id/tuesday17"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -575,7 +575,7 @@
                 <TextView
                     android:id="@+id/wednesday17"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -585,7 +585,7 @@
                 <TextView
                     android:id="@+id/thursday17"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -595,7 +595,7 @@
                 <TextView
                     android:id="@+id/friday17"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -603,7 +603,7 @@
                     android:text="" />
 
                 <TextView
-                    android:layout_rowWeight="1"
+
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -612,7 +612,7 @@
                 <TextView
                     android:id="@+id/monday18"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -622,7 +622,7 @@
                 <TextView
                     android:id="@+id/tuesday18"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -632,7 +632,7 @@
                 <TextView
                     android:id="@+id/wednesday18"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -642,7 +642,7 @@
                 <TextView
                     android:id="@+id/thursday18"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -652,7 +652,7 @@
                 <TextView
                     android:id="@+id/friday18"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -660,7 +660,7 @@
                     android:text="" />
 
                 <TextView
-                    android:layout_rowWeight="1"
+
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -669,7 +669,7 @@
                 <TextView
                     android:id="@+id/monday19"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -679,7 +679,7 @@
                 <TextView
                     android:id="@+id/tuesday19"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -689,7 +689,7 @@
                 <TextView
                     android:id="@+id/wednesday19"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -699,7 +699,7 @@
                 <TextView
                     android:id="@+id/thursday19"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -709,7 +709,7 @@
                 <TextView
                     android:id="@+id/friday19"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -717,7 +717,7 @@
                     android:text="" />
 
                 <TextView
-                    android:layout_rowWeight="1"
+
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -726,7 +726,7 @@
                 <TextView
                     android:id="@+id/monday20"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -736,7 +736,7 @@
                 <TextView
                     android:id="@+id/tuesday20"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -746,7 +746,7 @@
                 <TextView
                     android:id="@+id/wednesday20"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -756,7 +756,7 @@
                 <TextView
                     android:id="@+id/thursday20"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"
@@ -766,7 +766,7 @@
                 <TextView
                     android:id="@+id/friday20"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="fill"
                     android:background="@drawable/cell"
                     android:gravity="center"

@@ -121,7 +121,7 @@
             <TextView
                 android:id="@+id/select_Subject"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="2"
@@ -162,7 +162,7 @@
             <TextView
                 android:id="@+id/except_Subject"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="2"
