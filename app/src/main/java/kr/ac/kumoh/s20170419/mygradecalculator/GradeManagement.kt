@@ -475,8 +475,8 @@ class GradeManagement : AppCompatActivity() {
             R.id.menu41 -> gs = "4-1"
             R.id.menu42 -> gs = "4-2"
         }
+        clear()
         getInfo(gs)
-        loadInfo(subjectList)
 
         return super.onOptionsItemSelected(item)
     }
