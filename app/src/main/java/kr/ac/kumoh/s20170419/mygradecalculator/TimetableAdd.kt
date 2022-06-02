@@ -34,19 +34,19 @@ class TimetableAdd : MainActivity() {
         dbmodel = ViewModelProvider(this@TimetableAdd).get(InnerDBViewmodel::class.java)
 
         val gradeData: Array<String> = resources.getStringArray(R.array.grade)
-        val gradeAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, gradeData)
+        val gradeAdapter = ArrayAdapter(this, R.layout.item_spinner, gradeData)
         binding.gradeSpinner.adapter = gradeAdapter
 
         val semesterData: Array<String> = resources.getStringArray(R.array.semester)
-        val semesterAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, semesterData)
+        val semesterAdapter = ArrayAdapter(this, R.layout.item_spinner, semesterData)
         binding.semesterSpinner.adapter = semesterAdapter
 
         val subjectData: Array<String> = resources.getStringArray(R.array.subject)
-        val subjectAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, subjectData)
+        val subjectAdapter = ArrayAdapter(this, R.layout.item_spinner, subjectData)
         binding.subjectSpinner.adapter = subjectAdapter
 
         val divisionData: Array<String> = resources.getStringArray(R.array.division)
-        val divisionAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, divisionData)
+        val divisionAdapter = ArrayAdapter(this, R.layout.item_spinner, divisionData)
         binding.divisionSpinner.adapter = divisionAdapter
 
         dbadapter = DatabaseAdapter(model) { subject -> adapterOnClick(subject) }
