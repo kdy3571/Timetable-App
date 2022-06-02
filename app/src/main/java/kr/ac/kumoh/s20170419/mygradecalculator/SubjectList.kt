@@ -1,18 +1,24 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_subject_list.*
+import kotlinx.android.synthetic.main.activity_timetable_add.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivitySubjectListBinding
 
 class SubjectList : TimetableGeneration() {
     lateinit var binding : ActivitySubjectListBinding
     private val model: ViewModel by viewModels()
     private lateinit var dbadapter: DatabaseAdapter
+    var searchType : String = "name"
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +33,37 @@ class SubjectList : TimetableGeneration() {
             itemAnimator = DefaultItemAnimator()
             adapter = this@SubjectList.dbadapter
         }
+        binding.Ridiogroup.check(R.id.RB1)
+        binding.Ridiogroup.setOnCheckedChangeListener { radioGroup, i ->
+            when(i) {
+                R.id.RB1 -> searchType = "name"
+                R.id.RB2 -> searchType = "code"
+                R.id.RB3 -> searchType = "professor"
+            }
+        }
 
         model.list.observe(this) {
             dbadapter.notifyDataSetChanged()
         }
+
+        searchView_subject_list.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                model.requestList(college, major, "전체", semester, "전체", "전체")
+                return false
+            }
+            override fun onQueryTextSubmit(query: String): Boolean {
+                model.search(query, searchType) // ""에는 searchType 입력
+                dbadapter.notifyDataSetChanged()
+                hideSoftInput()
+                return false
+            }
+        })
+    }
+
+    fun hideSoftInput() {
+        val inputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(searchView_subject_list.windowToken, 0)
     }
 
     private fun adapterOnClick(subjectData: ViewModel.Subject):Unit {

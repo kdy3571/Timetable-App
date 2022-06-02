@@ -60,25 +60,17 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp">
-        <EditText
-            android:id="@+id/et1"
-            android:layout_width="match_parent"
+
+        <SearchView
+            android:id="@+id/searchView_timetable_add"
+            android:layout_width="301dp"
             android:layout_height="wrap_content"
+            android:layout_weight="3"
             android:hint="검색어"
             android:imeOptions="actionDone"
             android:inputType="text"
-            app:layout_constraintRight_toLeftOf="@id/search_btn"
-            android:layout_weight="3">
-        </EditText>
-        <Button
-            android:id="@+id/search_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="검색"
-            app:layout_constraintLeft_toRightOf="@id/et1"
-            app:layout_constraintRight_toRightOf="parent">
-        </Button>
+            android:iconifiedByDefault="false"
+            app:iconifiedByDefault="false" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
