@@ -646,10 +646,6 @@ class GradeManagement : AppCompatActivity() {
                     }
                     creditSum += i.credit!!.toInt()
                 }
-                else {
-                    gpSum += 0.0
-                    creditSum += 0
-                }
 
                 if (i.subject == "전공") {
                     if (i.credit != "0") {
@@ -665,9 +661,6 @@ class GradeManagement : AppCompatActivity() {
                             "F" -> majorgpSum += 0.0 * i.credit!!.toInt()
                         }
                         majorCreditSum += i.credit!!.toInt()
-                    }
-                else {
-                        majorCreditSum += 0
                     }
                 }
             }

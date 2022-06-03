@@ -32,31 +32,34 @@ open class MainActivity : AppCompatActivity() {
         view = ActivityMainBinding.inflate(layoutInflater)
         setContentView(view.root)
 
-        val user = getSharedPreferences("user", Context.MODE_PRIVATE)
-        if (user.getString("grade", "") != "" && user.getString("semester", "") != "") {
-            gs = "${user.getString("grade", "")}-${user.getString("semester", "")}"
-        }
+        if(intent.hasExtra("gs"))
+            gs = intent.getStringExtra("gs")!!
 
         dbmodel = ViewModelProvider(this@MainActivity).get(InnerDBViewmodel::class.java)
-        view.button2.setOnClickListener {
+        view.manualButton.setOnClickListener {
+            val intent = Intent(this, TimetableAdd::class.java)
+            startActivity(intent)
+        }
+
+        view.autoButton.setOnClickListener {
             val intent = Intent(this, TimetableGeneration::class.java)
             intent.putExtra("gs", gs)
             startActivity(intent)
         }
 
-        view.button.setOnClickListener {
-            val intent = Intent(this, TimetableAdd::class.java)
-            startActivity(intent)
-        }
-
-        view.button3.setOnClickListener {
+        view.calculatorButton.setOnClickListener {
             val intent = Intent(this, GradeManagement::class.java)
             intent.putExtra("gs", gs)
             startActivity(intent)
         }
 
-        view.button4.setOnClickListener {
+        view.calenderButton.setOnClickListener {
             val intent = Intent(this, CalendarActivity::class.java)
+            startActivity(intent)
+        }
+
+        view.settingButton.setOnClickListener {
+            val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
 
