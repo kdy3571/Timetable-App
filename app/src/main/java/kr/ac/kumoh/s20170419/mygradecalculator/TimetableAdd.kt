@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
+import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.CompoundButton
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -16,9 +16,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_subject_list.*
 import kotlinx.android.synthetic.main.activity_timetable_add.*
-import kr.ac.kumoh.s20170419.mygradecalculator.TimetableGeneration.Companion.rest
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableAddBinding
-import java.util.ArrayList
+
 
 class TimetableAdd : MainActivity() {
     lateinit var binding: ActivityTimetableAddBinding
@@ -80,6 +79,30 @@ class TimetableAdd : MainActivity() {
 
         model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
 
+        gradeSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        })
+        semesterSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        })
+        subjectSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        })
+        divisionSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        })
         searchView_timetable_add.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 model.search(query, searchType) // ""에는 searchType 입력
@@ -93,6 +116,7 @@ class TimetableAdd : MainActivity() {
                 return false
             }
         })
+
     }
 
     fun hideSoftInput() {
