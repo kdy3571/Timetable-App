@@ -631,33 +631,44 @@ class GradeManagement : AppCompatActivity() {
         getInfo()
         if(db.isNotEmpty()) {
             for (i in db) {  // 전체 학점
-                when (i.gp) {
-                    "A+" -> gpSum += 4.5 * i.credit!!.toInt()
-                    "A" -> gpSum += 4.0 * i.credit!!.toInt()
-                    "B+" -> gpSum += 3.5 * i.credit!!.toInt()
-                    "B" -> gpSum += 3.0 * i.credit!!.toInt()
-                    "C+" -> gpSum += 2.5 * i.credit!!.toInt()
-                    "C" -> gpSum += 2.0 * i.credit!!.toInt()
-                    "D+" -> gpSum += 1.5 * i.credit!!.toInt()
-                    "D" -> gpSum += 1.0 * i.credit!!.toInt()
-                    "F" -> gpSum += 0.0 * i.credit!!.toInt()
-                    else -> null
+                if(i.credit != "") {
+                    when (i.gp) {
+                        "A+" -> gpSum += 4.5 * i.credit!!.toInt()
+                        "A" -> gpSum += 4.0 * i.credit!!.toInt()
+                        "B+" -> gpSum += 3.5 * i.credit!!.toInt()
+                        "B" -> gpSum += 3.0 * i.credit!!.toInt()
+                        "C+" -> gpSum += 2.5 * i.credit!!.toInt()
+                        "C" -> gpSum += 2.0 * i.credit!!.toInt()
+                        "D+" -> gpSum += 1.5 * i.credit!!.toInt()
+                        "D" -> gpSum += 1.0 * i.credit!!.toInt()
+                        "F" -> gpSum += 0.0 * i.credit!!.toInt()
+                        else -> null
+                    }
+                    creditSum += i.credit!!.toInt()
                 }
-                creditSum += i.credit!!.toInt()
+                else {
+                    gpSum += 0.0
+                    creditSum += 0
+                }
 
                 if (i.subject == "전공") {
-                    when (i.gp) {
-                        "A+" -> majorgpSum += 4.5 * i.credit!!.toInt()
-                        "A" -> majorgpSum += 4.0 * i.credit!!.toInt()
-                        "B+" -> majorgpSum += 3.5 * i.credit!!.toInt()
-                        "B" -> majorgpSum += 3.0 * i.credit!!.toInt()
-                        "C+" -> majorgpSum += 2.5 * i.credit!!.toInt()
-                        "C" -> majorgpSum += 2.0 * i.credit!!.toInt()
-                        "D+" -> majorgpSum += 1.5 * i.credit!!.toInt()
-                        "D" -> majorgpSum += 1.0 * i.credit!!.toInt()
-                        "F" -> majorgpSum += 0.0 * i.credit!!.toInt()
+                    if (i.credit != "0") {
+                        when (i.gp) {
+                            "A+" -> majorgpSum += 4.5 * i.credit!!.toInt()
+                            "A" -> majorgpSum += 4.0 * i.credit!!.toInt()
+                            "B+" -> majorgpSum += 3.5 * i.credit!!.toInt()
+                            "B" -> majorgpSum += 3.0 * i.credit!!.toInt()
+                            "C+" -> majorgpSum += 2.5 * i.credit!!.toInt()
+                            "C" -> majorgpSum += 2.0 * i.credit!!.toInt()
+                            "D+" -> majorgpSum += 1.5 * i.credit!!.toInt()
+                            "D" -> majorgpSum += 1.0 * i.credit!!.toInt()
+                            "F" -> majorgpSum += 0.0 * i.credit!!.toInt()
+                        }
+                        majorCreditSum += i.credit!!.toInt()
                     }
-                    majorCreditSum += i.credit!!.toInt()
+                else {
+                        majorCreditSum += 0
+                    }
                 }
             }
             binding.allCredits.text = creditSum.toString()
