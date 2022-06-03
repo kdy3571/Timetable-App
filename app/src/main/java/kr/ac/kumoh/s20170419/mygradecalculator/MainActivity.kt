@@ -186,7 +186,7 @@ open class MainActivity : AppCompatActivity() {
                     }
                     weekID = findViewById(resID)
                     weekID.text = i.name
-                    weekID.setBackgroundColor(Color.rgb(red, blue, green))
+                    weekID.setBackgroundColor(Color.rgb(i.red, i.blue, i.green))
                 }
             }
         }

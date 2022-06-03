@@ -80,16 +80,16 @@ class TimetableAdd : MainActivity() {
 
         model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
 
-
         searchView_timetable_add.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextChange(newText: String?): Boolean {
-                model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
-                return false
-            }
             override fun onQueryTextSubmit(query: String): Boolean {
                 model.search(query, searchType) // ""에는 searchType 입력
                 dbadapter.notifyDataSetChanged()
                 hideSoftInput()
+                Thread.sleep(100L)
+                return false
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
                 return false
             }
         })

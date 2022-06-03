@@ -18,7 +18,10 @@ data class weekstate(
     val division  : String?,
     val credit  : String?,
     val grade  : String?,
-    val semester  : String?
+    val semester  : String?,
+    val red : Int,
+    val blue : Int,
+    val green : Int
 )
 
 @Entity(tableName = "GP")

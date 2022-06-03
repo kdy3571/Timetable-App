@@ -7,15 +7,16 @@ import androidx.lifecycle.AndroidViewModel
 class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
     private val weekdb = ScheduleDatabase.getDatabase(context)!!.weekDao()
     private val gpdb = GPDatabase.getDatabase(context)!!.gpDao()
-//    var red: Int = 0
-//    var blue: Int = 0
-//    var green: Int = 0
-//    var redList: ArrayList<Int> = arrayListOf()
-//    var blueList: ArrayList<Int> = arrayListOf()
-//    var grrenList: ArrayList<Int> = arrayListOf()
+    var red: Int = 0
+    var blue: Int = 0
+    var green: Int = 0
+    var redList: ArrayList<Int> = arrayListOf()
+    var blueList: ArrayList<Int> = arrayListOf()
+    var grrenList: ArrayList<Int> = arrayListOf()
 
     fun connect(gs: String, subject: ViewModel.Subject) {
         val key = gs + subject.code
+        randomColor()
         val data = weekstate(
             key,
             gs,
@@ -29,7 +30,10 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
             subject.division,
             subject.credit,
             subject.grade,
-            subject.semester
+            subject.semester,
+            red,
+            blue,
+            green
         )
         weekdb.insert(data)
     }
@@ -85,5 +89,11 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
 
     fun update(db: gpstate) {
         gpdb.update(db)
+    }
+
+    fun randomColor() {
+        red = (Math.random() * 255).toInt()
+        blue = (Math.random() * 255).toInt()
+        green = (Math.random() * 255).toInt()
     }
 }
