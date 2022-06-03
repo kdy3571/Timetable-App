@@ -27,11 +27,12 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:padding="10dp"
                     android:text="전체 학점"
-                    android:textSize="20dp"
-                    android:layout_weight="1"
-                    android:gravity="center" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:padding="10dp"
@@ -53,7 +54,7 @@
                 android:layout_height="match_parent">
                 <TextView
                     android:layout_width="0dp"
-                    android:id="@+id/all_grade"
+                    android:id="@+id/all_gp"
                     android:text="0.0"
                     android:textColor="#ff00"
                     android:textSize="20dp"
@@ -71,7 +72,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:id="@+id/major_grade"
+                    android:id="@+id/major_gp"
                     android:text="0.0"
                     android:textColor="#ff00"
                     android:textSize="20dp"
@@ -88,7 +89,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:id="@+id/earned_credits"
+                    android:id="@+id/all_credits"
                     android:text="0"
                     android:textColor="#ff00"
                     android:textSize="20dp"
@@ -136,10 +137,9 @@
                     android:layout_marginRight="3dp"/>
 
                 <TextView
-                    android:id="@+id/current_allgrade"
+                    android:id="@+id/current_all_gp"
                     android:text="0.0"
-                    android:textColor="#FF0202"
-                    android:layout_marginRight="3dp"/>
+                    android:textColor="#FF0202"/>
                 <TextView
                     android:text="/4.5"
                     android:layout_marginRight="3dp"/>
@@ -148,13 +148,22 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="3dp"/>
                 <TextView
-                    android:id="@+id/current_majorgrade"
+                    android:id="@+id/current_major_gp"
                     android:text="0.0"
-                    android:textColor="#FF0202"
-                    android:layout_marginRight="3dp"/>
+                    android:textColor="#FF0202" />
                 <TextView
                     android:text="/4.5"
                     android:layout_marginRight="3dp"/>
+                <TextView
+                    android:text="전공 학점"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="3dp"/>
+                <TextView
+                    android:id="@+id/current_credits"
+                    android:text="0"
+                    android:textColor="#FF0202"
+                    android:layout_marginRight="3dp"/>
+
             </TableRow>
         </TableLayout>
 

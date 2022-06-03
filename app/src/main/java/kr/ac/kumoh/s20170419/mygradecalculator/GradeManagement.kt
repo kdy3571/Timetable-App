@@ -42,6 +42,12 @@ class GradeManagement : AppCompatActivity() {
         binding.gp11.adapter = gradeDataApter
         binding.gp12.adapter = gradeDataApter
 
+        if (intent.hasExtra("gs")) {
+            gs = intent.getStringExtra("gs")!!
+        }
+        clear()
+        getInfo(gs)
+
         var subjectListener = View.OnKeyListener { editText, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 when (editText.id) {
@@ -446,10 +452,114 @@ class GradeManagement : AppCompatActivity() {
         binding.majorCheck11.setOnCheckedChangeListener(checkListener)
         binding.majorCheck12.setOnCheckedChangeListener(checkListener)
 
-        if (intent.hasExtra("gs")) {
-            gs = intent.getStringExtra("gs")!!
+        var gpListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(gradePoint: AdapterView<*>, p0: View?, position: Int, p1: Long) {
+                if (subjectList.isNotEmpty()) {
+                    when (gradePoint.id) {
+                        R.id.gp1 -> {
+                            if (subjectList.isNotEmpty()) {
+                                subjectList[0].gp = binding.gp1.selectedItem.toString()
+                                update(subjectList[0])
+                            } else
+                                connect(gs, binding.subject1.text.toString(), binding.credit1.text.toString(), binding.gp1.selectedItem.toString(), binding.majorCheck1.isChecked)
+                        }
+                        R.id.gp2 -> {
+                            if (subjectList.size > 1) {
+                                subjectList[1].gp = binding.gp2.selectedItem.toString()
+                                update(subjectList[1])
+                            } else
+                                connect(gs, binding.subject2.text.toString(), binding.credit2.text.toString(), binding.gp2.selectedItem.toString(), binding.majorCheck2.isChecked)
+                        }
+                        R.id.gp3 -> {
+                            if (subjectList.size > 2) {
+                                subjectList[2].gp = binding.gp3.selectedItem.toString()
+                                update(subjectList[2])
+                            } else
+                                connect(gs, binding.subject3.text.toString(), binding.credit3.text.toString(), binding.gp3.selectedItem.toString(), binding.majorCheck3.isChecked)
+                        }
+                        R.id.gp4 -> {
+                            if (subjectList.size > 3) {
+                                subjectList[3].gp = binding.gp4.selectedItem.toString()
+                                update(subjectList[3])
+                            } else
+                                connect(gs, binding.subject4.text.toString(), binding.credit4.text.toString(), binding.gp4.selectedItem.toString(), binding.majorCheck4.isChecked)
+                        }
+                        R.id.gp5 -> {
+                            if (subjectList.size > 4) {
+                                subjectList[4].gp = binding.gp5.selectedItem.toString()
+                                update(subjectList[4])
+                            } else
+                                connect(gs, binding.subject5.text.toString(), binding.credit5.text.toString(), binding.gp5.selectedItem.toString(), binding.majorCheck5.isChecked)
+                        }
+                        R.id.gp6 -> {
+                            if (subjectList.size > 5) {
+                                subjectList[5].gp = binding.gp6.selectedItem.toString()
+                                update(subjectList[5])
+                            } else
+                                connect(gs, binding.subject6.text.toString(), binding.credit6.text.toString(), binding.gp6.selectedItem.toString(), binding.majorCheck6.isChecked)
+                        }
+                        R.id.gp7 -> {
+                            if (subjectList.size > 6) {
+                                subjectList[6].gp = binding.gp7.selectedItem.toString()
+                                update(subjectList[6])
+                            } else
+                                connect(gs, binding.subject7.text.toString(), binding.credit7.text.toString(), binding.gp7.selectedItem.toString(), binding.majorCheck7.isChecked)
+                        }
+                        R.id.gp8 -> {
+                            if (subjectList.size > 7) {
+                                subjectList[7].gp = binding.gp8.selectedItem.toString()
+                                update(subjectList[7])
+                            } else
+                                connect(gs, binding.subject8.text.toString(), binding.credit8.text.toString(), binding.gp8.selectedItem.toString(), binding.majorCheck8.isChecked)
+                        }
+                        R.id.gp9 -> {
+                            if (subjectList.size > 8) {
+                                subjectList[8].gp = binding.gp9.selectedItem.toString()
+                                update(subjectList[8])
+                            } else
+                                connect(gs, binding.subject9.text.toString(), binding.credit9.text.toString(), binding.gp9.selectedItem.toString(), binding.majorCheck9.isChecked)
+                        }
+                        R.id.gp10 -> {
+                            if (subjectList.size > 9) {
+                                subjectList[9].gp = binding.gp10.selectedItem.toString()
+                                update(subjectList[9])
+                            } else
+                                connect(gs, binding.subject10.text.toString(), binding.credit10.text.toString(), binding.gp10.selectedItem.toString(), binding.majorCheck10.isChecked)
+                        }
+                        R.id.gp11 -> {
+                            if (subjectList.size > 10) {
+                                subjectList[10].gp = binding.gp11.selectedItem.toString()
+                                update(subjectList[10])
+                            } else
+                                connect(gs, binding.subject11.text.toString(), binding.credit11.text.toString(), binding.gp11.selectedItem.toString(), binding.majorCheck11.isChecked)
+                        }
+                        R.id.gp12 -> {
+                            if (subjectList.size > 11) {
+                                subjectList[11].gp = binding.gp12.selectedItem.toString()
+                                update(subjectList[11])
+                            } else
+                                connect(gs, binding.subject12.text.toString(), binding.credit12.text.toString(), binding.gp12.selectedItem.toString(), binding.majorCheck12.isChecked)
+                        }
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
         }
-        getInfo(gs)
+        binding.gp1.onItemSelectedListener = gpListener
+        binding.gp2.onItemSelectedListener = gpListener
+        binding.gp3.onItemSelectedListener = gpListener
+        binding.gp4.onItemSelectedListener = gpListener
+        binding.gp5.onItemSelectedListener = gpListener
+        binding.gp6.onItemSelectedListener = gpListener
+        binding.gp7.onItemSelectedListener = gpListener
+        binding.gp8.onItemSelectedListener = gpListener
+        binding.gp9.onItemSelectedListener = gpListener
+        binding.gp10.onItemSelectedListener = gpListener
+        binding.gp11.onItemSelectedListener = gpListener
+        binding.gp12.onItemSelectedListener = gpListener
 
         binding.LoadTimetable.setOnClickListener {
             deleteDB(gs)    // DB에서 gs에 해당하는 data 삭제
@@ -531,6 +641,7 @@ class GradeManagement : AppCompatActivity() {
                     "D+" -> gpSum += 1.5 * i.credit!!.toInt()
                     "D" -> gpSum += 1.0 * i.credit!!.toInt()
                     "F" -> gpSum += 0.0 * i.credit!!.toInt()
+                    else -> null
                 }
                 creditSum += i.credit!!.toInt()
 
@@ -549,13 +660,13 @@ class GradeManagement : AppCompatActivity() {
                     majorCreditSum += i.credit!!.toInt()
                 }
             }
-            binding.earnedCredits.text = creditSum.toString()
+            binding.allCredits.text = creditSum.toString()
             if(creditSum != 0) {
-                binding.allGrade.text =
+                binding.allGp.text =
                     ((gpSum / creditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
             }
             if(majorCreditSum != 0) {
-                binding.majorGrade.text =
+                binding.majorGp.text =
                     ((majorgpSum / majorCreditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
             }
         }
@@ -594,15 +705,15 @@ class GradeManagement : AppCompatActivity() {
                     majorCreditSum += i.credit!!.toInt()
                 }
             }
-//            binding.earnedCredits.text = creditSum.toString()
-//            if(creditSum != 0) {
-//                binding.allGrade.text =
-//                    ((gpSum / creditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
-//            }
-//            if(majorCreditSum != 0) {
-//                binding.majorGrade.text =
-//                    ((majorgpSum / majorCreditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
-//            }
+            binding.currentCredits.text = creditSum.toString()
+            if(creditSum != 0) {
+                binding.currentAllGp.text =
+                    ((gpSum / creditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
+            }
+            if(majorCreditSum != 0) {
+                binding.currentMajorGp.text =
+                    ((majorgpSum / majorCreditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
+            }
         }
     }
 
@@ -655,6 +766,9 @@ class GradeManagement : AppCompatActivity() {
             gpID.setSelection(0)
             checkID.isChecked = false
         }
+        binding.currentAllGp.text = "0.0"
+        binding.currentMajorGp.text = "0.0"
+        binding.currentCredits.text = "0"
     }
 
     private fun connect(gs: String, name: String?, credit: String?, gp: String?, check: Boolean) {   // 새로 추가된 정보 Room에 저장
@@ -662,7 +776,7 @@ class GradeManagement : AppCompatActivity() {
             dbmodel.connect(gs, name, credit, gp, check)
         }).start()
         Thread.sleep(100L)
-        loadInfo(subjectList)
+        getInfo(gs)
     }
 
     private fun update(info: gpstate) { // 정보를 Room에 업뎃
