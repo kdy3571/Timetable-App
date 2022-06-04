@@ -20,9 +20,9 @@ open class MainActivity : AppCompatActivity() {
     private lateinit var view: ActivityMainBinding
     private lateinit var dbmodel: InnerDBViewmodel
     var alldb : List<weekstate> = arrayListOf()
-    var red: Int = 0
-    var blue: Int = 0
-    var green: Int = 0
+    private var red: Int = 0
+    private var blue: Int = 0
+    private var green: Int = 0
     companion object {
         lateinit var gs: String
     }
@@ -124,7 +124,7 @@ open class MainActivity : AppCompatActivity() {
         friday19.setOnClickListener{ delete(friday19)}
         friday20.setOnClickListener{ delete(friday20)}
 
-        timesplit()
+        timeSplit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -144,7 +144,7 @@ open class MainActivity : AppCompatActivity() {
             R.id.menu41 -> gs = "4-1"
             R.id.menu42 -> gs = "4-2"
         }
-        timesplit()
+        timeSplit()
 
         return super.onOptionsItemSelected(item)
     }
@@ -155,24 +155,30 @@ open class MainActivity : AppCompatActivity() {
             weekdata = Array(5) { kotlin.arrayOfNulls<String?>(11) }
             autoData = intent.getSerializableExtra("autoInfo") as ArrayList<ViewModel.Subject>
             autoTable(autoData)
-            timesplit()
+            timeSplit()
         }
         if (intent.hasExtra("manual")) {
-            timesplit()
+            timeSplit()
+        }
+
+        val user = getSharedPreferences("user", Context.MODE_PRIVATE)
+        if( user.getString("allGP", "") != "") {
+            view.GPA.text = user.getString("allGP", "")
+            view.allCredits.text = user.getString("allCredits", "")
         }
     }
 
-    fun randomColor() {
+    private fun randomColor() {
         red = (Math.random() * 255).toInt()
         blue = (Math.random() * 255).toInt()
         green = (Math.random() * 255).toInt()
     }
 
-    fun timesplit() {
+    private fun timeSplit() {
         var resID = 0
         lateinit var weekID: TextView
         resetTextView()
-        DBgetall()
+        DBGetAll()
         Thread.sleep(100L)
         if (alldb.isNotEmpty()) {
             for (i in alldb) {
@@ -202,7 +208,7 @@ open class MainActivity : AppCompatActivity() {
         Thread.sleep(100L)
     }
 
-    fun connect(subjectData: ArrayList<ViewModel.Subject>){
+    private fun connect(subjectData: ArrayList<ViewModel.Subject>){
         Thread(Runnable {
             for(i in 0 until subjectData.size){
                 dbmodel.connect(gs, subjectData[i])
@@ -210,20 +216,20 @@ open class MainActivity : AppCompatActivity() {
         }).start()
     }
 
-    fun DBgetall(){
+    private fun DBGetAll(){
         Thread(Runnable {
             alldb = dbmodel.getSubject(gs)
         }).start()
         Thread.sleep(100L)
     }
 
-    fun resetDatabase() {
+    private fun resetDatabase() {
         Thread(Runnable {
             dbmodel.resetDB(gs)
         }).start()
     }
 
-    fun resetTextView() {
+    private fun resetTextView() {
         var resID: Int
         lateinit var weekID: TextView
         for (i in weekdata.indices) {
@@ -256,8 +262,8 @@ open class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun delete(weekID : TextView){
-        DBgetall()
+    private fun delete(weekID : TextView){
+        DBGetAll()
         if (weekID.text != ""){
             for (i in 0 until alldb.size){
                 if( weekID.text == alldb[i].name ){
@@ -292,6 +298,6 @@ open class MainActivity : AppCompatActivity() {
         }).start()
         Thread.sleep(100L)
         resetTextView()
-        timesplit()
+        timeSplit()
     }
 }

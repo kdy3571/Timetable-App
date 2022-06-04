@@ -1,5 +1,6 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
+import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.Menu
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.activity_login.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityGradeManagementBinding
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -674,6 +676,13 @@ class GradeManagement : AppCompatActivity() {
                     ((majorgpSum / majorCreditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
             }
         }
+
+        val user = getSharedPreferences("user", Context.MODE_PRIVATE)
+        val editor = user.edit()
+        editor.putString("allGP", binding.allGp.text.toString())
+        editor.putString("majorGP", binding.majorGp.text.toString())
+        editor.putString("allCredits", binding.allCredits.text.toString())
+        editor.apply()
 
         if (subjectList.isNotEmpty()) {
             gpSum = 0.0

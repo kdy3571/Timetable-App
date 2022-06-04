@@ -28,25 +28,25 @@ class loginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val select_college_data: Array<String> = resources.getStringArray(R.array.college_select)
-        val select_college_data_apter =
-            ArrayAdapter(this, android.R.layout.simple_list_item_1, select_college_data)
-        view.collegeSelect.adapter = select_college_data_apter
+        val selectCollegeData: Array<String> = resources.getStringArray(R.array.college_select)
+        val selectCollegeDataApter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, selectCollegeData)
+        view.collegeSelect.adapter = selectCollegeDataApter
 
-        val select_major_data: Array<String> = resources.getStringArray(R.array.major_select)
-        val select_major_data_apter =
-            ArrayAdapter(this, android.R.layout.simple_list_item_1, select_major_data)
-        view.majorSelect.adapter = select_major_data_apter
+        val selectMajorData: Array<String> = resources.getStringArray(R.array.major_select)
+        val selectMajorDataApter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, selectMajorData)
+        view.majorSelect.adapter = selectMajorDataApter
 
-        val select_grade_data: Array<String> = resources.getStringArray(R.array.grade_select)
-        val select_grade_data_apter =
-            ArrayAdapter(this, android.R.layout.simple_list_item_1, select_grade_data)
-        view.gradeSelect.adapter = select_grade_data_apter
+        val selectGradeData: Array<String> = resources.getStringArray(R.array.grade_select)
+        val selectGradeDataApter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, selectGradeData)
+        view.gradeSelect.adapter = selectGradeDataApter
 
-        val select_semester_data: Array<String> = resources.getStringArray(R.array.semester_select)
-        val select_semester_data_apter =
-            ArrayAdapter(this, android.R.layout.simple_list_item_1, select_semester_data)
-        view.semesterSelect.adapter = select_semester_data_apter
+        val selectSemesterData: Array<String> = resources.getStringArray(R.array.semester_select)
+        val selectSemesterDataApter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, selectSemesterData)
+        view.semesterSelect.adapter = selectSemesterDataApter
 
         view.loginButton.setOnClickListener {
             editor.putString("college", college_select.selectedItem.toString())

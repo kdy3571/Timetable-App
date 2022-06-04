@@ -143,11 +143,12 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:id="@+id/GPA"
                         android:layout_width="0dp"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="(실제학점삽입)"
+                        android:text="0.0"
                         android:textColor="#EF0808"
                         android:textSize="20dp" />
 
@@ -160,11 +161,12 @@
 
 
                     <TextView
+                        android:id="@+id/all_credits"
                         android:layout_width="0dp"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="(실제학점삽입)"
+                        android:text="0"
                         android:textColor="#EF0808"
                         android:textSize="20dp" />
 
