@@ -6,12 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_auto_table.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
 import kotlin.collections.ArrayList
+import kotlin.concurrent.thread
 
 private var weekdata = Array(5) { kotlin.arrayOfNulls<String?>(11) }
 private var autoData = ArrayList<ViewModel.Subject>()
@@ -31,6 +35,7 @@ open class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         view = ActivityMainBinding.inflate(layoutInflater)
         setContentView(view.root)
+        showProgress(false)
 
         if(intent.hasExtra("gs"))
             gs = intent.getStringExtra("gs")!!
@@ -278,8 +283,13 @@ open class MainActivity : AppCompatActivity() {
                                     override fun onClicked(data: Int) {
                                         if (data == 1) {
                                             deleteSchedule(weekID)
-                                            finish()
-                                            startActivity(getIntent())
+                                            showProgress(true)
+                                            thread (start = true){
+                                                Thread.sleep(1000)
+                                                runOnUiThread {
+                                                    showProgress(false)
+                                                }
+                                            }
                                         } else if (data == 0)
                                             Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()
                                     }
@@ -299,5 +309,10 @@ open class MainActivity : AppCompatActivity() {
         Thread.sleep(100L)
         resetTextView()
         timeSplit()
+    }
+
+    fun showProgress(isShow:Boolean){
+        if (isShow) progressLayout.visibility = View.VISIBLE
+        else progressLayout.visibility = View.GONE
     }
 }
