@@ -28,7 +28,7 @@ open class MainActivity : AppCompatActivity() {
     private var blue: Int = 0
     private var green: Int = 0
     companion object {
-        lateinit var gs: String
+        var gs = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

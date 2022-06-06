@@ -80,6 +80,12 @@ class SubjectList : TimetableGeneration() {
                 dlg.dialog(subjectData.name, "추가")
             else {
                 loop@ for (i in subject) {
+                    if(i.name == subjectData.name) {
+                        dlg.dialog(i.name, "변경")
+                        removeSubject.add(i.name)
+                        break@loop
+                    }
+
                     val time = i.time.split(", ")
                     for (j in time) {
                         for (k in sTime) {
