@@ -3,6 +3,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.widget.*
@@ -60,6 +61,8 @@ open class TimetableGeneration : AppCompatActivity() {
             creditTemp = credit
             Log.d("credit", "credit: $credit")
         }
+        if(credit != 0)
+            gbinding.creditInput.setText(credit.toString())
 
         gbinding.geInput.setOnClickListener {
             ge = if (gbinding.geInput.text.toString() != "")
@@ -69,6 +72,8 @@ open class TimetableGeneration : AppCompatActivity() {
             geTemp = ge
             Log.d("ge", "ge: $ge")
         }
+        if(ge != 0)
+            gbinding.creditInput.setText(ge.toString())
 
         gbinding.selectButton.setOnClickListener {
             val intent = Intent(this, SubjectList::class.java)
@@ -157,6 +162,7 @@ open class TimetableGeneration : AppCompatActivity() {
             }
         }
     }
+
 
     override fun onBackPressed(){
         startActivity(Intent(this, MainActivity::class.java))
