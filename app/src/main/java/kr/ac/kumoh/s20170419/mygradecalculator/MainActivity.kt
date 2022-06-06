@@ -141,9 +141,9 @@ open class MainActivity : AppCompatActivity() {
 
         if(intent.hasExtra("gs")) {
             gs = intent.getStringExtra("gs")!!
-            view.gradeSemester.text = "${gs.split("-")[0]}학년 ${gs.split("-")[1]}학기"
             timeSplit()
         }
+        view.gradeSemester.text = "${gs.split("-")[0]}학년 ${gs.split("-")[1]}학기"
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
