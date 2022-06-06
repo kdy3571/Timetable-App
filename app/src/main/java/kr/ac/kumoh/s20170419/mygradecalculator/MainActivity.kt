@@ -40,7 +40,7 @@ open class MainActivity : AppCompatActivity() {
             val mintent = Intent(this, TimetableAdd::class.java)
             startActivity(mintent)
             overridePendingTransition(R.anim.up, R.anim.hold)
-            Thread.sleep(1000L)
+            Thread.sleep(100L)
             finish()
         }
 
@@ -49,7 +49,7 @@ open class MainActivity : AppCompatActivity() {
             intent.putExtra("gs", gs)
             startActivity(intent)
             overridePendingTransition(R.anim.up, R.anim.hold)
-            Thread.sleep(1000L)
+            Thread.sleep(100L)
             finish()
         }
 
@@ -58,7 +58,7 @@ open class MainActivity : AppCompatActivity() {
             intent.putExtra("gs", gs)
             startActivity(intent)
             overridePendingTransition(R.anim.up, R.anim.hold)
-            Thread.sleep(1000L)
+            Thread.sleep(100L)
             finish()
         }
 
@@ -66,7 +66,7 @@ open class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CalendarActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.up, R.anim.hold)
-            Thread.sleep(1000L)
+            Thread.sleep(100L)
             finish()
         }
 
@@ -74,7 +74,7 @@ open class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.up, R.anim.hold)
-            Thread.sleep(1000L)
+            Thread.sleep(100L)
             finish()
         }
 
