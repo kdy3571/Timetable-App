@@ -803,7 +803,7 @@ class GradeManagement : AppCompatActivity() {
         getInfo(gs)
     }
 
-    fun deleteDB(gs: String) { // gs에 해당하는 과목 삭제
+    private fun deleteDB(gs: String) { // gs에 해당하는 과목 삭제
         Thread(Runnable {
             dbmodel.delInfo(gs)
         }).start()
