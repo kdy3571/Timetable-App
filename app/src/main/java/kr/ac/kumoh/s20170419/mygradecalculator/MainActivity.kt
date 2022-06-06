@@ -37,12 +37,6 @@ open class MainActivity : AppCompatActivity() {
         setContentView(view.root)
         showProgress(false)
 
-
-        if(intent.hasExtra("gs")) {
-            gs = intent.getStringExtra("gs")!!
-            view.gradeSemester.text = "${gs.split("-")[0]}학년 ${gs.split("-")[1]}학기"
-        }
-
         dbmodel = ViewModelProvider(this@MainActivity).get(InnerDBViewmodel::class.java)
         view.manualButton.setOnClickListener {
             val intent = Intent(this, TimetableAdd::class.java)
@@ -132,7 +126,11 @@ open class MainActivity : AppCompatActivity() {
         friday19.setOnClickListener{ delete(friday19)}
         friday20.setOnClickListener{ delete(friday20)}
 
-        timeSplit()
+        if(intent.hasExtra("gs")) {
+            gs = intent.getStringExtra("gs")!!
+            view.gradeSemester.text = "${gs.split("-")[0]}학년 ${gs.split("-")[1]}학기"
+            timeSplit()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
