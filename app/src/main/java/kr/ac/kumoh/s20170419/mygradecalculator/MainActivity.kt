@@ -37,8 +37,8 @@ open class MainActivity : AppCompatActivity() {
 
         dbmodel = ViewModelProvider(this@MainActivity).get(InnerDBViewmodel::class.java)
         view.manualButton.setOnClickListener {
-            val mintent = Intent(this, TimetableAdd::class.java)
-            startActivity(mintent)
+            val intent = Intent(this, TimetableAdd::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.up, R.anim.hold)
             Thread.sleep(100L)
             finish()
@@ -144,6 +144,7 @@ open class MainActivity : AppCompatActivity() {
             timeSplit()
         }
         view.gradeSemester.text = "${gs.split("-")[0]}학년 ${gs.split("-")[1]}학기"
+        timeSplit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
