@@ -37,8 +37,11 @@ open class MainActivity : AppCompatActivity() {
         setContentView(view.root)
         showProgress(false)
 
-        if(intent.hasExtra("gs"))
+
+        if(intent.hasExtra("gs")) {
             gs = intent.getStringExtra("gs")!!
+            view.gradeSemester.text = "${gs.split("-")[0]}학년 ${gs.split("-")[1]}학기"
+        }
 
         dbmodel = ViewModelProvider(this@MainActivity).get(InnerDBViewmodel::class.java)
         view.manualButton.setOnClickListener {
@@ -149,6 +152,7 @@ open class MainActivity : AppCompatActivity() {
             R.id.menu41 -> gs = "4-1"
             R.id.menu42 -> gs = "4-2"
         }
+        view.gradeSemester.text = "${gs.split("-")[0]}학년 ${gs.split("-")[1]}학기"
         timeSplit()
 
         return super.onOptionsItemSelected(item)

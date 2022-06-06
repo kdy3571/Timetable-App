@@ -22,7 +22,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView
+                        android:id="@+id/grade_semester"
+                        android:text="1학년 1학기"
+                        android:textSize="15dp"/>
+                    <TextView
                         android:text="시간표"
+                        android:layout_marginStart="5dp"
                         android:textSize="15dp"/>
                     <ImageButton
                         android:id="@+id/manual_button"
