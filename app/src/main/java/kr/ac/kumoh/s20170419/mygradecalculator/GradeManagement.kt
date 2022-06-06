@@ -46,8 +46,8 @@ class GradeManagement : AppCompatActivity() {
 
         if (intent.hasExtra("gs")) {
             gs = intent.getStringExtra("gs")!!
+            binding.gradeSemester.text = "${gs.split("-")[0]}학년 ${gs.split("-")[1]}학기"
         }
-        binding.gradeSemester.text = "${gs.split("-")[0]}학년 ${gs.split("-")[1]}학기"
         clear()
         getInfo(gs)
 
