@@ -1,6 +1,7 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -115,7 +116,10 @@ class CalendarActivity : AppCompatActivity() {
         }
     }
 
-
+    override fun onBackPressed(){
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
     // 달력 내용 제거
     @SuppressLint("WrongConstant")
     fun removeDiary(readDay: String?) {

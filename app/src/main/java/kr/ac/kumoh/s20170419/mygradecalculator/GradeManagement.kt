@@ -1,6 +1,7 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.Menu
@@ -808,5 +809,9 @@ class GradeManagement : AppCompatActivity() {
         }).start()
         Thread.sleep(100L)
         clear()
+    }
+    override fun onBackPressed(){
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

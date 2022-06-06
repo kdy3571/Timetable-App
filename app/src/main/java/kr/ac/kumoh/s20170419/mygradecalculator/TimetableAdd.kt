@@ -118,7 +118,11 @@ class TimetableAdd : MainActivity() {
                 return false
             }
         })
+    }
 
+    override fun onBackPressed(){
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     fun hideSoftInput() {

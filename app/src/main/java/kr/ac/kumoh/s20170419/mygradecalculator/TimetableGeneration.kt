@@ -158,6 +158,11 @@ open class TimetableGeneration : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed(){
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
+
     private fun generation() {
         model.requestList(college, major, "전체", semester, "전체", "전체")
         loop@ for(i in 0..1000) {
