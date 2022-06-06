@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_subject_list.*
 import kotlinx.android.synthetic.main.activity_timetable_add.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableAddBinding
+import kotlin.concurrent.thread
 
 
 class TimetableAdd : MainActivity() {
@@ -27,6 +28,7 @@ class TimetableAdd : MainActivity() {
     var searchType : String = "name"
     var college = ""
     var major = ""
+    val mainActivity = MainActivity
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -127,17 +129,17 @@ class TimetableAdd : MainActivity() {
 
     private fun adapterOnClick(subjectData: ViewModel.Subject): Unit {
         val dlg = Dialog(this)
-        val mIntent = Intent(this, MainActivity::class.java)
+        val Intent = Intent(this, MainActivity::class.java)
         dlg.dialog(subjectData.name, "추가")
         dlg.setOnClickedListener(object :
             Dialog.ButtonClickListener {
             override fun onClicked(data: Int) {
                 if (data == 1) {
                     connect(subjectData)
-                    mIntent.putExtra("manual", 1)
-                    mIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    Thread.sleep(100L)
+                    Intent.putExtra("manual", 1)
                     finish()
-                    startActivity(mIntent)
+                    startActivity(Intent)
                 } else if (data == 0)
                     Toast.makeText(application, "취소하였습니다.", Toast.LENGTH_LONG).show()
             }

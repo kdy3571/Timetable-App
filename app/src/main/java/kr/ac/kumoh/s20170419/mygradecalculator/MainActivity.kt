@@ -2,19 +2,17 @@ package kr.ac.kumoh.s20170419.mygradecalculator
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_auto_table.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityMainBinding
-import kotlin.collections.ArrayList
 import kotlin.concurrent.thread
 
 private var weekdata = Array(5) { kotlin.arrayOfNulls<String?>(11) }
@@ -39,30 +37,45 @@ open class MainActivity : AppCompatActivity() {
 
         dbmodel = ViewModelProvider(this@MainActivity).get(InnerDBViewmodel::class.java)
         view.manualButton.setOnClickListener {
-            val intent = Intent(this, TimetableAdd::class.java)
-            startActivity(intent)
+            val mintent = Intent(this, TimetableAdd::class.java)
+            startActivity(mintent)
+            overridePendingTransition(R.anim.up, R.anim.hold)
+            Thread.sleep(1000L)
+            finish()
         }
 
         view.autoButton.setOnClickListener {
             val intent = Intent(this, TimetableGeneration::class.java)
             intent.putExtra("gs", gs)
             startActivity(intent)
+            overridePendingTransition(R.anim.up, R.anim.hold)
+            Thread.sleep(1000L)
+            finish()
         }
 
         view.calculatorButton.setOnClickListener {
             val intent = Intent(this, GradeManagement::class.java)
             intent.putExtra("gs", gs)
             startActivity(intent)
+            overridePendingTransition(R.anim.up, R.anim.hold)
+            Thread.sleep(1000L)
+            finish()
         }
 
         view.calenderButton.setOnClickListener {
             val intent = Intent(this, CalendarActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.up, R.anim.hold)
+            Thread.sleep(1000L)
+            finish()
         }
 
         view.settingButton.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.up, R.anim.hold)
+            Thread.sleep(1000L)
+            finish()
         }
 
         monday9.setOnClickListener{ delete(monday9)}
@@ -317,4 +330,5 @@ open class MainActivity : AppCompatActivity() {
         if (isShow) progressLayout.visibility = View.VISIBLE
         else progressLayout.visibility = View.GONE
     }
+
 }
