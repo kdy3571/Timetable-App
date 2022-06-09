@@ -11,7 +11,6 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_subject_list.*
-import kotlinx.android.synthetic.main.activity_timetable_add.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivitySubjectListBinding
 
 class SubjectList : TimetableGeneration() {
@@ -34,7 +33,7 @@ class SubjectList : TimetableGeneration() {
             adapter = this@SubjectList.dbadapter
         }
         binding.Ridiogroup.check(R.id.RB1)
-        binding.Ridiogroup.setOnCheckedChangeListener { radioGroup, i ->
+        binding.Ridiogroup.setOnCheckedChangeListener { _, i ->
             when(i) {
                 R.id.RB1 -> searchType = "name"
                 R.id.RB2 -> searchType = "code"
@@ -55,6 +54,7 @@ class SubjectList : TimetableGeneration() {
                 model.search(query, searchType) // ""에는 searchType 입력
                 dbadapter.notifyDataSetChanged()
                 hideSoftInput()
+                Thread.sleep(100L)
                 return false
             }
         })

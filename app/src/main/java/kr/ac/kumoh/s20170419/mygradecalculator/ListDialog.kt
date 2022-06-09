@@ -15,7 +15,7 @@ class ListDialog(context: Context): AppCompatActivity() {
     private val dlg = Dialog(context)   //부모 액티비티의 context 가 들어감
     private lateinit var textView : TextView
     private lateinit var btndelete : Button
-    fun dialog(weekdata:weekstate, type: String){
+    fun dialog(weekData:WeekState, type: String){
         dlg.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dlg.setContentView(R.layout.dialog_layout_list)
         dlg.window?.setLayout(
@@ -27,11 +27,11 @@ class ListDialog(context: Context): AppCompatActivity() {
         if (type == "리스트"){
             dlg.setContentView(R.layout.dialog_layout_list)
             textView = dlg.findViewById(R.id.subjectname)
-            textView.text = weekdata.name
+            textView.text = weekData.name
             textView = dlg.findViewById(R.id.professor)
-            textView.text = weekdata.professor
+            textView.text = weekData.professor
             textView = dlg.findViewById(R.id.room)
-            textView.text = weekdata.room
+            textView.text = weekData.room
             btndelete = dlg.findViewById(R.id.delete_button)
         }
 
@@ -39,7 +39,6 @@ class ListDialog(context: Context): AppCompatActivity() {
             onClickedListener.onClicked("리스트")
             dlg.dismiss()
         }
-
         dlg.show()
     }
     interface ButtonClickListener {

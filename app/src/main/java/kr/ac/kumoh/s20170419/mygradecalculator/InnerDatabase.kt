@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.*
 
 @Entity(tableName = "Schedule")
-data class weekstate(
+data class WeekState(
     @PrimaryKey()
     val key: String,
     val gs: String?,
@@ -25,7 +25,7 @@ data class weekstate(
 )
 
 @Entity(tableName = "GP")
-data class gpstate(
+data class GPState(
     @PrimaryKey(autoGenerate = true)
     val key : Int,
     val gs : String?,
@@ -35,19 +35,13 @@ data class gpstate(
     var gp: String?
 )
 
-//data class weekcolor(
-//    val red : Int,
-//    val blue : Int,
-//    val green : Int
-//)
-
 @Dao
-interface weekDao {
+interface WeekDao {
     @Query("SELECT * FROM schedule")
-    fun getAll() : List<weekstate>
+    fun getAll() : List<WeekState>
 
     @Query("SELECT * FROM schedule WHERE gs = :gs")
-    fun getSubject(gs: String) : List<weekstate>
+    fun getSubject(gs: String) : List<WeekState>
 
     @Query("SELECT code FROM schedule")
     fun getCODE() : List<String>
@@ -58,42 +52,36 @@ interface weekDao {
     @Query("DELETE FROM schedule where gs = :gs")
     fun delete(gs: String)
 
-
     @Query("DELETE FROM schedule WHERE name = :name AND gs = :gs")
     fun deletename(name: String?, gs: String?)
 
-//    @Query("SELECT red, blue, green FROM schedule")
-//    fun getCOLOR() : MutableList<weekcolor>
-
     @Insert
-    fun insert(vararg weekstate: weekstate)
+    fun insert(vararg weekstate: WeekState)
 }
 
 @Dao
-interface gpDao {
+interface GPDao {
     @Query("SELECT * FROM GP WHERE gs = :gs")
-    fun getInfo(gs: String) : List<gpstate>
+    fun getInfo(gs: String) : List<GPState>
 
     @Query("DELETE FROM GP where gs = :gs")
     fun delete(gs: String)
 
     @Query("SELECT * FROM GP")
-    fun getAll() : List<gpstate>
+    fun getAll() : List<GPState>
 
     @Update
-    fun update(vararg gpastate: gpstate)
+    fun update(vararg GPAState: GPState)
 
     @Insert
-    fun insert(vararg gpastate: gpstate)
+    fun insert(vararg GPAState: GPState)
 }
 
-@Database(entities = [weekstate::class], version = 1, exportSchema = false)
+@Database(entities = [WeekState::class], version = 1, exportSchema = false)
 abstract class ScheduleDatabase : RoomDatabase() {
-    abstract fun weekDao(): weekDao
-
+    abstract fun weekDao(): WeekDao
     companion object {
         private var database: ScheduleDatabase? = null
-
         fun getDatabase(context: Context): ScheduleDatabase? {
             if (database == null) {
                 database = Room.databaseBuilder(
@@ -107,13 +95,11 @@ abstract class ScheduleDatabase : RoomDatabase() {
     }
 }
 
-@Database(entities = [gpstate::class], version = 1, exportSchema = false)
+@Database(entities = [GPState::class], version = 1, exportSchema = false)
 abstract class GPDatabase : RoomDatabase() {
-    abstract fun gpDao(): gpDao
-
+    abstract fun gpDao(): GPDao
     companion object {
         private var database: GPDatabase? = null
-
         fun getDatabase(context: Context): GPDatabase? {
             if (database == null) {
                 database = Room.databaseBuilder(

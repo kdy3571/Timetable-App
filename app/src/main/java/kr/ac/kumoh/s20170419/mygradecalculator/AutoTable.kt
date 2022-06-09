@@ -1,17 +1,16 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityAutoTableBinding
 import java.util.ArrayList
 
-class autoTable : AppCompatActivity() {
+class AutoTable : AppCompatActivity() {
     private lateinit var binding: ActivityAutoTableBinding
-    var weekdata =  Array(5) { arrayOfNulls<String?>(11) }
-    var subjectInfo = ArrayList<ViewModel.Subject>()
+    private var weekdata =  Array(5) { arrayOfNulls<String?>(11) }
+    private var subjectInfo = ArrayList<ViewModel.Subject>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +40,15 @@ class autoTable : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed(){
+        val intent = Intent(this, TimetableGeneration::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        finishAffinity()
+        startActivity(intent)
+    }
 
-    fun setting() {
+
+    private fun setting() {
         var resID: Int
         lateinit var weekID: TextView
         for (i in weekdata.indices) {
@@ -69,11 +75,8 @@ class autoTable : AppCompatActivity() {
                         weekID = findViewById(resID)
                     }
                 }
-                val range = 1..255
                 weekID.text = weekdata[i][j] ?: ""
-                if (weekdata[i][j] != null)
-                    //weekID.setBackgroundColor(Color.rgb(range.random(), range.random(), range.random()))
-                else
+                if (weekdata[i][j] == null)
                     weekID.setBackgroundResource(R.drawable.cell)
             }
         }

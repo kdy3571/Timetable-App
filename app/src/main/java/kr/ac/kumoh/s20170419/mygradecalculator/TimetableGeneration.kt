@@ -3,9 +3,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.text.Editable
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
@@ -59,7 +57,6 @@ open class TimetableGeneration : AppCompatActivity() {
             else
                 0
             creditTemp = credit
-            Log.d("credit", "credit: $credit")
         }
         if(credit != 0)
             gbinding.creditInput.setText(credit.toString())
@@ -70,7 +67,6 @@ open class TimetableGeneration : AppCompatActivity() {
             else
                 0
             geTemp = ge
-            Log.d("ge", "ge: $ge")
         }
         if(ge != 0)
             gbinding.creditInput.setText(ge.toString())
@@ -98,7 +94,6 @@ open class TimetableGeneration : AppCompatActivity() {
                 "제외" -> {
                     exceptSubject =
                         intent.getSerializableExtra("data") as ArrayList<ViewModel.Subject>
-                    Log.d("제외과목", exceptSubject.toString())
                 }
             }
         }
@@ -172,8 +167,6 @@ open class TimetableGeneration : AppCompatActivity() {
     private fun generation() {
         model.requestList(college, major, "전체", semester, "전체", "전체")
         loop@ for(i in 0..1000) {
-            Log.d("선택과목", selectSubject.toString())
-            Log.d("제외과목", exceptSubject.toString())
             if (credit == 0) {
                 Toast.makeText(this@TimetableGeneration, "학점을 입력해주세요.", Toast.LENGTH_SHORT)
                     .show()
@@ -191,10 +184,7 @@ open class TimetableGeneration : AppCompatActivity() {
                         var creditCheck = 0
                         for (i in subjectInfo)
                             creditCheck += i.credit.toInt()
-                        Log.d("timetable", timeTable.contentDeepToString())
-                        Log.d("과목정보", subjectInfo.toString())
-                        Log.d("학점", creditCheck.toString())
-                        val tableIntent = Intent(this, autoTable::class.java)
+                        val tableIntent = Intent(this, AutoTable::class.java)
                         tableIntent.putExtra("timetable", timeTable)
                         tableIntent.putExtra("info", subjectInfo)
                         startActivity(tableIntent)
@@ -219,7 +209,7 @@ open class TimetableGeneration : AppCompatActivity() {
         exceptSubjectTemp = exceptSubject
 
         var slist = Array(5) { ArrayList<ViewModel.Subject>() }
-        slist[0] = model.getR_subject()
+        slist[0] = model.getSubject()
 
         for (i in 0..4)
             if (i != grade.toInt())

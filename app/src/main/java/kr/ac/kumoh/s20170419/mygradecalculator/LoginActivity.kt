@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_login.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityLoginBinding
 
-class loginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var view: ActivityLoginBinding
 

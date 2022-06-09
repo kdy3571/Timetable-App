@@ -1,7 +1,6 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.app.Application
-import android.hardware.Camera
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -17,8 +16,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         const val QUEUE_TAG = "VolleyRequest"
         private var R_subject = ArrayList<Subject>()
     }
-
-    private lateinit var mQueue: RequestQueue
+    private var mQueue: RequestQueue
 
     data class Subject(
         val college: String,
@@ -35,8 +33,6 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     ): Serializable
 
     val list = MutableLiveData<ArrayList<Subject>>()
-    val filteredList = MutableLiveData<ArrayList<Subject>>()
-
     init {
         list.value = R_subject
         mQueue = VolleyRequest.getInstance(application).requestQueue
@@ -67,22 +63,11 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         mQueue.cancelAll(QUEUE_TAG)
     }
 
-    fun getFilter(name: String): MutableLiveData<ArrayList<Subject>> {
-        if (name == "")
-            filteredList.value = list.value
-        else {
-            filteredList.value = list.value?.filter {
-                it.name.isNotEmpty() && it.name == name
-            } as ArrayList<Subject>?
-        }
-        return filteredList
-    }
-
-    fun getR_subject(): ArrayList<Subject> {
+    fun getSubject(): ArrayList<Subject> {
         return R_subject
     }
 
-    fun getR_subject(i: Int) = R_subject[i]
+    fun getSubject(i: Int) = R_subject[i]
     fun getSize() = R_subject.size
     private fun parseSubjectJSON(items: JSONArray, College: String, Major: String, Grade: String, Semester: String, Subject: String, Division: String) {
         for (i in 0 until items.length()) {

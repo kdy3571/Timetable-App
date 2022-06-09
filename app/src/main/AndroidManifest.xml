@@ -21,7 +21,7 @@
             android:name=".CalendarActivity"
             android:exported="false" />
         <activity
-            android:name=".autoTable"
+            android:name=".AutoTable"
             android:exported="false" />
         <activity
             android:name=".SubjectList"
@@ -39,7 +39,7 @@
             android:name=".TimetableGeneration"
             android:exported="false" />
         <activity
-            android:name=".loginActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

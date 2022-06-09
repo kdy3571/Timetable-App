@@ -1,23 +1,19 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 
-class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
-    private val weekdb = ScheduleDatabase.getDatabase(context)!!.weekDao()
-    private val gpdb = GPDatabase.getDatabase(context)!!.gpDao()
+class InnerDBViewModel(context: Application) : AndroidViewModel(context) {
+    private val weekDB = ScheduleDatabase.getDatabase(context)!!.weekDao()
+    private val gpDB = GPDatabase.getDatabase(context)!!.gpDao()
     var red: Int = 0
     var blue: Int = 0
     var green: Int = 0
-    var redList: ArrayList<Int> = arrayListOf()
-    var blueList: ArrayList<Int> = arrayListOf()
-    var grrenList: ArrayList<Int> = arrayListOf()
 
     fun connect(gs: String, subject: ViewModel.Subject) {
         val key = gs + subject.code
         randomColor()
-        val data = weekstate(
+        val data = WeekState(
             key,
             gs,
             subject.college,
@@ -35,11 +31,11 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
             blue,
             green
         )
-        weekdb.insert(data)
+        weekDB.insert(data)
     }
 
-    fun connect(db: weekstate) {
-        val data = gpstate(
+    fun connect(db: WeekState) {
+        val data = GPState(
             0,
             db.gs,
             db.subject,
@@ -47,12 +43,12 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
             db.credit,
             "A+"
         )
-        gpdb.insert(data)
+        gpDB.insert(data)
     }
 
     fun connect(gs: String, name: String?, credit: String?, gp: String?, check: Boolean) {
         val subject = if (check) "전공" else null
-        val data = gpstate(
+        val data = GPState(
             0,
             gs,
             subject,
@@ -60,38 +56,38 @@ class InnerDBViewmodel(context: Application) : AndroidViewModel(context) {
             credit,
             gp
         )
-        gpdb.insert(data)
+        gpDB.insert(data)
     }
 
-    fun getInfo(): List<gpstate> {
-        return gpdb.getAll()
+    fun getInfo(): List<GPState> {
+        return gpDB.getAll()
     }
 
-    fun getInfo(gs: String): List<gpstate> {
-        return gpdb.getInfo(gs)
+    fun getInfo(gs: String): List<GPState> {
+        return gpDB.getInfo(gs)
     }
 
     fun delInfo(gs: String) {
-        gpdb.delete(gs)
+        gpDB.delete(gs)
     }
 
-    fun getSubject(gs: String): List<weekstate> {
-        return weekdb.getSubject(gs)
+    fun getSubject(gs: String): List<WeekState> {
+        return weekDB.getSubject(gs)
     }
 
     fun resetDB(gs: String){
-        weekdb.delete(gs)
+        weekDB.delete(gs)
     }
 
     fun deleteDB(name : String?, gs: String?){
-        weekdb.deletename(name, gs)
+        weekDB.deletename(name, gs)
     }
 
-    fun update(db: gpstate) {
-        gpdb.update(db)
+    fun update(db: GPState) {
+        gpDB.update(db)
     }
 
-    fun randomColor() {
+    private fun randomColor() {
         red = (Math.random() * 255).toInt()
         blue = (Math.random() * 255).toInt()
         green = (Math.random() * 255).toInt()

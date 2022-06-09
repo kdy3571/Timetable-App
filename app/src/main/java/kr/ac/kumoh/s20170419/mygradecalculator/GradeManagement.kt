@@ -1,5 +1,6 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +11,6 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.activity_login.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityGradeManagementBinding
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -18,15 +18,16 @@ import kotlin.math.roundToInt
 
 class GradeManagement : AppCompatActivity() {
     private lateinit var binding: ActivityGradeManagementBinding
-    private lateinit var dbmodel: InnerDBViewmodel
-    private var subjectList: ArrayList<gpstate> = arrayListOf()
-    private var db: ArrayList<gpstate> = arrayListOf()
+    private lateinit var dbmodel: InnerDBViewModel
+    private var subjectList: ArrayList<GPState> = arrayListOf()
+    private var db: ArrayList<GPState> = arrayListOf()
     private var gs = ""
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGradeManagementBinding.inflate(layoutInflater)
-        dbmodel = ViewModelProvider(this@GradeManagement).get(InnerDBViewmodel::class.java)
+        dbmodel = ViewModelProvider(this@GradeManagement).get(InnerDBViewModel::class.java)
         setContentView(binding.root)
 
         val gradeData: Array<String> = resources.getStringArray(R.array.subject_grade)
@@ -52,7 +53,7 @@ class GradeManagement : AppCompatActivity() {
         clear()
         getInfo(gs)
 
-        var subjectListener = View.OnKeyListener { editText, keyCode, event ->
+        val subjectListener = View.OnKeyListener { editText, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 when (editText.id) {
                     R.id.subject1 -> {
@@ -158,7 +159,7 @@ class GradeManagement : AppCompatActivity() {
         binding.subject11.setOnKeyListener(subjectListener)
         binding.subject12.setOnKeyListener(subjectListener)
 
-        var creditListener = View.OnKeyListener { editText, keyCode, event ->
+        val creditListener = View.OnKeyListener { editText, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 when (editText.id) {
                     R.id.credit1 -> {
@@ -264,7 +265,7 @@ class GradeManagement : AppCompatActivity() {
         binding.credit11.setOnKeyListener(creditListener)
         binding.credit12.setOnKeyListener(creditListener)
 
-        var checkListener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+        val checkListener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             if (subjectList.isNotEmpty()) {
                 if (isChecked) {
                     when (buttonView.id) {
@@ -456,7 +457,7 @@ class GradeManagement : AppCompatActivity() {
         binding.majorCheck11.setOnCheckedChangeListener(checkListener)
         binding.majorCheck12.setOnCheckedChangeListener(checkListener)
 
-        var gpListener = object: AdapterView.OnItemSelectedListener {
+        val gpListener = object: AdapterView.OnItemSelectedListener {
             override fun onItemSelected(gradePoint: AdapterView<*>, p0: View?, position: Int, p1: Long) {
                 if (subjectList.isNotEmpty()) {
                     when (gradePoint.id) {
@@ -603,7 +604,7 @@ class GradeManagement : AppCompatActivity() {
         Thread.sleep(100L)
     }
 
-    fun connect(db: List<weekstate>){   // 불러온 과목정보를 db에 저장
+    fun connect(db: List<WeekState>){   // 불러온 과목정보를 db에 저장
         Thread(Runnable {
             for(element in db){
                 dbmodel.connect(element)
@@ -614,7 +615,7 @@ class GradeManagement : AppCompatActivity() {
 
     private fun getInfo(gs: String) { // 저장된 과목정보 불러오기
         Thread(Runnable {
-            subjectList = dbmodel.getInfo(gs) as ArrayList<gpstate>
+            subjectList = dbmodel.getInfo(gs) as ArrayList<GPState>
         }).start()
         Thread.sleep(100L)
         loadInfo(subjectList)
@@ -622,7 +623,7 @@ class GradeManagement : AppCompatActivity() {
 
     private fun getInfo() { // 모든 저장된 과목정보 불러오기
         Thread(Runnable {
-            db = dbmodel.getInfo() as ArrayList<gpstate>
+            db = dbmodel.getInfo() as ArrayList<GPState>
         }).start()
         Thread.sleep(100L)
     }
@@ -733,7 +734,7 @@ class GradeManagement : AppCompatActivity() {
         }
     }
 
-    private fun loadInfo(subjectList: List<gpstate>) {
+    private fun loadInfo(subjectList: List<GPState>) {
         if(subjectList.isNotEmpty()) {
             for (i in 1..subjectList.size) {
                 val resID = resources.getIdentifier("subject$i", "id", packageName)
@@ -795,7 +796,7 @@ class GradeManagement : AppCompatActivity() {
         getInfo(gs)
     }
 
-    private fun update(info: gpstate) { // 정보를 Room에 업뎃
+    private fun update(info: GPState) { // 정보를 Room에 업뎃
         Thread(Runnable {
             dbmodel.update(info)
         }).start()

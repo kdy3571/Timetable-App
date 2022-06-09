@@ -11,30 +11,27 @@ import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_subject_list.*
 import kotlinx.android.synthetic.main.activity_timetable_add.*
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableAddBinding
-import kotlin.concurrent.thread
 
 
 class TimetableAdd : MainActivity() {
     lateinit var binding: ActivityTimetableAddBinding
     private val model: ViewModel by viewModels()
     private lateinit var dbadapter: DatabaseAdapter
-    private lateinit var dbmodel : InnerDBViewmodel
+    private lateinit var dbmodel : InnerDBViewModel
     var searchType : String = "name"
     var college = ""
     var major = ""
-    val mainActivity = MainActivity
-    var alldbtable : List<weekstate> = arrayListOf()
+    var alldbtable : List<WeekState> = arrayListOf()
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTimetableAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dbmodel = ViewModelProvider(this@TimetableAdd).get(InnerDBViewmodel::class.java)
-        DBGetAll()
+        dbmodel = ViewModelProvider(this@TimetableAdd).get(InnerDBViewModel::class.java)
+        getAll()
 
         val gradeData: Array<String> = resources.getStringArray(R.array.grade)
         val gradeAdapter = ArrayAdapter(this, R.layout.item_spinner, gradeData)
@@ -80,30 +77,34 @@ class TimetableAdd : MainActivity() {
 
         model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
 
-        gradeSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        gradeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
-        semesterSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        }
+        semesterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
-        subjectSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        }
+        subjectSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
-        divisionSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        }
+        divisionSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 model.requestList(college, major, gradeSpinner.selectedItem.toString(), semesterSpinner.selectedItem.toString(), subjectSpinner.selectedItem.toString(), divisionSpinner.selectedItem.toString())
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
+        }
         searchView_timetable_add.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 model.search(query, searchType) // ""에는 searchType 입력
@@ -134,8 +135,8 @@ class TimetableAdd : MainActivity() {
         val dlg = Dialog(this)
         val Intent = Intent(this, MainActivity::class.java)
         var trigger = 0
-        for (i in 0 until alldbtable.size){
-            if(alldbtable[i].name == subjectData.name)
+        for (element in alldbtable){
+            if(element.name == subjectData.name)
                 trigger = 1
         }
         if (trigger == 1)
@@ -165,7 +166,7 @@ class TimetableAdd : MainActivity() {
         }).start()
     }
 
-    private fun DBGetAll(){
+    private fun getAll(){
         Thread(Runnable {
             alldbtable = dbmodel.getSubject(gs)
         }).start()

@@ -1,4 +1,5 @@
 package kr.ac.kumoh.s20170419.mygradecalculator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -20,8 +21,8 @@ private var autoData = ArrayList<ViewModel.Subject>()
 
 open class MainActivity : AppCompatActivity() {
     private lateinit var view: ActivityMainBinding
-    private lateinit var dbmodel: InnerDBViewmodel
-    var alldb : List<weekstate> = arrayListOf()
+    private lateinit var dbmodel: InnerDBViewModel
+    var alldb : List<WeekState> = arrayListOf()
     private var red: Int = 0
     private var blue: Int = 0
     private var green: Int = 0
@@ -29,13 +30,14 @@ open class MainActivity : AppCompatActivity() {
         var gs = ""
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         view = ActivityMainBinding.inflate(layoutInflater)
         setContentView(view.root)
         showProgress(false)
 
-        dbmodel = ViewModelProvider(this@MainActivity).get(InnerDBViewmodel::class.java)
+        dbmodel = ViewModelProvider(this@MainActivity).get(InnerDBViewModel::class.java)
         view.manualButton.setOnClickListener {
             val intent = Intent(this, TimetableAdd::class.java)
             startActivity(intent)
@@ -148,11 +150,12 @@ open class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        var mInflater = menuInflater
+        val mInflater = menuInflater
         mInflater.inflate(R.menu.menu_option, menu)
         return true
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu11 -> gs = "1-1"
@@ -178,6 +181,7 @@ open class MainActivity : AppCompatActivity() {
             autoTable(autoData)
             timeSplit()
         }
+
         if (intent.hasExtra("manual")) {
             timeSplit()
         }
@@ -189,21 +193,14 @@ open class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun randomColor() {
-        red = (Math.random() * 255).toInt()
-        blue = (Math.random() * 255).toInt()
-        green = (Math.random() * 255).toInt()
-    }
-
     private fun timeSplit() {
         var resID = 0
         lateinit var weekID: TextView
         resetTextView()
-        DBGetAll()
+        getAll()
         Thread.sleep(100L)
         if (alldb.isNotEmpty()) {
             for (i in alldb) {
-                randomColor()
                 val time = i.time!!.split(", ")
                 for (t in time) {
                     val temp = t.split(":")
@@ -237,7 +234,7 @@ open class MainActivity : AppCompatActivity() {
         }).start()
     }
 
-    private fun DBGetAll(){
+    private fun getAll(){
         Thread(Runnable {
             alldb = dbmodel.getSubject(gs)
         }).start()
@@ -284,9 +281,9 @@ open class MainActivity : AppCompatActivity() {
     }
 
     private fun delete(weekID : TextView){
-        DBGetAll()
+        getAll()
         if (weekID.text != ""){
-            for (i in 0 until alldb.size){
+            for (i in alldb.indices){
                 if( weekID.text == alldb[i].name ){
                     val dlg = kr.ac.kumoh.s20170419.mygradecalculator.Dialog(this)
                     val dlg2 = kr.ac.kumoh.s20170419.mygradecalculator.ListDialog(this)
@@ -307,7 +304,7 @@ open class MainActivity : AppCompatActivity() {
                                                 }
                                             }
                                         } else if (data == 0)
-                                            Toast.makeText(getApplication(), "취소당", Toast.LENGTH_LONG).show()
+                                            Toast.makeText(application, "취소당", Toast.LENGTH_LONG).show()
                                     }
                                 })
                             }
