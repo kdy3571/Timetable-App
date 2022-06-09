@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
@@ -22,6 +23,7 @@ class GradeManagement : AppCompatActivity() {
     private var subjectList: ArrayList<GPState> = arrayListOf()
     private var db: ArrayList<GPState> = arrayListOf()
     private var gs = ""
+    private var purpose = 0.0
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -571,6 +573,20 @@ class GradeManagement : AppCompatActivity() {
             getSubjectList(gs) // 해당 시간표 불러와 Room에 저장
             getInfo(gs) // 새로 업데이트
         }
+
+        binding.purposeGP.setOnClickListener {
+            if (binding.purposeGP.text.toString() != "") {
+                if(binding.purposeGP.text.toString().toDouble() > 4.5) {
+                    purpose = 4.5
+                    binding.purposeGP.setText("4.5")
+                }
+                else
+                    purpose = binding.purposeGP.text.toString().toDouble()
+            }
+            else
+                purpose = 0.0
+            getGS()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -629,8 +645,8 @@ class GradeManagement : AppCompatActivity() {
     }
 
     private fun getGS() { // 학점 계산
-        var gpSum = 0.0
-        var majorgpSum = 0.0
+        var GPSum = 0.0
+        var majorGPSum = 0.0
         var creditSum = 0
         var majorCreditSum = 0
 
@@ -639,15 +655,15 @@ class GradeManagement : AppCompatActivity() {
             for (i in db) {  // 전체 학점
                 if(i.credit != "") {
                     when (i.gp) {
-                        "A+" -> gpSum += 4.5 * i.credit!!.toInt()
-                        "A" -> gpSum += 4.0 * i.credit!!.toInt()
-                        "B+" -> gpSum += 3.5 * i.credit!!.toInt()
-                        "B" -> gpSum += 3.0 * i.credit!!.toInt()
-                        "C+" -> gpSum += 2.5 * i.credit!!.toInt()
-                        "C" -> gpSum += 2.0 * i.credit!!.toInt()
-                        "D+" -> gpSum += 1.5 * i.credit!!.toInt()
-                        "D" -> gpSum += 1.0 * i.credit!!.toInt()
-                        "F" -> gpSum += 0.0 * i.credit!!.toInt()
+                        "A+" -> GPSum += 4.5 * i.credit!!.toInt()
+                        "A" -> GPSum += 4.0 * i.credit!!.toInt()
+                        "B+" -> GPSum += 3.5 * i.credit!!.toInt()
+                        "B" -> GPSum += 3.0 * i.credit!!.toInt()
+                        "C+" -> GPSum += 2.5 * i.credit!!.toInt()
+                        "C" -> GPSum += 2.0 * i.credit!!.toInt()
+                        "D+" -> GPSum += 1.5 * i.credit!!.toInt()
+                        "D" -> GPSum += 1.0 * i.credit!!.toInt()
+                        "F" -> GPSum += 0.0 * i.credit!!.toInt()
                         else -> null
                     }
                     creditSum += i.credit!!.toInt()
@@ -656,15 +672,15 @@ class GradeManagement : AppCompatActivity() {
                 if (i.subject == "전공") {
                     if (i.credit != "0") {
                         when (i.gp) {
-                            "A+" -> majorgpSum += 4.5 * i.credit!!.toInt()
-                            "A" -> majorgpSum += 4.0 * i.credit!!.toInt()
-                            "B+" -> majorgpSum += 3.5 * i.credit!!.toInt()
-                            "B" -> majorgpSum += 3.0 * i.credit!!.toInt()
-                            "C+" -> majorgpSum += 2.5 * i.credit!!.toInt()
-                            "C" -> majorgpSum += 2.0 * i.credit!!.toInt()
-                            "D+" -> majorgpSum += 1.5 * i.credit!!.toInt()
-                            "D" -> majorgpSum += 1.0 * i.credit!!.toInt()
-                            "F" -> majorgpSum += 0.0 * i.credit!!.toInt()
+                            "A+" -> majorGPSum += 4.5 * i.credit!!.toInt()
+                            "A" -> majorGPSum += 4.0 * i.credit!!.toInt()
+                            "B+" -> majorGPSum += 3.5 * i.credit!!.toInt()
+                            "B" -> majorGPSum += 3.0 * i.credit!!.toInt()
+                            "C+" -> majorGPSum += 2.5 * i.credit!!.toInt()
+                            "C" -> majorGPSum += 2.0 * i.credit!!.toInt()
+                            "D+" -> majorGPSum += 1.5 * i.credit!!.toInt()
+                            "D" -> majorGPSum += 1.0 * i.credit!!.toInt()
+                            "F" -> majorGPSum += 0.0 * i.credit!!.toInt()
                         }
                         majorCreditSum += i.credit!!.toInt()
                     }
@@ -672,12 +688,24 @@ class GradeManagement : AppCompatActivity() {
             }
             binding.allCredits.text = creditSum.toString()
             if(creditSum != 0) {
-                binding.allGp.text =
-                    ((gpSum / creditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
+                val GPA = (GPSum / creditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)
+                binding.allGp.text = GPA.toString()
+
+                if (purpose != 0.0 && purpose > GPA) {
+                    val purposeGPA = ((purpose * 140 - GPSum) / (140 - creditSum) * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)
+                    Log.d("purposeGPA", purposeGPA.toString())
+                    if (purposeGPA <= 4.5)
+                        binding.purposeRequest.text = "남은 평균 학점은 $purposeGPA 이상을 목표로 하세요."
+                    else
+                        binding.purposeRequest.text = "재수강이 필요합니다."
+                }
+                else
+                    binding.purposeRequest.text = ""
+
             }
             if(majorCreditSum != 0) {
-                binding.majorGp.text =
-                    ((majorgpSum / majorCreditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
+                val majorGPA = (majorGPSum / majorCreditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)
+                binding.majorGp.text = majorGPA.toString()
             }
         }
 
@@ -689,35 +717,35 @@ class GradeManagement : AppCompatActivity() {
         editor.apply()
 
         if (subjectList.isNotEmpty()) {
-            gpSum = 0.0
-            majorgpSum = 0.0
+            GPSum = 0.0
+            majorGPSum = 0.0
             creditSum = 0
             majorCreditSum = 0
             for (i in subjectList) {  // 현재 학기 학점
                 when (i.gp) {
-                    "A+" -> gpSum += 4.5 * i.credit!!.toInt()
-                    "A" -> gpSum += 4.0 * i.credit!!.toInt()
-                    "B+" -> gpSum += 3.5 * i.credit!!.toInt()
-                    "B" -> gpSum += 3.0 * i.credit!!.toInt()
-                    "C+" -> gpSum += 2.5 * i.credit!!.toInt()
-                    "C" -> gpSum += 2.0 * i.credit!!.toInt()
-                    "D+" -> gpSum += 1.5 * i.credit!!.toInt()
-                    "D" -> gpSum += 1.0 * i.credit!!.toInt()
-                    "F" -> gpSum += 0.0 * i.credit!!.toInt()
+                    "A+" -> GPSum += 4.5 * i.credit!!.toInt()
+                    "A" -> GPSum += 4.0 * i.credit!!.toInt()
+                    "B+" -> GPSum += 3.5 * i.credit!!.toInt()
+                    "B" -> GPSum += 3.0 * i.credit!!.toInt()
+                    "C+" -> GPSum += 2.5 * i.credit!!.toInt()
+                    "C" -> GPSum += 2.0 * i.credit!!.toInt()
+                    "D+" -> GPSum += 1.5 * i.credit!!.toInt()
+                    "D" -> GPSum += 1.0 * i.credit!!.toInt()
+                    "F" -> GPSum += 0.0 * i.credit!!.toInt()
                 }
                 creditSum += i.credit!!.toInt()
 
                 if (i.subject == "전공") {
                     when (i.gp) {
-                        "A+" -> majorgpSum += 4.5 * i.credit!!.toInt()
-                        "A" -> majorgpSum += 4.0 * i.credit!!.toInt()
-                        "B+" -> majorgpSum += 3.5 * i.credit!!.toInt()
-                        "B" -> majorgpSum += 3.0 * i.credit!!.toInt()
-                        "C+" -> majorgpSum += 2.5 * i.credit!!.toInt()
-                        "C" -> majorgpSum += 2.0 * i.credit!!.toInt()
-                        "D+" -> majorgpSum += 1.5 * i.credit!!.toInt()
-                        "D" -> majorgpSum += 1.0 * i.credit!!.toInt()
-                        "F" -> majorgpSum += 0.0 * i.credit!!.toInt()
+                        "A+" -> majorGPSum += 4.5 * i.credit!!.toInt()
+                        "A" -> majorGPSum += 4.0 * i.credit!!.toInt()
+                        "B+" -> majorGPSum += 3.5 * i.credit!!.toInt()
+                        "B" -> majorGPSum += 3.0 * i.credit!!.toInt()
+                        "C+" -> majorGPSum += 2.5 * i.credit!!.toInt()
+                        "C" -> majorGPSum += 2.0 * i.credit!!.toInt()
+                        "D+" -> majorGPSum += 1.5 * i.credit!!.toInt()
+                        "D" -> majorGPSum += 1.0 * i.credit!!.toInt()
+                        "F" -> majorGPSum += 0.0 * i.credit!!.toInt()
                     }
                     majorCreditSum += i.credit!!.toInt()
                 }
@@ -725,11 +753,11 @@ class GradeManagement : AppCompatActivity() {
             binding.currentCredits.text = creditSum.toString()
             if(creditSum != 0) {
                 binding.currentAllGp.text =
-                    ((gpSum / creditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
+                    ((GPSum / creditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
             }
             if(majorCreditSum != 0) {
                 binding.currentMajorGp.text =
-                    ((majorgpSum / majorCreditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
+                    ((majorGPSum / majorCreditSum * 10.0.pow(2.0)).roundToInt() / 10.0.pow(2.0)).toString()
             }
         }
     }

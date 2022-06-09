@@ -42,11 +42,13 @@
                     android:gravity="center"/>
 
                 <TextView
+                    android:layout_width="159dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:padding="10dp"
                     android:text="취득 학점"
-                    android:textSize="20dp"
-                    android:layout_weight="1"
-                    android:gravity="center"/>
+                    android:textSize="20dp" />
             </TableRow>
 
             <TableRow
@@ -58,19 +60,20 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
                     android:gravity="right"
+                    android:layout_weight="1"
                     android:text="0.0"
                     android:textColor="#ff00"
                     android:textSize="20dp" />
 
+
                 <TextView
                     android:layout_width="0dp"
-                    android:text="/4.5"
-                    android:textSize="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:layout_gravity="center"/>
-
+                    android:text="/4.5"
+                    android:textSize="15dp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -105,10 +108,47 @@
                     android:textSize="15dp"
                     android:layout_weight="1"
                     android:layout_gravity="center"/>
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="목표학점" />
+
+                <EditText
+                    android:id="@+id/purposeGP"
+                    android:layout_width="62dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:id="@+id/purposeRequest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </TableRow>
 
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </TableLayout>
 
         <Button
@@ -120,8 +160,8 @@
             android:layout_marginEnd="20dp"
             android:backgroundTint="#00FFFFFF"
             android:text="시간표 불러오기"
-            android:textSize="10dp"
             android:textColor="#000000"
+            android:textSize="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/grade_manage" />
