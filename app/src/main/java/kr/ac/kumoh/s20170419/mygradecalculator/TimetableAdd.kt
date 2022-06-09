@@ -8,14 +8,16 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_timetable_add.*
+import kr.ac.kumoh.s20170419.mygradecalculator.MainActivity.Companion.gs
 import kr.ac.kumoh.s20170419.mygradecalculator.databinding.ActivityTimetableAddBinding
 
 
-class TimetableAdd : MainActivity() {
+class TimetableAdd : AppCompatActivity() {
     lateinit var binding: ActivityTimetableAddBinding
     private val model: ViewModel by viewModels()
     private lateinit var dbadapter: DatabaseAdapter
