@@ -6,10 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.SearchView
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -29,6 +26,7 @@ class TimetableAdd : MainActivity() {
     var college = ""
     var major = ""
     val mainActivity = MainActivity
+    var alldbtable : List<weekstate> = arrayListOf()
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +34,7 @@ class TimetableAdd : MainActivity() {
         setContentView(binding.root)
 
         dbmodel = ViewModelProvider(this@TimetableAdd).get(InnerDBViewmodel::class.java)
+        DBGetAll()
 
         val gradeData: Array<String> = resources.getStringArray(R.array.grade)
         val gradeAdapter = ArrayAdapter(this, R.layout.item_spinner, gradeData)
@@ -134,11 +133,21 @@ class TimetableAdd : MainActivity() {
     private fun adapterOnClick(subjectData: ViewModel.Subject): Unit {
         val dlg = Dialog(this)
         val Intent = Intent(this, MainActivity::class.java)
-        dlg.dialog(subjectData.name, "추가")
+        var trigger = 0
+        for (i in 0 until alldbtable.size){
+            if(alldbtable[i].name == subjectData.name)
+                trigger = 1
+        }
+        if (trigger == 1)
+            dlg.dialog(subjectData.name, "변경")
+        else
+            dlg.dialog(subjectData.name, "추가")
         dlg.setOnClickedListener(object :
             Dialog.ButtonClickListener {
             override fun onClicked(data: Int) {
                 if (data == 1) {
+                    if (trigger == 1)
+                        deleteSchedule(subjectData.name)
                     connect(subjectData)
                     Thread.sleep(100L)
                     Intent.putExtra("manual", 1)
@@ -148,10 +157,25 @@ class TimetableAdd : MainActivity() {
                     Toast.makeText(application, "취소하였습니다.", Toast.LENGTH_LONG).show()
             }
         })
+
     }
     fun connect(subjectData: ViewModel.Subject){
         Thread(Runnable {
             dbmodel.connect(gs, subjectData)
         }).start()
+    }
+
+    private fun DBGetAll(){
+        Thread(Runnable {
+            alldbtable = dbmodel.getSubject(gs)
+        }).start()
+        Thread.sleep(100L)
+    }
+
+    fun deleteSchedule(str : String){
+        Thread(Runnable {
+            dbmodel.deleteDB(str, gs)
+        }).start()
+        Thread.sleep(100L)
     }
 }
