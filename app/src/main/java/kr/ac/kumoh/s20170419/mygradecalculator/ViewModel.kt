@@ -40,6 +40,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
 
     fun requestList(College: String, Major: String, Grade: String, Semester: String, Subject: String, Division: String) {
         val url = "https://expresssongdb-ocmes.run.goorm.io/?t=1651835082540"
+        // 위 주소를 데이터베이스 서버주소로 교체
 
         val request = JsonArrayRequest(
             Request.Method.GET,
