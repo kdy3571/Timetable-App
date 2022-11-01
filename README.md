@@ -1,1 +1,1 @@
-# -AI
+# Timetable App
